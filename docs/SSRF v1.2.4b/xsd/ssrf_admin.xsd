@@ -1,0 +1,105 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_shared.xsd"/>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!--
+========================
+Common types definitions
+========================
+-->
+	<complexType name="TDataset">
+		<sequence>
+			<element name="Reason" type="s:Memo" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<!-- -->
+	<complexType name="TCodes">
+		<sequence>
+			<element name="Compartment" type="s:TCompartment" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ContactOrgRef" type="s:TContactOrgRef" maxOccurs="unbounded"/>
+			<element name="Code" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="s:NNString">
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="cat" type="s:ListLU" use="required"/>
+							<attribute name="shortCode" type="s:c40" use="required"/>
+							<attribute name="origin" type="s:ListAO" use="required"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<!--
+===========================
+RequestReject Type Definition
+===========================
+-->
+	<complexType name="TAdministrative">
+		<annotation>
+			<documentation>Added sub-element Title per SDG-11a.USA-TG010, 2008-12-07T12:58, tony.greene@jsc-eses.com</documentation>
+		</annotation>
+		<sequence>
+			<element name="Compartment" type="s:TCompartment" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ContactOrgRef" type="s:TContactOrgRef" maxOccurs="unbounded"/>
+			<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Title" type="s:TTitle" minOccurs="0" maxOccurs="1"/>
+
+			<choice>
+				<element name="Dataset" type="s:TDataset" minOccurs="0" maxOccurs="unbounded"/>
+				<element name="MessageRef" type="s:TElmRef" minOccurs="0"/>
+			</choice>
+			<element name="ExtRef" type="s:TExtRef" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="reason" type="s:ListDR" use="required"/>
+		<attribute name="external" type="s:ListBO" use="required"/>
+	</complexType>
+	<complexType name="TResponse">
+		<sequence>
+			<element name="Handling" type="s:THandling" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ReleasableTo" type="s:TReleasableTo" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Status" type="s:TStatus" maxOccurs="unbounded"/>
+			<element name="AdministrativeRef" type="s:TElmRef"/>
+			<element name="Reason" type="s:Memo" minOccurs="0"/>
+			<element name="Dataset" type="s:TDataset" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<!--
+======================
+Delete Type Definition
+======================
+-->
+	<complexType name="TDeletion">
+		<sequence>
+			<element name="Reason" type="s:Memo" minOccurs="0"/>
+			<element name="Dataset" type="s:TDataset" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="origin" type="s:ListDE" use="required"/>
+	</complexType>
+</schema>

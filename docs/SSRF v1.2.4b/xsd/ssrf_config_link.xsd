@@ -1,0 +1,191 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_shared.xsd"/>
+	<include schemaLocation="ssrf_location.xsd"/>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!-- 
+	==========================================
+	Auxilliary Type Definitions
+	==========================================
+	-->
+	<complexType name="TAntHeight">
+		<simpleContent>
+			<extension base="s:UN5">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TBlanking">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="startAz" type="s:TAz" use="required"/>
+		<attribute name="stopAz" type="s:TAz" use="required"/>
+	</complexType>
+	<complexType name="TPointing">
+		<sequence>
+			<element name="Azimuth" type="s:TAzimuth" minOccurs="0"/>
+			<element name="Elevation" type="s:TElevation" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="coverage" type="s:ListCO"/>
+	</complexType>
+	<complexType name="TDCSTrunk">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:c6">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TSrvVolume">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="radius" type="s:UN4"/>
+		<attribute name="height" type="s:UN5"/>
+	</complexType>
+	<complexType name="TStationLoc">
+		<complexContent>
+			<extension base="s:TLocationRef">
+				<sequence>
+					<element name="SrvVolume" type="s:TSrvVolume" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TUserCode">
+		<simpleContent>
+			<extension base="s:c6">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TTSDF">
+		<simpleContent>
+			<extension base="s:Memo">
+				<attribute name="value">
+					<annotation>
+						<documentation>TSDF value has a format [0..100]/[0..99]</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="6"/>
+							<pattern value="([0-9]{2}|100)/[0-9]{2}"/>
+						</restriction>
+					</simpleType>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TOtherConfigRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="configRef" type="s:c24" use="required"/>
+	</complexType>
+	<!-- 
+	=======================
+	Station Type Definition
+	=======================
+	-->
+	<complexType name="TStation">
+		<sequence>
+			<element name="StationLoc" type="s:TStationLoc" maxOccurs="unbounded"/>
+			<element name="CositeSep" type="s:TCositeSep" minOccurs="0"/>
+			<element name="ContactOrgRef" type="s:TContactOrgRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="NumUnits" type="s:TNumUnits" minOccurs="0"/>
+			<element name="UserCode" type="s:TUserCode" minOccurs="0"/>
+			<element name="TSDF" type="s:TTSDF" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="name" type="s:c100" use="required"/>
+		<attribute name="callSign" type="s:c18"/>
+	</complexType>
+	<!-- 
+	=============================
+	Configuration Type Definition
+	=============================
+	-->
+	<complexType name="TConfig">
+		<sequence>
+			<choice>
+				<element name="TxRxModeRef" type="s:TTxRxModeRef"/>
+				<element name="SignalDescrModeRef" type="s:TSignalDescrModeRef"/>
+			</choice>
+			<element name="AntModeRef" type="s:TAntModeRef" minOccurs="0"/>
+			<element name="EIRP" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="minEIRP" type="s:SN6_2"/>
+					<attribute name="maxEIRP" type="s:SN6_2"/>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="name" type="s:c24" use="required"/>
+		<attribute name="stnClass" type="s:ListSC" use="required"/>
+		<attribute name="srvNature" type="s:ListSV"/>
+		<attribute name="repeater" type="s:ListBO"/>
+	</complexType>
+	<!-- 
+	====================
+	Link Type Definition
+	====================
+	-->
+	<complexType name="TTxStation">
+		<sequence>
+			<element name="AntHeight" type="s:TAntHeight" minOccurs="0"/>
+			<element name="Pointing" type="s:TPointing" minOccurs="0"/>
+			<element name="Blanking" type="s:TBlanking" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="OtherConfigRef" type="s:TOtherConfigRef" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="configRef" type="s:c24" use="required"/>		
+		<attribute name="stationRef" type="s:c100" use="required"/>
+	</complexType>
+	<complexType name="TRxStation">
+		<sequence>
+			<element name="AntHeight" type="s:TAntHeight" minOccurs="0"/>
+			<element name="Pointing" type="s:TPointing" minOccurs="0"/>
+			<element name="Blanking" type="s:TBlanking" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="OtherConfigRef" type="s:TOtherConfigRef" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="configRef" type="s:c24"/>
+		<attribute name="stationRef" type="s:c100" use="required"/>
+	</complexType>
+	<complexType name="TLink">
+		<sequence>
+			<element name="Tuning" type="s:TTuning" minOccurs="0"/>
+			<choice>
+				<element name="Freq" type="s:TFreq" minOccurs="0" maxOccurs="unbounded"/>
+				<element name="NavAids" type="s:TNavAids" minOccurs="0" maxOccurs="unbounded"/>
+				<element name="NetNum" type="s:TNetNum" minOccurs="0" maxOccurs="unbounded"/>
+				<element name="Rejected" type="s:Memo" minOccurs="0"/>
+			</choice>
+			<choice>
+				<element name="TxRxStation" type="s:TTxStation" maxOccurs="unbounded"/>
+				<element name="RxStation" type="s:TRxStation" minOccurs="1" maxOccurs="unbounded"/>
+				<sequence>
+					<element name="TxStation" type="s:TTxStation"/>
+					<element name="RxStation" type="s:TRxStation" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</choice>
+			<element name="DCSTrunk" type="s:TDCSTrunk" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="name" type="s:c24" use="required"/>
+	</complexType>
+</schema>

@@ -1,0 +1,166 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<include schemaLocation="ssrf_refdata.xsd"/>
+	<include schemaLocation="ssrf_config_link.xsd"/>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!--
+	==================================
+	Subsidiary Types only used in Asgn
+	==================================
+	-->
+	<complexType name="TFnctID">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-12] remove DetailedFnctID, major, intermediate, and use new ListFN type instead of C30</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="s:ListFN">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TSysOfStation">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="sysName" type="s:c24"/>
+		<attribute name="higherLevelSys" type="s:c24" use="required"/>
+		<attribute name="lowerLevelSys" type="s:c24"/>
+	</complexType>
+	<complexType name="TAsgnType">
+		<annotation>
+			<appinfo>nation=SMB;</appinfo>
+		</annotation>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="category" type="s:ListCA" use="required"/>
+		<attribute name="resource" type="s:ListNR"/>
+	</complexType>
+	<complexType name="THostNominate">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-15] remove FreqSingle and FreqRange</documentation>
+		</annotation>	
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="authority" type="s:ListHN" use="required"/>
+	</complexType>
+	<!-- 
+	=========================================
+	Additional Net sub-element (for volume 3)
+	=========================================
+	-->
+	<complexType name="TNet">
+		<sequence>
+			<element name="CallInfo" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="timePeriod" type="s:UN2"/>
+					<attribute name="callSign" type="s:C3" use="required"/>
+					<attribute name="callWord" type="s:c15"/>
+					<attribute name="TAD" type="s:C5"/>
+				</complexType>
+			</element>
+			<element name="Colour" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="word" type="s:c16" use="required"/>
+					<attribute name="num" type="s:UN2" use="required"/>
+				</complexType>
+			</element>
+			<element name="COMSECKeymat" minOccurs="0">
+				<complexType>
+					<simpleContent>
+						<extension base="s:c15">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="GuardRequirements" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="TimeFrame" type="s:TTimeFrame" minOccurs="0"/>
+					</sequence>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="serial" type="s:TSerial" use="required"/>
+				</complexType>
+			</element>
+			<element name="MissionPriority" minOccurs="0">
+				<complexType>
+					<simpleContent>
+						<extension base="s:c20">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="lineNum" type="s:UN4"/>
+		<attribute name="name" type="s:c100" use="required"/>
+		<attribute name="protCode" type="s:ListPB"/>
+		<attribute name="restoral" type="s:c3"/>
+		<attribute name="pushNum" type="s:c3"/>
+	</complexType>
+	<!-- 
+	=======================================================================
+	Assignment Type Definition (contains x Stations, y Configs and z Links)
+	=======================================================================
+	-->
+	<complexType name="TAsgnAllot">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Title" type="s:TTitle" minOccurs="0"/>
+					<element name="AsgnType" type="s:TAsgnType" minOccurs="0"/>
+					<element name="ApprovalRouting" type="s:TApprovalRouting" minOccurs="0"/>
+					<element name="ResponseDate" type="s:TDate" minOccurs="0"/>
+					<element name="Time" type="s:TTime" minOccurs="0"/>
+					<element name="Contract" type="s:TContract" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Requirement" type="s:Memo" minOccurs="0"/>
+					<element name="Emergency" type="s:TEmergency" minOccurs="0"/>
+					<element name="HostNominate" type="s:THostNominate" minOccurs="0"/>
+					<element name="SysOfStation" type="s:TSysOfStation" minOccurs="0"/>
+					<element name="FnctID" type="s:TFnctID" maxOccurs="unbounded">
+						<annotation>
+							<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] FnctID goes from [1..1] to [1..n].</documentation>
+						</annotation>
+					</element>
+					<element name="NoteRef" type="s:TNoteRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="AsgnAllotRef" type="s:TAsgnAllotRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="SSRequestRef" type="s:TSSRequestRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Config" type="s:TConfig" maxOccurs="unbounded"/>
+					<element name="Station" type="s:TStation" maxOccurs="unbounded"/>
+					<element name="Link" type="s:TLink" maxOccurs="unbounded">
+						<annotation>
+							<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] validation constraints added for stationRef uniqueness.</documentation>
+						</annotation>
+						<unique name="KLinkTRS">
+							<selector xpath="./s:TxRxStation"/>
+							<field xpath="@stationRef"/>
+						</unique>
+						<unique name="KLinkTS">
+							<selector xpath="./s:TxStation"/>
+							<field xpath="@stationRef"/>
+						</unique>
+						<unique name="KLinkRS">
+							<selector xpath="./s:RxStation"/>
+							<field xpath="@stationRef"/>
+						</unique>
+					</element>
+					<element name="Net" type="s:TNet" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

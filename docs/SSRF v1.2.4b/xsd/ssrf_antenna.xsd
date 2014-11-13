@@ -1,0 +1,201 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!--
+	===============================================
+	Subsidiary types only used in Antenna / AntMode
+	===============================================
+	-->
+	<complexType name="TDiameter">
+		<simpleContent>
+			<extension base="s:UN6_2">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="THorzVert">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="horz" type="s:UN6_2" use="required"/>
+		<attribute name="vert" type="s:UN6_2" use="required"/>
+	</complexType>
+	<complexType name="TAperture">
+		<choice>
+			<element name="Diameter" type="s:TDiameter"/>
+			<element name="HorzVert" type="s:THorzVert"/>
+		</choice>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<complexType name="TDimension">
+		<choice>
+			<element name="Diameter" type="s:TDiameter"/>
+			<element name="HorzVert" type="s:THorzVert"/>
+		</choice>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="shape" type="s:UC1">
+			<annotation>
+				<appinfo>code=USR:RS;</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="elementSpacing" type="s:UN6_2"/>
+	</complexType>
+	<simpleType name="TScanType">
+		<annotation>
+			<appinfo>code=USR:AS;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+	<complexType name="THorzScan">
+		<sequence>
+			<element name="Azimuth" type="s:TAzimuth"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="speed" type="s:UN7_2" use="required"/>
+		<attribute name="rate" type="s:UN4" use="required"/>
+		<attribute name="scanType" type="s:TScanType" use="required"/>
+	</complexType>
+	<complexType name="TVertScan">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="speed" type="s:UN7_2" use="required"/>
+		<attribute name="rate" type="s:UN4" use="required"/>
+		<attribute name="scanType" type="s:TScanType" use="required"/>
+		<attribute name="minScanAngle" type="s:TElev"/>
+		<attribute name="maxScanAngle" type="s:TElev"/>
+	</complexType>
+	<complexType name="TAntPattern">
+		<sequence>
+			<element name="AntPatternPoint" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="dir" type="s:TAz" use="required"/>
+					<attribute name="gain" type="s:SN5_2" use="required"/>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="code" type="s:ListAP" use="required"/>
+		<attribute name="origin" type="s:ListOR" use="required"/>
+	</complexType>
+	<complexType name="TGain">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minGain" type="s:SN5_2" use="required"/>
+		<attribute name="maxGain" type="s:SN5_2"/>
+		<attribute name="frontToBackRatio" type="s:UN5_2"/>
+	</complexType>
+	<complexType name="TPol">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListPO" use="required"/>
+		<attribute name="angle" type="s:TAz"/>
+	</complexType>
+	<complexType name="TRotation">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="code" type="s:ListBO" use="required"/>
+		<attribute name="minRate" type="s:UN7_2"/>
+		<attribute name="maxRate" type="s:UN7_2"/>
+	</complexType>
+	<complexType name="TPhasedArray">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="numMainBeams" type="s:UN3"/>
+		<attribute name="numElements" type="s:UN5"/>
+	</complexType>
+	<complexType name="TAntType">
+		<simpleContent>
+			<extension base="s:C3">
+				<annotation>
+					<appinfo>code=USR:AT;</appinfo>
+				</annotation>
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="THorzSidelobe">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="suppressed" type="s:ListBO"/>
+		<attribute name="az" type="s:TAz"/>
+		<attribute name="value" type="s:UN5_2"/>
+	</complexType>
+	<complexType name="TVertSidelobe">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="elev" type="s:TElev"/>
+		<attribute name="value" type="s:UN5_2"/>
+	</complexType>
+	<complexType name="TSysLosses">
+		<simpleContent>
+			<extension base="s:UN5_2">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!--
+	=======================
+	Antenna Mode Definition
+	=======================
+	-->
+	<complexType name="TAntMode">
+		<complexContent>
+			<extension base="s:Mode">
+				<sequence>
+					<element name="Gain" type="s:TGain"/>
+					<element name="Pol" type="s:TPol"/>
+					<element name="Beamwidth" type="s:TBeamwidth" minOccurs="0"/>
+					<element name="FreqSingle" type="s:TFreqSingle" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FreqRange" type="s:TFreqRange" minOccurs="0"/>
+					<element name="Rotation" type="s:TRotation" minOccurs="0"/>
+					<element name="HorzScan" type="s:THorzScan" minOccurs="0"/>
+					<element name="VertScan" type="s:TVertScan" minOccurs="0"/>
+					<element name="AntPattern" type="s:TAntPattern" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="code" type="s:TAntModeCode" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	=================
+	Antenna Defintion
+	=================
+	-->
+	<complexType name="TAntenna">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Nomenclature" type="s:TNomenclature" maxOccurs="unbounded"/>
+					<element name="StockNum" type="s:TStockNum" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="WillReplace" type="s:TWillReplace" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FreqSingle" type="s:TFreqSingle" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FreqRange" type="s:TFreqRange" minOccurs="0"/>
+					<element name="PhasedArray" type="s:TPhasedArray" minOccurs="0"/>
+					<element name="AntType" type="s:TAntType"/>
+					<element name="Curve" type="s:TCurve" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="AntPattern" type="s:TAntPattern" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Dimension" type="s:TDimension" minOccurs="0"/>
+					<element name="Aperture" type="s:TAperture" minOccurs="0"/>
+					<element name="HorzSidelobe" type="s:THorzSidelobe" minOccurs="0"/>
+					<element name="VertSidelobe" type="s:TVertSidelobe" minOccurs="0"/>
+					<element name="SysLosses" type="s:TSysLosses" minOccurs="0"/>
+					<element name="AntMode" type="s:TAntMode" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="motionType" type="s:ListAD" use="required"/>
+				<attribute name="antUse" type="s:ListAU"/>
+				<attribute name="sectBlanking" type="s:ListBO"/>
+				<attribute name="feedType" type="s:ListAF"/>
+				<attribute name="leadType" type="s:ListAL"/>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

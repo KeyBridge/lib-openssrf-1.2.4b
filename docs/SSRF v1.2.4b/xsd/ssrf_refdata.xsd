@@ -1,0 +1,336 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<include schemaLocation="ssrf_location.xsd"/>
+	<include schemaLocation="ssrf_antenna.xsd"/>
+	<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!--
+	===================================
+	Base type for all Std types
+	===================================
+	-->
+	<!--
+	<attributeGroup name="AStd">
+		<annotation>
+			<documentation>AStd is an attribute group used in AntStd, CoordStd, EmsStd, RxStd,  Application, ChnlPlan, Note, and User</documentation>
+		</annotation>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="name" type="s:c200"/>
+		<attribute name="source" type="s:ListAO" use="required"/>
+		<attribute name="admin" type="s:c100"/>
+		<attribute name="startDate" type="date"/>
+		<attribute name="stopDate" type="date"/>
+	</attributeGroup>
+	-->
+	<complexType name="TStd">
+		<sequence>
+			<element name="Compartment" type="s:TCompartment" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ExtRef" type="s:TExtRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="name" type="s:c200"/>
+		<attribute name="source" type="s:ListAO" use="required"/>
+		<attribute name="admin" type="s:c100"/>
+		<attribute name="startDate" type="date"/>
+		<attribute name="stopDate" type="date"/>
+	</complexType>
+	<!--
+	===================================
+	Types derived from Std
+	===================================
+	-->
+	<!-- Note -->
+	<complexType name="TNote">
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="Description" type="s:Memo"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TNoteRef">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="serial" type="s:TSerial" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Bands (for TOA) -->
+	<complexType name="TBandApplication">
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="Description" type="s:Memo" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TBandUser">
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="Description" type="s:Memo" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	===========================
+	Standards Types Definitions
+	===========================
+	-->
+	<!-- Antenna -->
+	<complexType name="TAntSpec">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<sequence>
+			<element name="Beamwidth" type="s:TBeamwidth" minOccurs="0"/>
+			<element name="Azimuth" type="s:TAzimuth" minOccurs="0"/>
+			<element name="Elevation" type="s:TElevation" minOccurs="0"/>
+			<element name="AntPattern" type="s:TAntPattern" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="gain" type="s:SN6_2"/>
+		<attribute name="diameter" type="s:SN6_2"/>
+		<attribute name="directionality" type="s:TAz"/>
+		<attribute name="polarisation" type="s:ListPO">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-13] changed from C2 to ListPO.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="sidelobeAttenuation" type="s:SN6"/>
+	</complexType>
+	<complexType name="TAntStd">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="AntSpec" type="s:TAntSpec" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Channel Plan -->
+	<complexType name="TChnlFreq">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="freq" type="s:FreqM" use="required"/>
+		<attribute name="name" type="s:c20"/>
+	</complexType>
+	<complexType name="TChnlPlan">
+		<complexContent>
+			<extension base="s:TStd">
+				<choice>
+					<element name="Chnl" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element name="ChnlFreq" type="s:TChnlFreq" maxOccurs="unbounded"/>
+							</sequence>
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="name" type="s:c20"/>
+						</complexType>
+					</element>
+					<element name="ChnlFreq" type="s:TChnlFreq" maxOccurs="unbounded"/>
+				</choice>
+				<attribute name="relatedPlan" type="s:c20"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Coordination -->
+	<complexType name="TCoordStd">
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="CoordSpec" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element name="LocationRef" type="s:TLocationRef" minOccurs="0" maxOccurs="unbounded"/>
+								<element name="ChnlPlanRef" type="s:TElmRef" minOccurs="0"/>
+								<element name="AntStdRef" type="s:TNationalElmRef" minOccurs="0"/>
+								<element name="EmsStdRef" type="s:TElmRef" minOccurs="0"/>
+								<element name="RxStdRef" type="s:TNationalElmRef" minOccurs="0"/>
+								<element name="CoordProcess" type="s:Memo"/>
+							</sequence>
+							<attribute name="cls" type="s:ListCL"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Curve -->
+	<complexType name="TAxis">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minAxis" type="s:SN5_2"/>
+		<attribute name="maxAxis" type="s:SN5_2"/>
+		<attribute name="units" type="s:c7"/>
+	</complexType>
+	<complexType name="TCurveStd">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="CurveSpec" maxOccurs="unbounded">
+						<complexType>
+							<annotation>
+								<appinfo>nation=USA;</appinfo>
+							</annotation>
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="xValue" type="s:SN9_2"/>
+							<attribute name="yValue" type="s:SN5_2"/>
+						</complexType>
+					</element>
+					<element name="XAxis" type="s:TAxis" minOccurs="0"/>
+					<element name="YAxis" type="s:TAxis" minOccurs="0"/>
+				</sequence>
+				<attribute name="EMFieldType" type="s:c50"/>
+				<attribute name="orientation" type="s:c15"/>
+				<attribute name="spec" type="s:c10"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Emission Mask -->
+	<complexType name="TEmsMaskStd">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="EmsMaskSpec" maxOccurs="unbounded">
+						<complexType>
+							<annotation>
+								<appinfo>nation=USA;</appinfo>
+							</annotation>
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="xLow" type="s:c20"/>
+							<attribute name="xLowOp" type="s:ListOP"/>
+							<attribute name="xVariable" type="s:c10"/>
+							<attribute name="xHighOp" type="s:ListOP"/>
+							<attribute name="xHigh" type="s:c20"/>
+							<attribute name="yVariable" type="s:c10"/>
+							<attribute name="severity" type="s:c7"/>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="curveType" type="s:ListCT"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Emission -->
+	<complexType name="TEmsPowerLimit">
+		<sequence>
+			<element name="TimeFrame" type="s:TTimeFrame" minOccurs="0"/>
+			<element name="Elevation" type="s:TElevation" minOccurs="0"/>
+			<element name="PowerLimit" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="limit" type="s:SN5_2"/>
+					<attribute name="type" type="s:ListPT"/>
+					<attribute name="criteria" type="s:ListOP"/>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="dutyCycle" type="s:UN4_1"/>
+		<attribute name="powerRefDist" type="s:UN5"/>
+	</complexType>
+	<complexType name="TEmsSpurious">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="mode" type="s:c24"/>
+		<attribute name="type" type="s:c24"/>
+		<attribute name="level" type="s:SN5_2"/>
+	</complexType>
+	<complexType name="TEmsStd">
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="EmsSpec" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element name="EmsDesignator" type="s:TEmsDesignator" minOccurs="0"/>
+								<element name="EmsPowerLimit" type="s:TEmsPowerLimit" minOccurs="0" maxOccurs="unbounded"/>
+								<element name="EmsSpurious" type="s:TEmsSpurious" minOccurs="0" maxOccurs="unbounded"/>
+							</sequence>
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="requiredMod" type="s:c4"/>
+							<attribute name="authBW" type="s:FreqM"/>
+							<attribute name="chnlSpacing" type="s:FreqM"/>
+							<attribute name="duplexSeparation" type="s:FreqM"/>
+							<attribute name="tolerance" type="s:FreqM"/>
+							<attribute name="intermodAttenuation" type="s:UN5_2"/>
+							<attribute name="txAttackTime" type="s:UN9_5"/>
+							<attribute name="txReleaseTime" type="s:UN9_5"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Reception -->
+	<complexType name="TRxStd">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="s:TStd">
+				<sequence>
+					<element name="RxSpec" maxOccurs="unbounded">
+						<complexType>
+							<annotation>
+								<appinfo>nation=USA;</appinfo>
+							</annotation>
+							<sequence>
+								<element name="RxSpurious" minOccurs="0" maxOccurs="unbounded">
+									<complexType>
+										<annotation>
+											<appinfo>nation=USA;</appinfo>
+										</annotation>
+										<attribute name="cls" type="s:ListCL"/>
+										<attribute name="rejection" type="s:UN5_2"/>
+										<attribute name="separation" type="s:c24"/>
+										<attribute name="radiationLimit" type="s:UN8_5"/>
+										<attribute name="radiationType" type="s:c24"/>
+									</complexType>
+								</element>
+							</sequence>
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="sensitivity" type="s:SN5_2"/>
+							<attribute name="sensitivitytype" type="s:c24"/>
+							<attribute name="selectivity" type="s:UN5_2"/>
+							<attribute name="selectivityOffset" type="s:FreqM"/>
+							<attribute name="tolerance" type="s:UN12_6"/>
+							<attribute name="intermodRejection" type="s:UN4_1"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

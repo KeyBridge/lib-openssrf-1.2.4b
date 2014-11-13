@@ -1,0 +1,184 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_lists_fx.xsd"/>
+	<include schemaLocation="ssrf_common.xsd"/>
+	<include schemaLocation="ssrf_shared.xsd"/>
+	<include schemaLocation="ssrf_organisation.xsd"/>
+	<include schemaLocation="ssrf_refdata.xsd"/>
+	<include schemaLocation="ssrf_admin.xsd"/>
+	<include schemaLocation="ssrf_toa.xsd"/>
+	<include schemaLocation="ssrf_location.xsd"/>
+	<include schemaLocation="ssrf_antenna.xsd"/>
+	<include schemaLocation="ssrf_txrx.xsd"/>
+	<include schemaLocation="ssrf_config_link.xsd"/>
+	<include schemaLocation="ssrf_sspt.xsd"/>
+	<include schemaLocation="ssrf_asgnallot.xsd"/>
+	<include schemaLocation="ssrf_intf.xsd"/>
+	<include schemaLocation="ssrf_fe.xsd"/>
+	<include schemaLocation="ssrf_jrfl.xsd"/>
+	<include schemaLocation="ssrf_bsm_ceoi.xsd"/>
+	<!--
+	=====================================================================
+	A SSRF Message may contain any number of the basic object types 
+	=====================================================================
+	-->
+	<complexType name="THeader">
+		<sequence>
+			<element name="Digest" minOccurs="0">
+				<annotation>
+					<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use DigestCode type instead of C256</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="s:DigestCode">
+							<attribute name="algorithm" type="s:ListDI" use="required"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="MsgInfo">
+				<complexType>
+					<simpleContent>
+						<extension base="s:c100">
+							<attribute name="serial" type="s:TSerial" use="required"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="MsgCls" type="s:ListCL">
+				<annotation>
+					<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-008] MsgCls added after MsgInfo (see next change to see how non-deterministic error is avoided).</documentation>
+				</annotation>
+			</element>
+			<any namespace="##any" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] remove processContents="lax" attribute.</documentation>
+				</annotation>
+			</any>
+		</sequence>
+	</complexType>
+	<!--  -->
+	<element name="SSRF">
+		<complexType>
+			<annotation>
+				<documentation>
+				Root-level element for all data exchanged according to MCEB Pub 8, Standard Spectrum Resource Format (SSRF).
+				This element MUST be conveyed as the root element in any instance document based on this schema.
+				</documentation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] additional line of documentation added regarding the importance of the root node.</documentation>
+			</annotation>
+			<sequence>
+				<element name="Header" type="s:THeader"/>
+				<element name="Body">
+					<complexType>
+						<sequence>
+							<element name="Compartment" type="s:TCompartment" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="ExtReference" type="s:TExtReference" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Deletion" type="s:TDeletion" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Administrative" type="s:TAdministrative" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Response" type="s:TResponse" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Codes" type="s:TCodes" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Note" type="s:TNote" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="BandUser" type="s:TBandUser" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="BandApplication" type="s:TBandApplication" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="AntStd" type="s:TAntStd" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="ChnlPlan" type="s:TChnlPlan" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="CoordStd" type="s:TCoordStd" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="CurveStd" type="s:TCurveStd" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="EmsMaskStd" type="s:TEmsMaskStd" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="EmsStd" type="s:TEmsStd" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="RxStd" type="s:TRxStd" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Organisation" type="s:TOrganisation" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Contact" type="s:TContact" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Role" type="s:TRole" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Location" type="s:TLocation" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="LocationSet" type="s:TLocationSet" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="TOA" type="s:TTOA" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="SignalDescr" type="s:TSignalDescr" minOccurs="0" maxOccurs="unbounded">
+								<unique name="KSDMode">
+									<selector xpath="./s:TxRxMode"/>
+									<field xpath="@modeName"/>
+								</unique>
+							</element>
+							<element name="TxRx" type="s:TTxRx" minOccurs="0" maxOccurs="unbounded">
+								<unique name="KTxRxMode">
+									<selector xpath="./s:TxRxMode"/>
+									<field xpath="@modeName"/>
+								</unique>
+							</element>
+							<element name="Antenna" type="s:TAntenna" minOccurs="0" maxOccurs="unbounded">
+								<unique name="KAntMode">
+									<selector xpath="./s:AntMode"/>
+									<field xpath="@code"/>
+								</unique>
+							</element>
+							<element name="SSRequest" type="s:TSSRequest" minOccurs="0" maxOccurs="unbounded">
+								<unique name="KSSRequestConfig">
+									<selector xpath="./s:Config"/>
+									<field xpath="@name"/>
+								</unique>
+							</element>
+							<element name="SSReply" type="s:TSSReply" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="AsgnAllot" type="s:TAsgnAllot" minOccurs="0" maxOccurs="unbounded">
+								<unique name="KLink">
+									<selector xpath="./s:Link"/>
+									<field xpath="@name"/>
+								</unique>
+								<key name="KConfig">
+									<selector xpath="./s:Config"/>
+									<field xpath="@name"/>
+								</key>
+								<keyref name="RLinkConfig" refer="s:KConfig">
+									<selector xpath="./s:Link/s:*"/>
+									<field xpath="@configRef"/>
+								</keyref>
+								<key name="KStation">
+									<selector xpath="./s:Station"/>
+									<field xpath="@name"/>
+								</key>
+								<keyref name="RLinkStation" refer="s:KStation">
+									<selector xpath="./s:Link/s:*"/>
+									<field xpath="@stationRef"/>
+								</keyref>
+							</element>
+							<element name="IntfReport" type="s:TIntfReport" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="IntfMitigation" type="s:TIntfMitigation" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="JRFL" type="s:TJRFL" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Route" type="s:TRoute" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="ForceElement" type="s:TForceElement" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="FEDeployment" type="s:TFEDeployment" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="BSMPlan" type="s:TBSMPlan" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="Dictionary" type="s:TDictionary" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="CEOI" type="s:TCEOI" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="OpClearanceRequest" type="s:TOpClearanceRequest" minOccurs="0" maxOccurs="unbounded"/>
+							<element name="OpClearance" type="s:TOpClearance" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</complexType>
+					<unique name="KIntfReport">
+						<selector xpath="./s:IntfReport"/>
+						<field xpath="@serial"/>
+					</unique>
+					<keyref name="RIntfReport" refer="s:KIntfReport">
+						<selector xpath="./s:IntfMitigation/s:IntfReportRef"/>
+						<field xpath="@serial"/>
+					</keyref>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

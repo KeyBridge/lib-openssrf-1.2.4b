@@ -1,0 +1,168 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_shared.xsd"/>
+	<include schemaLocation="ssrf_txrx.xsd"/>
+	<include schemaLocation="ssrf_config_link.xsd"/>
+	<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!--
+	==============================================
+	Spectrum Supportability Request Type Defintion
+	==============================================
+	-->
+	<complexType name="TStage">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="num" type="s:ListSG" use="required"/>
+		<attribute name="startDate" type="date"/>
+		<attribute name="targetDate" type="date"/>
+		<attribute name="approvalDate" type="date"/>
+		<attribute name="terminationDate" type="date"/>
+		<attribute name="numTx" type="s:UN6"/>
+		<attribute name="numRx" type="s:UN6"/>
+	</complexType>
+	<complexType name="TStage4Srv">
+		<simpleContent>
+			<extension base="s:ListSN">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TDiagram">
+		<simpleContent>
+			<extension base="s:c12">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TSystemCost">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:Memo">
+				<attribute name="intialCost" type="s:c70"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- -->
+	<complexType name="TSSRequest">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="ApprovalRouting" type="s:TApprovalRouting" minOccurs="0"/>
+					<element name="ResponseDate" type="s:TDate" minOccurs="0"/>
+					<element name="Title" type="s:TTitle"/>
+					<element name="Stage" type="s:TStage" maxOccurs="3" minOccurs="0">
+						<annotation>
+							<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-10] stage should be [0..3].</documentation>
+						</annotation>
+					</element>
+					<element name="Stage4Srv" type="s:TStage4Srv" minOccurs="0"/>
+					<element name="SystemCost" type="s:TSystemCost" minOccurs="0"/>
+					<element name="NumUnits" type="s:TNumUnits"/>
+					<element name="Description" type="s:Memo"/>
+					<element name="Contract" type="s:TContract" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Requirement" type="s:Memo"/>
+					<element name="WillReplace" type="s:TWillReplace" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="SSRequestRef" type="s:TSSRequestRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="HostNation" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="s:ListAO">
+									<attribute name="cls" type="s:ListCL"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="Config" type="s:TConfig" maxOccurs="unbounded"/>
+					<element name="LocationRef" type="s:TLocationRef" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="stage" type="s:ListSG" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	==============================================
+	Host Nation Reply Type Defintion
+	==============================================
+	-->
+	<complexType name="TAuthorisedTuning">
+		<sequence>
+			<element name="FreqSingle" type="s:TFreqSingle" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="FreqRange" type="s:TFreqRange" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="tuningStep" type="s:FreqM" use="required"/>
+		<attribute name="numFreq" type="s:UN4" use="required">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-05] numFreqs changed to numFreq.</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="THostNationConstraints">
+		<sequence>
+			<element name="Config" type="s:TConfig" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="AuthorisedTuning" type="s:TAuthorisedTuning" minOccurs="0"/>
+			<element name="TimeFrame" type="s:TTimeFrame" minOccurs="0"/>
+			<element name="LocationRef" type="s:TLocationRef" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<complexType name="TSSReply">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="SSRequestRef" type="s:TSSRequestRef"/>
+					<element name="HostNationConstraints" type="s:THostNationConstraints" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="status" type="s:ListHD" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	==============================================
+	Operating Clearance Types Defintions
+	==============================================
+	-->
+	<complexType name="TOpClearanceRequest">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.b">Changed maxOccurs to "unbounded" as specified in doc. tony.greene@itt.com 2009-04-30T17:10:00</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Description" type="s:Memo"/>
+					<element name="LocationRef" type="s:TLocationRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ResponseDate" type="s:TDate" minOccurs="0"/>
+					<element name="Title" type="s:TTitle"/>
+					<element name="TxRxModeRef" type="s:TTxRxModeRef"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--  -->
+	<complexType name="TOpClearance">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="OpClearanceRequestRef" type="s:TElmRef"/>
+					<element name="AuthorisedTuning" type="s:TAuthorisedTuning" minOccurs="0"/>
+				</sequence>
+				<attribute name="status" type="s:ListHD" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

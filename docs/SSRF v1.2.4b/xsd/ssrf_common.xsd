@@ -1,0 +1,179 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_shared.xsd"/>
+	<include schemaLocation="ssrf_lists_fx.xsd"/>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!-- 
+	=========================================
+	Types used for Classification Information 
+	=========================================
+	-->
+	<simpleType name="TClsReason">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] added TClsReason type.</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="1.4[A-H]{1,8}" />
+		</restriction>
+	</simpleType>
+	<complexType name="TClsOrigin">
+		<sequence>
+			<element name="ClsReason" minOccurs="0">
+				<annotation>
+					<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use new TClsReason type.</documentation>
+				</annotation>			
+				<complexType>
+					<simpleContent>
+						<extension base="s:TClsReason">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="authority" type="s:c30" use="required"/>
+		<attribute name="org" type="s:c30" use="required"/>
+	</complexType>
+	<complexType name="TDecls">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] no need for special comment because C40 is used now.</documentation>
+		</annotation>			
+		<simpleContent>
+			<extension base="s:c40">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="type" use="required">
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="10"/>
+							<pattern value="DEDATE|DEOADR|DEON EVENT|DEX[1-8]{1,7}|DE25X[1-9]"/>
+						</restriction>
+					</simpleType>
+				</attribute>
+				<attribute name="date" type="date"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TDowngrade">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="downCls" type="s:ListCL" use="required"/>
+		<attribute name="date" type="date" use="required"/>
+	</complexType>
+	<complexType name="TClsDerived">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="date" type="date" use="required"/>
+		<attribute name="title" type="s:c30" use="required"/>
+		<attribute name="org" type="s:c30" use="required"/>
+	</complexType>
+	<complexType name="TDatasetCls">
+		<sequence>
+			<element name="ClsOrigin" type="s:TClsOrigin" minOccurs="0"/>
+			<element name="ClsDerived" type="s:TClsDerived" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Downgrade" type="s:TDowngrade" minOccurs="0" maxOccurs="3"/>
+			<element name="Decls" type="s:TDecls" minOccurs="0"/>
+		</sequence>
+		<attribute name="overallCls" type="s:ListCL" use="required"/>
+	</complexType>
+	<!-- 
+	==========================================================
+	Common abstract type used in every top-level object for common info
+	==========================================================
+	-->
+	<complexType name="TAction">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:ListAC">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TExtReference">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Attachment" minOccurs="0">
+						<complexType>
+							<simpleContent>
+								<extension base="s:c255">
+									<attribute name="cls" type="s:ListCL"/>
+									<attribute name="mimeType" type="s:ListMT" use="required"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="URI" minOccurs="0">
+						<complexType>
+							<simpleContent>
+								<extension base="s:URI">
+									<attribute name="cls" type="s:ListCL"/>
+									<attribute name="network" type="s:ListTE" use="required"/>
+									<attribute name="authRequired" type="s:ListBO" use="required"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="refCls" type="s:ListCL"/>
+				<attribute name="type" type="s:ListRE" use="required"/>
+				<attribute name="date" type="date"/>
+				<attribute name="author" type="s:c30"/>
+				<attribute name="org" type="s:c30"/>
+				<attribute name="num" type="s:c50"/>
+				<attribute name="title" type="s:c200"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- -->
+	<complexType name="TCommon" abstract="true">
+		<sequence>
+			<element name="Action" type="s:TAction" minOccurs="0"/>
+			<element name="DatasetCls" type="s:TDatasetCls"/>
+			<element name="Compartment" type="s:TCompartment" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Handling" type="s:THandling" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ReleasableTo" type="s:TReleasableTo" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="EffDate" type="s:TDateTime" minOccurs="0"/>
+			<choice>
+				<element name="Expire" type="s:TDateTime"/>
+				<element name="Review" type="s:TDateTime"/>
+			</choice>
+			<element name="ContactOrgRef" type="s:TContactOrgRef" maxOccurs="unbounded"/>
+			<element name="Status" type="s:TStatus" maxOccurs="unbounded"/>
+			<element name="ExtRef" type="s:TExtRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="LegacyNum" type="s:TLegacyNum" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Project" type="s:TProject" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="DatasetReplaced" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="serial" type="s:TSerial" use="required"/>
+							<attribute name="retireDate" type="date"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="entry" type="date" use="required"/>
+		<attribute name="lastMod" type="dateTime"/>
+		<attribute name="usageType" type="s:ListUT"/>
+	</complexType>
+</schema>

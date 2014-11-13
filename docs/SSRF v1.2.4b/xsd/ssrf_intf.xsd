@@ -1,0 +1,145 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<include schemaLocation="ssrf_txrx.xsd"/>
+	<include schemaLocation="ssrf_antenna.xsd"/>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!--
+	========================================
+	Subsidiary Types only used in IntfReport
+	========================================
+	-->
+	<complexType name="TSourceLinkRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="linkName" type="s:c24" use="required"/>
+		<attribute name="txStationRef" type="s:c100" use="required"/>
+	</complexType>
+	<complexType name="TVictimLinkRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="linkName" type="s:c24" use="required"/>
+		<attribute name="txStationRef" type="s:c100"/>
+		<attribute name="rxStationRef" type="s:c100"/>
+	</complexType>
+	<!-- -->
+	<complexType name="TReceivedLevel">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="signalLevel" type="s:SN5_2"/>
+				<attribute name="fieldStrength" type="s:UN6_1"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- -->
+	<complexType name="TDetectedIntf">
+		<sequence>
+			<element name="Time" type="s:TTime"/>
+			<element name="ReceivedLevel" type="s:TReceivedLevel" minOccurs="0"/>
+			<element name="Pol" type="s:TPol" minOccurs="0"/>
+			<element name="LocationRef" type="s:TLocationRef" minOccurs="0"/>
+			<element name="Azimuth" type="s:TAzimuth" minOccurs="0"/>
+			<choice>
+				<element name="SourceLinkRef" type="s:TSourceLinkRef"/>
+				<element name="SourceFreqInfo">
+					<complexType>
+						<sequence>
+							<choice>
+								<element name="FreqSingle" type="s:TFreqSingle"/>
+								<element name="FreqRange" type="s:TFreqRange"/>
+							</choice>
+							<choice>
+								<element name="EmsDesignator" type="s:TEmsDesignator" minOccurs="0"/>
+								<element name="AuthorisedBw" type="s:TAuthorisedBw" minOccurs="0"/>
+							</choice>
+							<element name="ModDetails" type="s:Memo" minOccurs="0"/>
+						</sequence>
+						<attribute name="cls" type="s:ListCL"/>
+					</complexType>
+				</element>
+			</choice>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<!-- -->
+	<complexType name="TIntfVictim">
+		<sequence>
+			<element name="VictimLinkRef" type="s:TVictimLinkRef"/>
+			<element name="EffectOnPerformance" type="s:Memo"/>
+			<element name="OtherActivities" type="s:Memo" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<!-- -->
+	<complexType name="TJSIR">
+		<sequence>
+			<element name="IntfFEDeploymentRef" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="type" type="s:ListVT" use="required"/>
+					<attribute name="serial" type="s:TSerial" use="required"/>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="reported" type="s:ListJ1" use="required"/>
+	</complexType>
+	<!--
+	==========================
+	IntfReport Type Definition
+	==========================
+	-->
+	<complexType name="TIntfReport">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Requirement" type="s:Memo" minOccurs="0"/>
+					<element name="HelpRequired">
+						<complexType>
+							<simpleContent>
+								<extension base="s:ListBO">
+									<attribute name="cls" type="s:ListCL"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="JSIR" type="s:TJSIR" minOccurs="0"/>
+					<element name="DetectedIntf" type="s:TDetectedIntf"/>
+					<element name="IntfVictim" type="s:TIntfVictim"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	==========================
+	IntfMitigation Type Definition
+	==========================
+	-->
+	<complexType name="TIntfMitigation">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="IntfReportRef" type="s:TElmRef"/>
+				</sequence>
+				<attribute name="responseType" type="s:ListIM" use="required"/>
+				<attribute name="evaluation" type="s:ListJ1"/>
+				<attribute name="mod" type="s:ListVS" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

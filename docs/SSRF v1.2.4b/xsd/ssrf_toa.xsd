@@ -1,0 +1,117 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<include schemaLocation="ssrf_refdata.xsd"/>
+	<!--<include schemaLocation="ssrf_link.xsd"/>-->
+	<!--
+	================================
+	Subsidiary Types only used in TOA
+	================================ 
+	-->
+	<complexType name="TAllocApp">
+		<sequence>
+			<element name="AllocVariance" minOccurs="0">
+				<complexType>
+					<annotation>
+						<appinfo>nation=USA;</appinfo>
+					</annotation>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="type" type="s:ListAV"/>
+					<attribute name="item" type="s:c50"/>
+					<attribute name="radioService" type="s:ListSN"/>
+					<attribute name="priority" type="s:ListPS"/>
+				</complexType>
+			</element>
+			<element name="EffDate" type="s:TDateTime" minOccurs="0"/>
+			<element name="Expire" type="s:TDateTime" minOccurs="0"/>
+			<element name="BandAppRef" type="s:TElmRef" minOccurs="0"/>
+			<element name="AntStdRef" type="s:TNationalElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ChnlPlanRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="CoordStdRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="CurveStdRef" type="s:TNationalElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="EmsMaskStdRef" type="s:TNationalElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="EmsStdRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="LocationRef" type="s:TLocationRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="NoteRef" type="s:TNoteRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="RxStdRef" type="s:TNationalElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ServiceUse" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="s:ListSN">
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="priority" type="s:ListPS" use="required"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="StnClass" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="s:ListSC">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="BandUserRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="accomodation" type="s:ListAR"/>
+		<attribute name="licensing" type="s:c50"/>
+		<attribute name="exclusiveApp" type="s:c50"/>
+		<attribute name="asgnAuthority" type="string"/>
+		<attribute name="permit" type="string"/>
+	</complexType>
+	<!-- -->
+	<complexType name="TFreqBand">
+		<sequence>
+			<choice>
+				<element name="FreqSingle" type="s:TFreqSingle"/>
+				<element name="FreqRange" type="s:TFreqRange"/>
+			</choice>
+			<element name="NoteRef" type="s:TNoteRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="AllocApp" type="s:TAllocApp" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="useIndicator">
+			<simpleType>
+				<restriction base="string">
+					<minLength value="1"/>
+					<maxLength value="4"/>
+					<pattern value="G?M?N?A?"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="sharedUse" type="s:ListBO"/>
+	</complexType>
+	<!--
+	==========================================
+	Table Of Allocations (TOA) Type Definition
+	==========================================
+	-->
+	<complexType name="TTOA">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Title" type="s:TTitle"/>
+					<element name="LocationRef" type="s:TLocationRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FreqBand" type="s:TFreqBand" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

@@ -1,0 +1,546 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!--
+	============================================
+	Subsidiary Types only used in TxRx and Modes
+	============================================
+	-->
+	<complexType name="TSNum6_2">
+		<simpleContent>
+			<extension base="s:SN6_2">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TUNum3_1">
+		<simpleContent>
+			<extension base="s:UN3_1">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- -->
+	<complexType name="TSignalTuning">
+		<choice>
+			<element name="FreqRange" type="s:TFreqRange" minOccurs="0"/>
+			<element name="FreqSingle" type="s:TFreqSingle" minOccurs="0"/>
+		</choice>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="tuningStep" type="s:FreqM"/>
+		<attribute name="tunability" type="s:ListTU"/>
+		<attribute name="numChnl" type="s:UN8"/>
+	</complexType>
+	<complexType name="TEqpFnct">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:C2">
+				<annotation>
+					<appinfo>code=USR:EF;</appinfo>
+				</annotation>
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TDeployment">
+		<sequence>
+			<element name="Installation" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="s:c40">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListIN" use="required"/>
+	</complexType>
+	<!-- Modulation Type -->
+	<complexType name="TDigitalFormat">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="numStates" type="s:UN5"/>
+		<attribute name="pulseFormat" type="s:ListDF"/>
+		<attribute name="codeGain" type="s:SN6_2"/>
+		<attribute name="codeRate" type="s:UN10_3"/>
+		<attribute name="codePeriod" type="s:UN6_4"/>
+	</complexType>
+	<complexType name="TModulation">
+		<sequence>
+			<element name="AM" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="idx" type="s:UN5_3"/>
+					<attribute name="RMSIdx" type="s:UN5_3"/>
+				</complexType>
+			</element>
+			<element name="FM" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="peakFreqDev" type="s:FreqM"/>
+					<attribute name="RMSFreqDev" type="s:FreqM"/>
+					<attribute name="deviationCode" type="s:ListFM"/>
+					<attribute name="peakIdx" type="s:UN5_3"/>
+				</complexType>
+			</element>
+			<element name="Suppression" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="carrier" type="s:UN5_2"/>
+					<attribute name="sideBand" type="s:UN5_2"/>
+				</complexType>
+			</element>
+			<element name="DigitalFormat" type="s:TDigitalFormat" minOccurs="0"/>
+			<element name="PPM" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="minPPS" type="s:UN9_3"/>
+					<attribute name="maxPPS" type="s:UN9_3"/>
+				</complexType>
+			</element>
+			<element name="ModDetails" type="s:Memo" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="devRatio" type="s:UN6_1"/>
+		<attribute name="digitalMod" type="s:ListMO"/>
+		<attribute name="maxBitRate" type="s:UN10"/>
+		<attribute name="numBsbChnl" type="s:UN5"/>
+	</complexType>
+	<!-- Pulse Type -->
+	<complexType name="TPulseComp">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minPlsCompRatio" type="s:UN8_4" use="required"/>
+		<attribute name="maxPlsCompRatio" type="s:UN8_4"/>
+		<attribute name="plsCompMethod" type="s:c40"/>
+	</complexType>
+	<complexType name="TPulseForm">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minRiseTime" type="s:UN8_6"/>
+		<attribute name="maxRiseTime" type="s:UN8_6"/>
+		<attribute name="minFallTime" type="s:UN8_6"/>
+		<attribute name="maxFallTime" type="s:UN8_6"/>
+	</complexType>
+	<complexType name="TPulseAvgCycle">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minDutyCycle" type="s:UN4_2"/>
+		<attribute name="maxDutyCycle" type="s:UN4_2"/>
+		<attribute name="minAvgPower" type="s:SN6_2"/>
+		<attribute name="maxAvgPower" type="s:SN6_2"/>
+	</complexType>
+	<complexType name="TPulse">
+		<sequence>
+			<element name="PulseComp" type="s:TPulseComp" minOccurs="0"/>
+			<element name="PulseForm" type="s:TPulseForm" minOccurs="0"/>
+			<element name="PulseAvgCycle" type="s:TPulseAvgCycle" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minPRR" type="s:UN9_3"/>
+		<attribute name="maxPRR" type="s:UN9_3"/>
+		<attribute name="minPD" type="s:UN12_6">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-026] change minPD to UN12_6.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="maxPD" type="s:UN12_6">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-026] change maxPD to UN12_6.</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="TBurst">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="rate" type="s:UN12_3"/>
+		<attribute name="duration" type="s:UN9_7"/>
+		<attribute name="numPulses" type="s:UN8"/>
+		<attribute name="offTime" type="s:UN9_7"/>
+	</complexType>
+	<!-- Other Types -->
+	<complexType name="TPower">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minPower" type="s:SN6_2" use="required"/>
+		<attribute name="maxPower" type="s:SN6_2"/>
+		<attribute name="powerType" type="s:ListPT"/>
+		<attribute name="calc" type="s:ListOR" use="required"/>
+	</complexType>
+	<complexType name="TBaseband">
+		<sequence>
+			<element name="Curve" type="s:TCurve" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minModFreq" type="s:FreqM" use="required"/>
+		<attribute name="maxModFreq" type="s:FreqM" use="required"/>
+		<attribute name="signalType" type="s:ListMO"/>
+		<attribute name="BER" type="float"/>
+		<attribute name="chnlSpacing" type="s:FreqM"/>
+	</complexType>
+	<complexType name="TOutputDevice">
+		<simpleContent>
+			<extension base="s:c40">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="type" type="s:ListOT" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TClassFreq">
+		<simpleContent>
+			<extension base="s:FreqM">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TClassBw">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minBw" type="s:FreqM" use="required"/>
+		<attribute name="maxBw" type="s:FreqM"/>
+	</complexType>
+	<!--
+	=============================================
+	Spread Spectrum Data
+	=============================================
+	-->
+	<complexType name="THopRate">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="rate" type="s:UN9_3" use="required"/>
+		<attribute name="dwell" type="s:UN9_7"/>
+		<attribute name="bitsPerHop" type="s:UN9"/>
+	</complexType>
+	<complexType name="TFreqHopset">
+		<sequence>
+			<element name="FreqSingle" type="s:TFreqSingle" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="FreqRange" type="s:TFreqRange" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="HopRate" type="s:THopRate" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="numFreq" type="s:UN4">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-05] numFreqs changed to numFreq.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="freqBlocking" type="s:ListBO"/>
+		<attribute name="hopChnlInterleave" type="s:UN6"/>
+	</complexType>
+	<complexType name="TTimeHop">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="numSlots" type="s:UN5"/>
+		<attribute name="numPulsesPerDwell" type="s:UN12"/>
+		<attribute name="hopGateLength" type="s:UN8_2"/>
+	</complexType>
+	<complexType name="TSpreadSpectrumPulse">
+		<annotation>
+			<documentation>Added attribute chirpRate per SDG-11.USA153, 2008-12-06T18:39, tony.greene@jsc-eses.com</documentation>
+		</annotation>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="freqDeviationRise" type="s:FreqM"/>
+		<attribute name="freqDeviationFall" type="s:FreqM"/>
+		<attribute name="minWidth" type="s:UN9_7"/>
+		<attribute name="maxWidth" type="s:UN9_7"/>
+		<attribute name="chirpRate" type="s:UN9_6"/>
+	</complexType>
+	<complexType name="TSpreadSpectrumSweep">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minTime" type="s:UN12_6"/>
+		<attribute name="maxTime" type="s:UN12_6"/>
+		<attribute name="minFreq" type="s:FreqM"/>
+		<attribute name="maxFreq" type="s:FreqM"/>
+	</complexType>
+	<complexType name="TSpreadSpectrum">
+		<sequence>
+			<element name="FreqHopset" type="s:TFreqHopset" minOccurs="0"/>
+			<element name="SpreadSpectrumPulse" type="s:TSpreadSpectrumPulse" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="SpreadSpectrumSweep" type="s:TSpreadSpectrumSweep" minOccurs="0"/>
+			<element name="TimeHop" type="s:TTimeHop" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListSS"/>
+		<attribute name="gain" type="s:SN6_2"/>
+		<attribute name="pulseFreqDev" type="s:FreqM"/>
+		<attribute name="infoDataRate" type="s:UN10_3"/>
+		<attribute name="chnlSpacing" type="s:FreqM"/>
+		<attribute name="directSequenceBw" type="s:FreqM"/>
+		<attribute name="blockLength" type="s:UN12_4"/>
+		<attribute name="dataBlockSize" type="s:UN12_4"/>
+		<attribute name="codeRate" type="s:UN10_3"/>
+	</complexType>
+	<complexType name="TIFreq">
+		<choice>
+			<element name="FreqSingle" type="s:TFreqSingle"/>
+			<element name="FreqRange" type="s:TFreqRange"/>
+		</choice>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="IFNum" type="s:ListIF" use="required"/>
+		<attribute name="tuning" type="s:ListLO" use="required"/>
+		<attribute name="mixerType" type="s:ListMV"/>
+	</complexType>
+	<complexType name="TPostDetectionFreq">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minFreq" type="s:FreqM" use="required"/>
+		<attribute name="maxFreq" type="s:FreqM"/>
+	</complexType>
+	<complexType name="TSensitivity">
+		<sequence>
+			<element name="SensitivityCriterion" minOccurs="0">
+				<complexType>
+					<simpleContent>
+						<extension base="float">
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="type" type="s:ListSE" use="required"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="level">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-08] maximum should be -10 dBm.</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="s:SN5_2">
+					<minInclusive value="-165"/>
+					<maxInclusive value="-10"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="noiseFigure" type="s:UN4_2"/>
+		<attribute name="noiseTemp" type="s:UN7_1"/>
+	</complexType>
+	<complexType name="TDynamicRange">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="rxDynamicRange" type="s:UN6_2"/>
+		<attribute name="saturationLevel" type="s:SN6_2"/>
+		<attribute name="signalToNoise" type="s:UN6_2"/>
+	</complexType>
+	<!--
+	==========================
+	Common Mode of a Transceiver
+	==========================
+	-->
+	<complexType name="TTxRxMode">
+		<complexContent>
+			<extension base="s:Mode">
+				<sequence>
+					<choice>
+						<element name="EmsDesignator" type="s:TEmsDesignator"/>
+						<element name="AuthorisedBw" type="s:TAuthorisedBw"/>
+					</choice>
+					<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Modulation" type="s:TModulation" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Baseband" type="s:TBaseband" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="SpreadSpectrum" type="s:TSpreadSpectrum" minOccurs="0"/>
+					<element name="OccupiedBw" type="s:TClassBw" minOccurs="0"/>
+					<element name="Pulse" type="s:TPulse" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Burst" type="s:TBurst" minOccurs="0"/>
+					<element name="TxMode" type="s:TTxMode" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="RxMode" type="s:TRxMode" minOccurs="0" maxOccurs="unbounded">
+						<unique name="KRxModeIF">
+							<selector xpath="./s:IFreq"/>
+							<field xpath="@IFNum"/>
+						</unique>
+					</element>
+				</sequence>
+				<attribute name="modeName" type="s:C40" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	=====================
+	Mode of a Transmitter
+	=====================
+	-->
+	<complexType name="TTxMode">
+		<complexContent>
+			<extension base="s:Mode">
+				<sequence>
+					<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Power" type="s:TPower" maxOccurs="unbounded"/>
+					<element name="SubcarrierFreq" type="s:TClassFreq" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="SubcarrierTone" type="s:TClassFreq" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="CositeSep" type="s:TCositeSep" minOccurs="0"/>
+				</sequence>
+				<attribute name="txMode" type="s:C40" use="required"/>
+				<attribute name="numSideTones" type="s:UN5"/>
+				<attribute name="numSubCarriers" type="s:UN5"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	==================
+	Mode of a Receiver
+	==================
+	-->
+	<complexType name="TRxMode">
+		<annotation>
+			<documentation>Moved attribute "type" from Receiver to RxMode per SDG-11a.USA-JDR011, 2008-12-07T12:09, tony.greene@jsc-eses.com</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="s:Mode">
+				<sequence>
+					<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="PostDetectionFreq" type="s:TPostDetectionFreq" minOccurs="0"/>
+					<element name="ProcessGain" type="s:TSNum6_2" minOccurs="0"/>
+					<element name="IFreq" type="s:TIFreq" minOccurs="0" maxOccurs="5"/>
+					<element name="Sensitivity" type="s:TSensitivity" minOccurs="0"/>
+					<element name="DynamicRange" type="s:TDynamicRange" minOccurs="0"/>
+				</sequence>
+				<attribute name="rxMode" type="s:C40" use="required"/>
+				<attribute name="type" type="s:ListRT"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	======================================
+	Transmitter/Receiver Types Definitions
+	======================================
+	-->
+	<complexType name="TSignalTx">
+		<sequence>
+			<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Curve" type="s:TCurve" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="FreqTolerance" type="s:TClassFreq" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<complexType name="TSignalRx">
+		<sequence>
+			<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Curve" type="s:TCurve" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="FreqTolerance" type="s:TClassFreq" minOccurs="0"/>
+			<element name="IFreq" type="s:TIFreq" minOccurs="0" maxOccurs="5"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<!-- -->
+	<complexType name="TTransmitter">
+		<sequence>
+			<element name="Nomenclature" type="s:TNomenclature" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="StockNum" type="s:TStockNum" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Curve" type="s:TCurve" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="FreqTolerance" type="s:TClassFreq" minOccurs="0"/>
+			<element name="OutputDevice" type="s:TOutputDevice" minOccurs="0"/>
+			<element name="Filter" type="s:Memo" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<complexType name="TReceiver">
+		<sequence>
+			<element name="Nomenclature" type="s:TNomenclature" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="StockNum" type="s:TStockNum" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Curve" type="s:TCurve" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="FreqTolerance" type="s:TClassFreq" minOccurs="0"/>
+			<element name="IFreq" type="s:TIFreq" minOccurs="0" maxOccurs="5"/>
+			<element name="PreselectionType" minOccurs="0">
+				<complexType>
+					<simpleContent>
+						<extension base="s:c60">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<!--
+	==================================
+	Signal Description Type Definition
+	==================================
+	-->
+	<complexType name="TSignalDescr">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Title" type="s:TTitle"/>
+					<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FreqTolerance" type="s:TClassFreq" minOccurs="0"/>
+					<element name="EqpFnct" type="s:TEqpFnct" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="TxRxMode" type="s:TTxRxMode" maxOccurs="unbounded">
+						<annotation>
+							<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] constraint validation correction.</documentation>
+						</annotation>
+						<unique name="KSignalTxMode">
+							<selector xpath="./s:TxMode"/>
+							<field xpath="@txMode"/>
+						</unique>
+						<unique name="KSignalRxMode">
+							<selector xpath="./s:RxMode"/>
+							<field xpath="@rxMode"/>
+						</unique>
+					</element>
+					<element name="SignalTx" type="s:TSignalTx" minOccurs="0"/>
+					<element name="SignalRx" type="s:TSignalRx" minOccurs="0">
+						<unique name="KSignalRxIF">
+							<selector xpath="./s:IFreq"/>
+							<field xpath="@IFNum"/>
+						</unique>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	===========================
+	Transceiver Type Definition
+	===========================
+	-->
+	<complexType name="TTxRx">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Nomenclature" type="s:TNomenclature" maxOccurs="unbounded"/>
+					<element name="StockNum" type="s:TStockNum" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Deployment" type="s:TDeployment" minOccurs="0"/>
+					<element name="Emergency" type="s:TEmergency" minOccurs="0"/>
+					<element name="WillReplace" type="s:TWillReplace" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="SignalDescrRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="DuplexSep" type="s:TFreqSep" minOccurs="0"/>
+					<element name="TSPR" type="s:TNationalMemo" minOccurs="0"/>
+					<element name="ELNOT" type="s:TNationalMemo" minOccurs="0"/>
+					<element name="SignalTuning" type="s:TSignalTuning" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FreqTolerance" type="s:TClassFreq" minOccurs="0"/>
+					<element name="EqpFnct" type="s:TEqpFnct" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="TxRxMode" type="s:TTxRxMode" maxOccurs="unbounded">
+						<annotation>
+							<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] constraint validation correction.</documentation>
+						</annotation>
+						<unique name="KTxMode">
+							<selector xpath="./s:TxMode"/>
+							<field xpath="@txMode"/>
+						</unique>
+						<unique name="KRxMode">
+							<selector xpath="./s:RxMode"/>
+							<field xpath="@rxMode"/>
+						</unique>
+					</element>
+					<element name="Transmitter" type="s:TTransmitter" minOccurs="0"/>
+					<element name="Receiver" type="s:TReceiver" minOccurs="0">
+						<unique name="KRxIF">
+							<selector xpath="./s:IFreq"/>
+							<field xpath="@IFNum"/>
+						</unique>
+					</element>
+				</sequence>
+				<attribute name="eqpType" type="s:ListAU"/>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

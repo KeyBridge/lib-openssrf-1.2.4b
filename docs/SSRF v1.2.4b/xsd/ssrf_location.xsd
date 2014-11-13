@@ -1,0 +1,101 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<!--
+======================================
+Subsidiary Types only used in Location
+======================================
+-->
+	<attributeGroup name="ALonLat">
+		<attribute name="lon" use="required">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-033] allow X value.</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="8"/>
+					<pattern value="([0-9]{7}(E|W))|X"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="lat" use="required">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-033] allow X value.</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="7"/>
+					<pattern value="([0-9]{6}(N|S))|X"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</attributeGroup>
+	<complexType name="TPoint">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="idx" type="s:UN4"/>
+		<attributeGroup ref="s:ALonLat"/>
+		<attribute name="elev" type="s:SN5"/>
+	</complexType>
+	<complexType name="TAGAProtection">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="criteria" type="s:ListPR" use="required"/>
+		<attribute name="freq" type="s:FreqM"/>
+	</complexType>
+	<!--
+========================
+Location Type Definition
+========================
+-->
+	<complexType name="TLocation">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Address" type="s:TAddress"/>
+					<element name="Point" type="s:TPoint" maxOccurs="unbounded"/>
+					<element name="BoundingCircle" minOccurs="0">
+						<complexType>
+							<attribute name="cls" type="s:ListCL"/>
+							<attributeGroup ref="s:ALonLat"/>
+							<attribute name="radius" type="s:UN4"/>
+							<attribute name="avgElev" type="s:SN5"/>
+							<attribute name="minElev" type="s:SN5"/>
+							<attribute name="maxElev" type="s:SN5"/>
+						</complexType>
+					</element>
+					<element name="AGAProtection" type="s:TAGAProtection" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="name" type="s:c100" use="required"/>
+				<attribute name="ITU" type="s:ListIT"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+========================
+Area Type Definition
+========================
+-->
+	<complexType name="TLocationSet">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="LocationRef" type="s:TLocationRef" minOccurs="2" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="name" type="s:c100" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

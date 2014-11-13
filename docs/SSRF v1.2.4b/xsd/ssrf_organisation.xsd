@@ -1,0 +1,158 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!-- 
+	<simpleType name="AAgency">
+		<annotation>
+			<appinfo>code=USR:AG;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	-->
+	<complexType name="TQuantity">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="authorised" type="s:UN5"/>
+		<attribute name="available" type="s:UN5"/>
+	</complexType>
+	<complexType name="TRelatedOrg">
+		<sequence>
+			<element name="TimeFrame" type="s:TTimeFrame" minOccurs="0"/>
+			<element name="Quantity" type="s:TQuantity" minOccurs="0"/>
+			<element name="EffDate" type="s:TDateTime" minOccurs="0"/>
+			<element name="Expire" type="s:TDateTime" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListFT" use="required"/>
+		<attribute name="relation" type="s:ListFR" use="required"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<complexType name="TOrganisation">
+		<sequence>
+			<element name="DatasetCls" type="s:TDatasetCls"/>
+			<element name="Compartment" type="s:TCompartment" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Handling" type="s:THandling" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ReleasableTo" type="s:TReleasableTo" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="EffDate" type="s:TDateTime"/>
+			<choice>
+				<element name="Expire" type="s:TDateTime"/>
+				<element name="Review" type="s:TDateTime"/>
+			</choice>
+			<element name="Title" type="s:TTitle" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Project" type="s:TProject" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="RelatedOrg" type="s:TRelatedOrg" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="type" type="s:ListTO"/>
+		<attribute name="entry" type="date" use="required"/>
+		<attribute name="lastMod" type="dateTime"/>
+		<attribute name="country" type="s:ListAO" use="required"/>
+		<attribute name="orgCode" type="s:C4" use="required"/>
+		<attribute name="name" type="s:c100"/>
+	</complexType>
+	<simpleType name="TTelFaxNum">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-16] numerics to strings when leading zeroes are required.</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="[0-9]{1,20}"/>
+		</restriction>
+	</simpleType>
+	<complexType name="TTelephoneFax">
+		<simpleContent>
+			<extension base="s:TTelFaxNum">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="system" type="s:c20"/>
+				<attribute name="countryCode">
+					<annotation>
+						<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-16] numerics to strings when leading zeroes are required.</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="string">
+							<pattern value="[0-9]{1,3}"/>
+						</restriction>
+					</simpleType>
+				</attribute>
+				<attribute name="numType" type="s:ListTT" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TEmail">
+		<simpleContent>
+			<extension base="s:c60">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="system" type="s:c20"/>
+				<attribute name="emailCls" type="s:ListCL"/>
+				<attribute name="emailType" type="s:ListTE" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TContact">
+		<sequence>
+			<element name="DatasetCls" type="s:TDatasetCls"/>
+			<element name="Compartment" type="s:TCompartment" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Handling" type="s:THandling" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ReleasableTo" type="s:TReleasableTo" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="EffDate" type="s:TDateTime"/>
+			<choice>
+				<element name="Expire" type="s:TDateTime"/>
+				<element name="Review" type="s:TDateTime"/>
+			</choice>
+			<element name="Project" type="s:TProject" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="OrganisationRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Address" type="s:TAddress" minOccurs="0"/>
+			<element name="TelephoneFax" type="s:TTelephoneFax" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Email" type="s:TEmail" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="entry" type="date" use="required"/>
+		<attribute name="lastMod" type="dateTime"/>
+		<attribute name="title" type="s:c10"/>
+		<attribute name="firstName" type="s:c30"/>
+		<attribute name="lastName" type="s:c30"/>
+	</complexType>
+	<complexType name="TRole">
+		<sequence>
+			<element name="DatasetCls" type="s:TDatasetCls"/>
+			<element name="Handling" type="s:THandling" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ReleasableTo" type="s:TReleasableTo" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="EffDate" type="s:TDateTime"/>
+			<choice>
+				<element name="Expire" type="s:TDateTime"/>
+				<element name="Review" type="s:TDateTime"/>
+			</choice>
+			<element name="Project" type="s:TProject" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Address" type="s:TAddress" minOccurs="0"/>
+			<element name="TelephoneFax" type="s:TTelephoneFax" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Email" type="s:TEmail" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="OrganisationRef" type="s:TElmRef"/>
+			<element name="ContactRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Remarks" type="s:TRemarks" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="entry" type="date" use="required"/>
+		<attribute name="lastMod" type="dateTime"/>
+		<attribute name="name" type="s:c50" use="required"/>
+	</complexType>
+</schema>

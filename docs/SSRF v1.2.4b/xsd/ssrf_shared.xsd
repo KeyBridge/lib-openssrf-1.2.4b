@@ -1,0 +1,1216 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_lists_fx.xsd"/>
+	<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!-- 
+	===============================
+	Types TSerial, TElmRef, TExtRef 
+	===============================
+	-->
+	<simpleType name="TSerial">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-01] added NATO command codes.</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="28"/>
+			<pattern value="[A-Z0-9]{1,4}:\w{0,4}:[A-Z]{2}:\S{1,15}"/>
+		</restriction>
+	</simpleType>
+	<complexType name="TElmRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<complexType name="TNationalElmRef">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<complexType name="TExtRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="xpath" type="s:c255"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<!-- 
+	============================
+	References to other elements
+	============================
+	-->
+	<complexType name="TAsgnAllotRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<complexType name="TLocationRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="radius" type="s:UN4"/>
+		<attribute name="cat" type="s:ListIE" default="I"/>
+	</complexType>
+	<complexType name="TContactOrgRef">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] updated order of choice elements for easier comparison with SMADEF in the future.</documentation>
+		</annotation>
+		<choice>
+			<element name="ContactRef" type="s:TElmRef"/>
+			<element name="OrganisationRef" type="s:TElmRef"/>
+			<element name="FERef" type="s:TElmRef"/>
+		</choice>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListCR" use="required"/>
+	</complexType>
+	<complexType name="TAntModeRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="antMode" type="s:TAntModeCode"/>
+	</complexType>
+	<complexType name="TTxRxModeRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="modeName" type="s:C40"/>
+		<attribute name="txMode" type="s:C40"/>
+		<attribute name="rxMode" type="s:C40"/>
+	</complexType>
+	<complexType name="TSignalDescrModeRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="modeName" type="s:C40"/>
+		<attribute name="txMode" type="s:C40"/>
+		<attribute name="rxMode" type="s:C40"/>
+	</complexType>
+	<complexType name="TSSRequestRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="type" type="s:ListDD" use="required"/>
+	</complexType>
+	<!-- 
+	=========================================================
+	Abstract type Mode (used in Antenna, TxRx and SignalDescr)
+	=========================================================
+	-->
+	<complexType name="Mode" abstract="true">
+		<sequence>
+			<element name="Curve" type="s:TCurve" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="descr" type="s:c100"/>
+	</complexType>
+	<simpleType name="TAntModeCode">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-16] change to support leading zeroes required.</documentation>
+			<appinfo>code=USR:AM;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<length value="4"/>
+			<pattern value="[0-9]{4}"/>
+		</restriction>
+	</simpleType>
+	<!-- 
+	==================
+	Type for dates and times
+	==================
+	-->
+	<complexType name="TDate">
+		<simpleContent>
+			<extension base="date">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TDateTime">
+		<simpleContent>
+			<extension base="dateTime">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TTimeFrame">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minutes">
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="40"/>
+					<pattern value="(([1-5]?\d(-[1-5]?\d(/\d+)?)?)|(\*/\d+))(,([1-5]?\d(-[1-5]?\d(/\d+)?)?)|(\*/\d+))*"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="hours">
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="40"/>
+					<pattern value="(([12]?\d(-[12]?\d(/\d+)?)?)|(\*/\d+))(,([12]?\d(-[12]?\d(/\d+)?)?)|(\*/\d+))*"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="daysOfMonth">
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="40"/>
+					<pattern value="(([123]?\d(-[123]?\d(/\d+)?)?)|(\*/\d+))(,([123]?\d(-[123]?\d(/\d+)?)?)|(\*/\d+))*"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="months">
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="40"/>
+					<pattern value="((1?\d(-1?\d(/\d+)?)?)|(\*/\d+))(,(1?\d(-1?\d(/\d+)?)?)|(\*/\d+))*"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="daysOfWeek">
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="40"/>
+					<pattern value="(([0-7](-[0-7](/\d+)?)?)|(\*/\d+))(,([0-7](-[0-7](/\d+)?)?)|(\*/\d+))*"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="years">
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="40"/>
+					<pattern value="(([12]\d{3}(-[12]\d{3}(/\d+)?)?)|(\*/\d+))(,([12]\d{3}(-[12]\d{3}(/\d+)?)?)|(\*/\d+))*"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="duration" type="s:UN4"/>
+	</complexType>
+	<!--
+	<complexType name="TDTG">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="start" type="dateTime" use="required"/>
+		<attribute name="stop" type="dateTime"/>
+	</complexType>
+	-->
+	<!-- 
+	=====================================
+	Type Curve used at all levels in TxRx and Antenna
+	=====================================
+	-->
+	<complexType name="TCurve">
+		<annotation>
+			<documentation>Changed format of attribute "freqFactor" from UN3_1 to SN3_1 per SDG-11a.SWE015, 2008-12-08T18:27, tony.greene@jsc-eses.com</documentation>
+		</annotation>
+		<sequence>
+			<element name="CurvePoint" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="offset" type="s:FreqM" use="required"/>
+					<attribute name="level" type="s:TCurvePointLevel" use="required">
+						<annotation>
+							<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] [SWE026] Implemented new type to change from unrestricted SN3.1 to SN4.1 with range restriction. tony.greene@itt.com 2009-04-24T10:41:00</documentation>
+						</annotation>
+					</attribute>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListCT" use="required"/>
+		<attribute name="origin" type="s:ListOR" use="required"/>
+		<attribute name="freqFactor" type="s:UN3_1" use="required">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.b">Changed freqFactor back to UN3.1. tony.greene@itt.com 2009-04-30T19:17:00</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="freqConst" type="s:FreqM" use="required"/>
+		<attribute name="bw" type="s:FreqM"/>
+	</complexType>
+	<simpleType name="TCurvePointLevel">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] [SWE026] Implements S4.1 format with range restriction. tony.greene@itt.com 2009-04-24T11:50:00</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="4"/>
+			<fractionDigits value="1"/>
+			<minInclusive value="-150"/>
+			<maxInclusive value="150"/>			
+		</restriction>
+	</simpleType>
+	<!-- 
+	=====================================
+	Other types used everywhere
+	=====================================
+	-->
+	<complexType name="TProject">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="type" type="s:ListPJ" use="required"/>
+				<attribute name="name" type="s:c30" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TTitle">
+		<simpleContent>
+			<extension base="s:c100">
+				<attribute name="lang" type="s:ListLN">
+					<annotation>
+						<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-14] new ListLN used for Title lang.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="THandling">
+		<simpleContent>
+			<extension base="s:ListRL">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="caveat" type="s:c50"/>
+				<attribute name="xpath" type="s:c255"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TCompartment">
+		<simpleContent>
+			<extension base="s:ListCC">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="xpath" type="s:c255"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TWillReplace">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="retireDate" type="date"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TEmergency">
+		<simpleContent>
+			<extension base="s:ListBO">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TBeamwidth">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minHorz" type="s:TAz"/>
+		<attribute name="maxHorz" type="s:TAz"/>
+		<attribute name="minVert" type="s:TVertBW">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SWE029] updated minVert from TElev to TVertBW.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="maxVert" type="s:TVertBW">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SWE029] updated maxVert from TElev to TVertBW.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="beamType" type="s:UC1">
+			<annotation>
+				<appinfo>code=USR:BD;</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="TApprovalRouting">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:ListPI">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TEmsDesignator">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="emsClass" use="required">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-031] allow - for legacy conversion.</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="5"/>
+					<pattern value="(A|B|C|D|F|G|H|J|K|L|M|N|P|Q|R|V|W|X|-)(0|1|2|3|7|8|9|X|-)(A|B|C|D|E|F|N|W|X|-)(A|B|C|D|E|F|G|H|J|K|L|M|N|W|X)?(C|F|N|T|W|X)?"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="maxNecBw" use="required">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-031] change bandwidth to maxNecBw.</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="4"/>
+					<pattern value="[0-9HKMG]{4}"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+	<complexType name="TRefID">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="type" type="s:ListDT" use="required"/>
+	</complexType>
+	<complexType name="TReleasableTo">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-062] no need for special comment because xpath is present now.</documentation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-11] use new ListAN type.</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="s:ListAN">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="xpath" type="s:c255"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TStatus">
+		<sequence>
+			<element name="InfoTo" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="toContact" type="s:TSerial"/>
+					<attribute name="toRole" type="s:TSerial"/>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="state" type="s:ListST" use="required"/>
+		<attribute name="dateTime" type="dateTime" use="required"/>
+		<attribute name="byContact" type="s:TSerial"/>
+		<attribute name="byRole" type="s:TSerial"/>
+		<attribute name="fromContact" type="s:TSerial"/>
+		<attribute name="fromRole" type="s:TSerial"/>
+		<attribute name="toContact" type="s:TSerial"/>
+		<attribute name="toRole" type="s:TSerial"/>
+	</complexType>
+	<complexType name="TAddress">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="street" type="s:c50"/>
+		<attribute name="cityArea" type="s:c50"/>
+		<attribute name="state" type="s:c50"/>
+		<attribute name="postCode" type="s:c10"/>
+		<attribute name="country" type="s:ListAO" use="required"/>
+	</complexType>
+	<complexType name="TNumUnits">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="numCosited" type="s:UN5"/>
+		<attribute name="numArea" type="s:UN5" use="required"/>
+	</complexType>
+	<complexType name="TBoolean">
+		<simpleContent>
+			<extension base="s:ListBO">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="NNString">
+		<restriction base="string">
+			<minLength value="1"/>
+		</restriction>
+	</simpleType>
+	<complexType name="Memo">
+		<simpleContent>
+			<extension base="s:NNString">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TNationalMemo">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:NNString">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TRemarks">
+		<simpleContent>
+			<extension base="s:NNString">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="xpath" type="s:c255"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TManufacturer">
+		<sequence>
+			<element name="FSCM" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<annotation>
+						<appinfo>nation=USA;</appinfo>
+					</annotation>
+					<simpleContent>
+						<extension base="s:C5">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="country" type="s:ListAO"/>
+		<attribute name="code" use="required">
+			<simpleType>
+				<annotation>
+					<appinfo>code=USR:MA;</appinfo>
+				</annotation>
+				<restriction base="string">
+					<length value="5"/>
+					<pattern value="[0-9]{5}"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+	<complexType name="TTime">
+		<sequence>
+			<element name="TimeFrame" type="s:TTimeFrame" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="period" type="s:ListTI"/>
+	</complexType>
+	<!-- 
+	===========
+	Other Types 
+	===========
+	-->
+	<complexType name="TNomenclature">
+		<sequence>
+			<element name="NomenclatureName">
+				<complexType>
+					<simpleContent>
+						<extension base="s:c100">
+							<attribute name="cls" type="s:ListCL"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="Manufacturer" type="s:TManufacturer" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListTO" use="required"/>
+		<attribute name="level" type="s:ListNU" use="required"/>
+	</complexType>
+	<complexType name="TStockNum">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:C20">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="type" type="s:ListNS"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TURI">
+		<annotation>
+			<documentation>TURI causes an error in InfoPath. 2008-12-12T19:30, tony.greene@jsc-eses.com</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="s:URI">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="network" type="s:ListTE" use="required"/>
+				<attribute name="authRequired" type="s:ListBO" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TContract">
+		<sequence>
+			<element name="ContactOrgRef" type="s:TContactOrgRef"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="contract" type="s:c50" use="required"/>
+	</complexType>
+	<!--
+	===========================================
+	Frequency and frequency range related types
+	===========================================
+	-->
+	<complexType name="TAuthorisedBw">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minBw" type="s:FreqM" use="required"/>
+		<attribute name="maxBw" type="s:FreqM"/>
+	</complexType>
+	<!-- -->
+	<simpleType name="FreqM">
+		<annotation>
+			<documentation>Frequencies are transmitted as a decimal number in MHz</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="16"/>
+			<fractionDigits value="6"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<complexType name="TFreqSep">
+		<simpleContent>
+			<extension base="s:FreqM">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="type" type="s:ListDS" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TFreqSingle">
+		<simpleContent>
+			<extension base="s:FreqM">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="refFreq" type="s:FreqM"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TFreqRange">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minFreq" type="s:FreqM" use="required"/>
+		<attribute name="maxFreq" type="s:FreqM" use="required"/>
+	</complexType>
+	<complexType name="TTuning">
+		<sequence>
+			<element name="FreqSep" type="s:TFreqSep" minOccurs="0"/>
+			<element name="FreqSingle" type="s:TFreqSingle" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="FreqRange" type="s:TFreqRange" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="tuningStep" type="s:FreqM" use="required"/>
+		<attribute name="numFreq" type="s:UN4" use="required">
+			<annotation>
+				<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-05] numFreqs is changed to numFreq.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="priority" type="s:UN1"/>
+		<attribute name="exclusive" type="s:ListBO"/>
+	</complexType>
+	<complexType name="TPairedFreq">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:c24">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="freq" type="s:FreqM" use="required"/>
+				<attribute name="serial" type="s:TSerial" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TLegacyNum">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] no need for special comment because docketNum is now C40.</documentation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="controlNum" type="s:c15"/>
+		<attribute name="docketNum" type="s:c40"/>
+		<attribute name="serialNum" type="s:c12"/>
+	</complexType>
+	<complexType name="TNarrowBandPlanning">
+		<annotation>
+			<appinfo>nation=USA;</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="s:FreqM">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TFreqOld">
+		<choice>
+			<element name="FreqSingle" type="s:TFreqSingle"/>
+			<element name="FreqRange" type="s:TFreqRange"/>
+		</choice>
+		<attribute name="cls" type="s:ListCL"/>
+	</complexType>
+	<complexType name="TFreq">
+		<sequence>
+			<choice>
+				<element name="FreqSingle" type="s:TFreqSingle"/>
+				<element name="FreqRange" type="s:TFreqRange"/>
+			</choice>
+			<element name="FreqOld" type="s:TFreqOld" minOccurs="0"/>
+			<element name="PairedFreq" type="s:TPairedFreq" minOccurs="0"/>
+			<element name="ITURegistration" minOccurs="0">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="code" type="s:ListIR" use="required"/>
+					<attribute name="date" type="date" use="required"/>
+					<attribute name="num" type="s:C10" use="required"/>
+				</complexType>
+			</element>
+			<element name="LegacyNum" type="s:TLegacyNum" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="NarrowBandPlanning" type="s:TNarrowBandPlanning" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="status" type="s:ListFS"/>
+	</complexType>
+	<simpleType name="TNavAidChnl">
+		<annotation>
+			<documentation>warning: this is not a full implementation of the format checks for DME channel</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="4"/>
+			<pattern value="[0-1][0-9]{2}(X|Y|W|Z)"/>
+		</restriction>
+	</simpleType>
+	<complexType name="TNavAids">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="chnl" type="s:TNavAidChnl" use="required"/>
+	</complexType>
+	<simpleType name="NetNumber">
+		<restriction base="string">
+			<pattern value="[AB][0-9]{3}(00|25|50|75)"/>
+		</restriction>
+	</simpleType>
+	<complexType name="TNetNum">
+		<simpleContent>
+			<extension base="s:NetNumber">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="status" type="s:ListFS"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TCositeSep">
+		<simpleContent>
+			<extension base="s:FreqM">
+				<attribute name="cls" type="s:ListCL"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- 
+	===========================
+	Angle & other ranges
+	===========================
+	-->
+	<simpleType name="TAz">
+		<restriction base="decimal">
+			<totalDigits value="5"/>
+			<fractionDigits value="2"/>
+			<minInclusive value="0"/>
+			<maxInclusive value="360"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TElev">
+		<restriction base="decimal">
+			<totalDigits value="4"/>
+			<fractionDigits value="2"/>
+			<minInclusive value="-90"/>
+			<maxInclusive value="90"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TVertBW">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SWE029] new TVertBW type.</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="5"/>
+			<fractionDigits value="2"/>
+			<minInclusive value="0"/>
+			<maxInclusive value="180"/>
+		</restriction>
+	</simpleType>
+	<complexType name="TAzimuth">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] no need for special comment because attributes are startAz and stopAz.</documentation>
+		</annotation>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="startAz" type="s:TAz" use="required"/>
+		<attribute name="stopAz" type="s:TAz"/>
+	</complexType>
+	<complexType name="TElevation">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="minElev" type="s:TElev" use="required"/>
+		<attribute name="maxElev" type="s:TElev"/>
+	</complexType>
+	<simpleType name="TIdxRef">
+		<restriction base="integer">
+			<minInclusive value="1"/>
+			<maxInclusive value="99"/>
+		</restriction>
+	</simpleType>
+	<!-- 
+	===========================
+	Limited strings and numbers 
+	===========================
+	-->
+	<simpleType name="UN1">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="1"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN2">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN3">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN4">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN5">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="5"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN6">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="6"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN8">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="8"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN20">
+		<restriction base="string">
+			<maxLength value="20"/>
+			<pattern value="[0-9]{1,20}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN5">
+		<restriction base="integer">
+			<totalDigits value="5"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN6">
+		<restriction base="integer">
+			<totalDigits value="6"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN3_1">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] moved definition of SN3_1 for easier comparison with SMADEF in the future.</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="3"/>
+			<fractionDigits value="1"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN3_1">
+		<restriction base="decimal">
+			<totalDigits value="3"/>
+			<fractionDigits value="1"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN4_1">
+		<restriction base="decimal">
+			<totalDigits value="4"/>
+			<fractionDigits value="1"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN4_2">
+		<restriction base="decimal">
+			<totalDigits value="4"/>
+			<fractionDigits value="2"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN5_1">
+		<restriction base="decimal">
+			<totalDigits value="5"/>
+			<fractionDigits value="1"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN5_2">
+		<restriction base="decimal">
+			<totalDigits value="5"/>
+			<fractionDigits value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN5_2">
+		<restriction base="s:SN5_2">
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN5_3">
+		<restriction base="decimal">
+			<totalDigits value="5"/>
+			<fractionDigits value="3"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN6_1">
+		<restriction base="decimal">
+			<totalDigits value="6"/>
+			<fractionDigits value="1"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN6_2">
+		<restriction base="decimal">
+			<totalDigits value="6"/>
+			<fractionDigits value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN6_2">
+		<restriction base="s:SN6_2">
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN6_4">
+		<restriction base="decimal">
+			<totalDigits value="6"/>
+			<fractionDigits value="4"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN7_1">
+		<restriction base="decimal">
+			<totalDigits value="7"/>
+			<fractionDigits value="1"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN7_2">
+		<restriction base="decimal">
+			<totalDigits value="7"/>
+			<fractionDigits value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN7_2">
+		<restriction base="decimal">
+			<totalDigits value="7"/>
+			<fractionDigits value="2"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN8_2">
+		<restriction base="decimal">
+			<totalDigits value="8"/>
+			<fractionDigits value="2"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN8_4">
+		<restriction base="decimal">
+			<totalDigits value="8"/>
+			<fractionDigits value="4"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN8_5">
+		<restriction base="decimal">
+			<totalDigits value="8"/>
+			<fractionDigits value="5"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN8_6">
+		<restriction base="decimal">
+			<totalDigits value="8"/>
+			<fractionDigits value="6"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN9">
+		<restriction base="integer">
+			<totalDigits value="9"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN9_2">
+		<restriction base="decimal">
+			<totalDigits value="9"/>
+			<fractionDigits value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN9_3">
+		<restriction base="decimal">
+			<totalDigits value="9"/>
+			<fractionDigits value="3"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN9_5">
+		<restriction base="decimal">
+			<totalDigits value="9"/>
+			<fractionDigits value="5"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<!-- Added for TSpreadSpectrumPulse.chirpRate modification. -->
+	<simpleType name="UN9_6">
+		<restriction base="decimal">
+			<totalDigits value="9"/>
+			<fractionDigits value="6"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN9_7">
+		<restriction base="decimal">
+			<totalDigits value="9"/>
+			<fractionDigits value="7"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN10">
+		<restriction base="integer">
+			<totalDigits value="10"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN10_3">
+		<restriction base="decimal">
+			<totalDigits value="10"/>
+			<fractionDigits value="3"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN12">
+		<restriction base="integer">
+			<totalDigits value="12"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN12_3">
+		<restriction base="decimal">
+			<totalDigits value="12"/>
+			<fractionDigits value="3"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN12_4">
+		<restriction base="decimal">
+			<totalDigits value="12"/>
+			<fractionDigits value="4"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UN12_6">
+		<restriction base="decimal">
+			<totalDigits value="12"/>
+			<fractionDigits value="6"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SN16_6">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] new SN16_6 type defined.</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="16"/>
+			<fractionDigits value="6"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c1">
+		<restriction base="string">
+			<length value="1"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UC1">
+		<restriction base="string">
+			<length value="1"/>
+			<pattern value="[0-9A-Z]"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c2">
+		<restriction base="string">
+			<maxLength value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C2">
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="\P{Ll}{1,2}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c3">
+		<restriction base="string">
+			<maxLength value="3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C3">
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="\P{Ll}{1,3}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c4">
+		<restriction base="string">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C4">
+		<restriction base="string">
+			<maxLength value="4"/>
+			<pattern value="\P{Ll}{1,4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c5">
+		<restriction base="string">
+			<maxLength value="5"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C5">
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="\P{Ll}{1,5}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c6">
+		<restriction base="string">
+			<maxLength value="6"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C6">
+		<restriction base="string">
+			<maxLength value="6"/>
+			<pattern value="\P{Ll}{1,6}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c7">
+		<restriction base="string">
+			<maxLength value="7"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c8">
+		<restriction base="string">
+			<maxLength value="8"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c10">
+		<restriction base="string">
+			<maxLength value="10"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C10">
+		<restriction base="string">
+			<maxLength value="10"/>
+			<pattern value="\P{Ll}{1,10}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c12">
+		<restriction base="string">
+			<maxLength value="12"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c15">
+		<restriction base="string">
+			<maxLength value="15"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C15">
+		<restriction base="string">
+			<maxLength value="15"/>
+			<pattern value="\P{Ll}{1,15}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c16">
+		<restriction base="string">
+			<maxLength value="16"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c18">
+		<restriction base="string">
+			<maxLength value="18"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c20">
+		<restriction base="string">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C20">
+		<restriction base="string">
+			<maxLength value="20"/>
+			<pattern value="\P{Ll}{1,20}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c24">
+		<restriction base="string">
+			<maxLength value="24"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c30">
+		<restriction base="string">
+			<maxLength value="30"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C30">
+		<restriction base="string">
+			<maxLength value="30"/>
+			<pattern value="\P{Ll}{1,30}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c35">
+		<restriction base="string">
+			<maxLength value="35"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c40">
+		<restriction base="string">
+			<maxLength value="40"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="C40">
+		<restriction base="string">
+			<maxLength value="40"/>
+			<pattern value="\P{Ll}{1,40}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c50">
+		<restriction base="string">
+			<maxLength value="50"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c60">
+		<restriction base="string">
+			<maxLength value="60"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c63">
+		<restriction base="string">
+			<maxLength value="63"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c70">
+		<restriction base="string">
+			<maxLength value="70"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c100">
+		<restriction base="string">
+			<maxLength value="100"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c200">
+		<restriction base="string">
+			<maxLength value="200"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="c255">
+		<restriction base="string">
+			<minLength value="1"/>
+			<maxLength value="255"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="DigestCode">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] no need for C256 or special comment because Digest is implemented with the new DigestCode type now.</documentation>
+		</annotation>
+		<restriction base="string">
+			<minLength value="1"/>
+			<maxLength value="512"/>
+			<pattern value="[0-9A-F]{1,512}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="URI">
+		<restriction base="anyURI">
+			<minLength value="1"/>
+			<maxLength value="255"/>
+		</restriction>
+	</simpleType>
+</schema>

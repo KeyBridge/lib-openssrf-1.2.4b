@@ -1,0 +1,189 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<!--
+	==================================
+	Subsidiary Types only used in CEOI
+	==================================
+	-->
+	<complexType name="TPassword">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="sign" type="s:c20" use="required"/>
+		<attribute name="countersign" type="s:c20" use="required"/>
+		<attribute name="runningCW" type="s:c20" use="required"/>
+	</complexType>
+	<complexType name="TDefPyro">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListPY" use="required"/>
+		<attribute name="meaning" type="s:ListPD" use="required"/>
+	</complexType>
+	<complexType name="TDefSmoke">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="colour" type="s:ListSM" use="required"/>
+		<attribute name="meaning" type="s:ListSD" use="required"/>
+	</complexType>
+	<complexType name="TNetExpander">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="function" type="s:C30" use="required"/>
+		<attribute name="expander" type="s:UC1" use="required"/>
+	</complexType>
+	<complexType name="TNetSuffix">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="function" type="s:C30" use="required"/>
+		<attribute name="num" type="s:UN2"/>
+		<attribute name="suffix" type="s:UN2" use="required"/>
+	</complexType>
+	<complexType name="TNetRef">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+		<attribute name="callSignGroup" type="s:c20"/>
+		<attribute name="callWordGroup" type="s:c20"/>
+		<attribute name="extractGroup" type="s:c20"/>
+		<attribute name="freqGroup" type="s:c20"/>
+		<attribute name="freqSepGroup" type="s:c20"/>
+	</complexType>
+	<complexType name="TShare">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListGT" use="required"/>
+		<attribute name="name" type="s:c20" use="required"/>
+		<attribute name="desiredSep" type="s:FreqM"/>
+		<attribute name="minSep" type="s:FreqM"/>
+	</complexType>
+	<complexType name="TTimePeriod">
+		<sequence>
+			<element name="DefPyro" type="s:TDefPyro" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="DefSmoke" type="s:TDefSmoke" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="NetExpander" type="s:TNetExpander" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="NetSuffix" type="s:TNetSuffix" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Password" type="s:TPassword" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Share" type="s:TShare" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="period" type="s:UN2" use="required"/>
+	</complexType>
+	<complexType name="TShortTitleInfo">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="shortName" type="s:c20" use="required"/>
+				<attribute name="edition" type="s:C2" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!--
+	==========================
+	Dictionary Type Definition
+	==========================
+	-->
+	<complexType name="TEntry">
+		<simpleContent>
+			<extension base="s:c50">
+				<attribute name="cls" type="s:ListCL"/>
+				<attribute name="word" type="s:c60"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TGroup">
+		<sequence>
+			<element name="Entry" type="s:TEntry" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="layer" type="s:c20"/>
+		<attribute name="num" type="s:UN3"/>
+		<attribute name="name" type="s:c30"/>
+	</complexType>
+	<complexType name="TDictionary">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Entry" type="s:TEntry" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Group" type="s:TGroup" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="type" type="s:ListDC" use="required"/>
+				<attribute name="name" type="s:c20" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	====================
+	CEOI Type Definition
+	====================
+	-->
+	<complexType name="TCEOI">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="ShortTitleInfo" type="s:TShortTitleInfo"/>
+					<element name="FERef" type="s:TElmRef"/>
+					<element name="BSMPlanRef" type="s:TElmRef" minOccurs="0"/>
+					<element name="QuickInstruction" type="s:Memo"/>
+					<element name="DictionaryRef" type="s:TElmRef" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="TimePeriod" type="s:TTimePeriod" maxOccurs="unbounded"/>
+					<element name="JRFLRef" type="s:TElmRef" minOccurs="0"/>
+					<element name="NetRef" type="s:TNetRef" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="version" type="s:UN3_1" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+	=======================
+	BSMPlan Type Definition
+	=======================
+	-->
+	<complexType name="TBSMPlan">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Distribution" maxOccurs="unbounded">
+						<complexType>
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="action" type="s:ListBO" use="required"/>
+							<attribute name="serial" type="s:TSerial" use="required"/>
+						</complexType>
+					</element>
+					<element name="Concept" type="s:Memo"/>
+					<element name="Mission" type="s:Memo"/>
+					<element name="Scope" type="s:Memo"/>
+					<element name="ManagementStrategy" type="s:Memo"/>
+					<element name="Responsibilities" maxOccurs="4">
+						<complexType>
+							<simpleContent>
+								<extension base="s:Memo">
+									<attribute name="level" type="s:ListRP" use="required"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="TimeFrame" type="s:TTimeFrame"/>
+					<element name="FERef" type="s:TElmRef"/>
+					<element name="LocationRef" type="s:TLocationRef"/>
+					<element name="ExternalSys" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="s:TContactOrgRef">
+									<attribute name="name" type="s:c50" use="required"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="version" type="s:UN3_1" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

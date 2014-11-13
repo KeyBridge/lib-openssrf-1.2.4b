@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<!-- 
+	=========================================================
+	JRFL subsidiary types
+	=========================================================
+	-->
+	<complexType name="TJRFLEntry">
+		<choice>
+			<element name="AsgnAllotRef" type="s:TAsgnAllotRef"/>
+			<sequence>
+				<element name="OrganisationRef" type="s:TElmRef" maxOccurs="unbounded"/>
+				<element name="TimeFrame" type="s:TTimeFrame"/>
+				<element name="LocationRef" type="s:TLocationRef" minOccurs="0"/>
+				<choice>
+					<sequence>
+						<element name="FreqSingle" type="s:TFreqSingle" maxOccurs="unbounded"/>
+						<element name="AuthorisedBw" type="s:TAuthorisedBw"/>
+					</sequence>
+					<element name="FreqRange" type="s:TFreqRange" maxOccurs="unbounded"/>
+				</choice>
+			</sequence>
+		</choice>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="protCode" type="s:ListPC" use="required"/>
+		<attribute name="priority">
+			<simpleType>
+				<restriction base="string">
+					<length value="2"/>
+					<pattern value="[A-Z][1-9]"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="justification" type="s:c255" use="required"/>
+		<attribute name="status" type="s:ListTS" use="required"/>
+		<attribute name="IDSF" type="s:ListBO" use="required"/>
+	</complexType>
+	<!-- 
+	=========================================================
+	JRFL type definition
+	=========================================================
+	-->
+	<complexType name="TJRFL">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="TimeFrame" type="s:TTimeFrame" minOccurs="0"/>
+					<element name="JRFLEntry" type="s:TJRFLEntry" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

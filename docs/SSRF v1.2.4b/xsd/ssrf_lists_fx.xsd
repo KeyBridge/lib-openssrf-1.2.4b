@@ -1,0 +1,2853 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ray Cardillo (ITT Corporation) -->
+	<!-- 
+	===========================================
+	Types used for Fixed Lists (ordered by list code in <code=FX:XX"> 
+	Rmk: User-expandable lists don't have a pattern or enumeration
+	===========================================
+	-->
+	<simpleType name="ListAA">
+		<annotation>
+			<appinfo>code=FX:AA;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="AL|AS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAC">
+		<annotation>
+			<appinfo>code=FX:AC;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="N|M"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAD">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-043] list updated to include UNK.</documentation>
+			<appinfo>code=FX:AD;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="DIR|ND|ROT|STR|SSH|SSV|TRK|UNK"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAF">
+		<annotation>
+			<appinfo>code=FX:AF;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="[23A-Z]"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAL">
+		<annotation>
+			<appinfo>code=FX:AL;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="[A-MO-TVWZ]"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAN">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-11] added List AN.</documentation>
+			<appinfo>code=FX:AN;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4"/>
+			<enumeration value="ABW"/>
+			<enumeration value="AFG"/>
+			<enumeration value="AFS"/>
+			<enumeration value="AGL"/>
+			<enumeration value="AIA"/>
+			<enumeration value="ALB"/>
+			<enumeration value="ALG"/>
+			<enumeration value="AND"/>
+			<enumeration value="ARG"/>
+			<enumeration value="ARM"/>
+			<enumeration value="ARS"/>
+			<enumeration value="ATA"/>
+			<enumeration value="ATG"/>
+			<enumeration value="AUS"/>
+			<enumeration value="AUT"/>
+			<enumeration value="AZE"/>
+			<enumeration value="B"/>
+			<enumeration value="BAH"/>
+			<enumeration value="BDI"/>
+			<enumeration value="BEL"/>
+			<enumeration value="BEN"/>
+			<enumeration value="BER"/>
+			<enumeration value="BFA"/>
+			<enumeration value="BGD"/>
+			<enumeration value="BHR"/>
+			<enumeration value="BIH"/>
+			<enumeration value="BIO"/>
+			<enumeration value="BLR"/>
+			<enumeration value="BLZ"/>
+			<enumeration value="BOL"/>
+			<enumeration value="BOT"/>
+			<enumeration value="BRB"/>
+			<enumeration value="BRM"/>
+			<enumeration value="BRU"/>
+			<enumeration value="BTN"/>
+			<enumeration value="BUL"/>
+			<enumeration value="BVT"/>
+			<enumeration value="CAF"/>
+			<enumeration value="CAN"/>
+			<enumeration value="CBG"/>
+			<enumeration value="CHL"/>
+			<enumeration value="CHN"/>
+			<enumeration value="CHR"/>
+			<enumeration value="CKH"/>
+			<enumeration value="CLM"/>
+			<enumeration value="CLN"/>
+			<enumeration value="CME"/>
+			<enumeration value="COD"/>
+			<enumeration value="COG"/>
+			<enumeration value="COM"/>
+			<enumeration value="CPV"/>
+			<enumeration value="CTI"/>
+			<enumeration value="CTR"/>
+			<enumeration value="CUB"/>
+			<enumeration value="CVA"/>
+			<enumeration value="CYM"/>
+			<enumeration value="CYP"/>
+			<enumeration value="CZE"/>
+			<enumeration value="D"/>
+			<enumeration value="DGA"/>
+			<enumeration value="DJI"/>
+			<enumeration value="DMA"/>
+			<enumeration value="DNK"/>
+			<enumeration value="DOM"/>
+			<enumeration value="E"/>
+			<enumeration value="EGY"/>
+			<enumeration value="EQA"/>
+			<enumeration value="ERI"/>
+			<enumeration value="EST"/>
+			<enumeration value="ETH"/>
+			<enumeration value="F"/>
+			<enumeration value="FIN"/>
+			<enumeration value="FJI"/>
+			<enumeration value="FLK"/>
+			<enumeration value="FRO"/>
+			<enumeration value="FSM"/>
+			<enumeration value="FYR"/>
+			<enumeration value="G"/>
+			<enumeration value="GAB"/>
+			<enumeration value="GEO"/>
+			<enumeration value="GHA"/>
+			<enumeration value="GIB"/>
+			<enumeration value="GMB"/>
+			<enumeration value="GNB"/>
+			<enumeration value="GNE"/>
+			<enumeration value="GRC"/>
+			<enumeration value="GRD"/>
+			<enumeration value="GTM"/>
+			<enumeration value="GUF"/>
+			<enumeration value="GUI"/>
+			<enumeration value="GUM"/>
+			<enumeration value="GUY"/>
+			<enumeration value="HKG"/>
+			<enumeration value="HMD"/>
+			<enumeration value="HND"/>
+			<enumeration value="HNG"/>
+			<enumeration value="HOL"/>
+			<enumeration value="HRV"/>
+			<enumeration value="HTI"/>
+			<enumeration value="I"/>
+			<enumeration value="ICO"/>
+			<enumeration value="IND"/>
+			<enumeration value="INS"/>
+			<enumeration value="IRL"/>
+			<enumeration value="IRN"/>
+			<enumeration value="IRQ"/>
+			<enumeration value="ISL"/>
+			<enumeration value="ISR"/>
+			<enumeration value="J"/>
+			<enumeration value="JMC"/>
+			<enumeration value="JOR"/>
+			<enumeration value="KAZ"/>
+			<enumeration value="KEN"/>
+			<enumeration value="KGZ"/>
+			<enumeration value="KIR"/>
+			<enumeration value="KNA"/>
+			<enumeration value="KOR"/>
+			<enumeration value="KRE"/>
+			<enumeration value="KWT"/>
+			<enumeration value="LAO"/>
+			<enumeration value="LBN"/>
+			<enumeration value="LBR"/>
+			<enumeration value="LBY"/>
+			<enumeration value="LCA"/>
+			<enumeration value="LIE"/>
+			<enumeration value="LSO"/>
+			<enumeration value="LTU"/>
+			<enumeration value="LUX"/>
+			<enumeration value="LVA"/>
+			<enumeration value="MAC"/>
+			<enumeration value="MAU"/>
+			<enumeration value="MCO"/>
+			<enumeration value="MDA"/>
+			<enumeration value="MDG"/>
+			<enumeration value="MEX"/>
+			<enumeration value="MHL"/>
+			<enumeration value="MLA"/>
+			<enumeration value="MLD"/>
+			<enumeration value="MLI"/>
+			<enumeration value="MLT"/>
+			<enumeration value="MNE"/>
+			<enumeration value="MNG"/>
+			<enumeration value="MOZ"/>
+			<enumeration value="MRC"/>
+			<enumeration value="MSR"/>
+			<enumeration value="MTN"/>
+			<enumeration value="MWI"/>
+			<enumeration value="NCG"/>
+			<enumeration value="NCL"/>
+			<enumeration value="NFK"/>
+			<enumeration value="NGR"/>
+			<enumeration value="NIG"/>
+			<enumeration value="NIU"/>
+			<enumeration value="NMB"/>
+			<enumeration value="NOR"/>
+			<enumeration value="NPL"/>
+			<enumeration value="NRU"/>
+			<enumeration value="NZL"/>
+			<enumeration value="OMA"/>
+			<enumeration value="PAK"/>
+			<enumeration value="PHL"/>
+			<enumeration value="PLW"/>
+			<enumeration value="PNG"/>
+			<enumeration value="PNR"/>
+			<enumeration value="POL"/>
+			<enumeration value="POR"/>
+			<enumeration value="PRG"/>
+			<enumeration value="PRU"/>
+			<enumeration value="PSE"/>
+			<enumeration value="PTC"/>
+			<enumeration value="PTR"/>
+			<enumeration value="QAT"/>
+			<enumeration value="ROU"/>
+			<enumeration value="RRW"/>
+			<enumeration value="RUS"/>
+			<enumeration value="S"/>
+			<enumeration value="SDN"/>
+			<enumeration value="SEN"/>
+			<enumeration value="SEY"/>
+			<enumeration value="SHN"/>
+			<enumeration value="SLM"/>
+			<enumeration value="SLV"/>
+			<enumeration value="SMA"/>
+			<enumeration value="SMO"/>
+			<enumeration value="SMR"/>
+			<enumeration value="SNG"/>
+			<enumeration value="SOM"/>
+			<enumeration value="SRB"/>
+			<enumeration value="SRL"/>
+			<enumeration value="STP"/>
+			<enumeration value="SUI"/>
+			<enumeration value="SUR"/>
+			<enumeration value="SVK"/>
+			<enumeration value="SVN"/>
+			<enumeration value="SWZ"/>
+			<enumeration value="SYR"/>
+			<enumeration value="TCA"/>
+			<enumeration value="TCD"/>
+			<enumeration value="TGO"/>
+			<enumeration value="THA"/>
+			<enumeration value="TJK"/>
+			<enumeration value="TKL"/>
+			<enumeration value="TKM"/>
+			<enumeration value="TON"/>
+			<enumeration value="TRD"/>
+			<enumeration value="TUN"/>
+			<enumeration value="TUR"/>
+			<enumeration value="TUV"/>
+			<enumeration value="TZA"/>
+			<enumeration value="UAE"/>
+			<enumeration value="UGA"/>
+			<enumeration value="UKR"/>
+			<enumeration value="URG"/>
+			<enumeration value="USA"/>
+			<enumeration value="UZB"/>
+			<enumeration value="VCT"/>
+			<enumeration value="VEN"/>
+			<enumeration value="VTN"/>
+			<enumeration value="VUT"/>
+			<enumeration value="WAK"/>
+			<enumeration value="WAL"/>
+			<enumeration value="YEM"/>
+			<enumeration value="ZMB"/>
+			<enumeration value="ZWE"/>
+			<enumeration value="XSC"/>
+			<enumeration value="XSU"/>
+			<enumeration value="XUN"/>
+			<enumeration value="XYU"/>
+			<enumeration value="CCEB"/>
+			<enumeration value="NATO"/>
+			<enumeration value="NEUR"/>
+			<enumeration value="XAEW"/>
+			<enumeration value="XASC"/>
+			<enumeration value="XSFN"/>
+			<enumeration value="XHQ"/>
+			<enumeration value="XSMB"/>
+			<enumeration value="XO"/>
+			<enumeration value="XB"/>
+			<enumeration value="XL"/>
+			<enumeration value="XN"/>
+			<enumeration value="XT"/>
+			<enumeration value="XC3A"/>
+			<enumeration value="XCSA"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAO">
+		<annotation>
+			<appinfo>code=FX:AO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4"/>
+			<enumeration value="ABW"/>
+			<enumeration value="AFG"/>
+			<enumeration value="AFS"/>
+			<enumeration value="AGL"/>
+			<enumeration value="AIA"/>
+			<enumeration value="ALB"/>
+			<enumeration value="ALG"/>
+			<enumeration value="ALS"/>
+			<enumeration value="AMS"/>
+			<enumeration value="AND"/>
+			<enumeration value="AOE"/>
+			<enumeration value="ARG"/>
+			<enumeration value="ARM"/>
+			<enumeration value="ARS"/>
+			<enumeration value="ASC"/>
+			<enumeration value="ATA"/>
+			<enumeration value="ATG"/>
+			<enumeration value="ATN"/>
+			<enumeration value="AUS"/>
+			<enumeration value="AUT"/>
+			<enumeration value="AZE"/>
+			<enumeration value="AZR"/>
+			<enumeration value="B"/>
+			<enumeration value="BAH"/>
+			<enumeration value="BDI"/>
+			<enumeration value="BEL"/>
+			<enumeration value="BEN"/>
+			<enumeration value="BER"/>
+			<enumeration value="BFA"/>
+			<enumeration value="BGD"/>
+			<enumeration value="BHR"/>
+			<enumeration value="BIH"/>
+			<enumeration value="BIO"/>
+			<enumeration value="BLR"/>
+			<enumeration value="BLZ"/>
+			<enumeration value="BOL"/>
+			<enumeration value="BOT"/>
+			<enumeration value="BRB"/>
+			<enumeration value="BRM"/>
+			<enumeration value="BRU"/>
+			<enumeration value="BTN"/>
+			<enumeration value="BUL"/>
+			<enumeration value="BVT"/>
+			<enumeration value="CAF"/>
+			<enumeration value="CAN"/>
+			<enumeration value="CBG"/>
+			<enumeration value="CHL"/>
+			<enumeration value="CHN"/>
+			<enumeration value="CHR"/>
+			<enumeration value="CKH"/>
+			<enumeration value="CLM"/>
+			<enumeration value="CLN"/>
+			<enumeration value="CME"/>
+			<enumeration value="CNR"/>
+			<enumeration value="COD"/>
+			<enumeration value="COG"/>
+			<enumeration value="COM"/>
+			<enumeration value="CPT"/>
+			<enumeration value="CPV"/>
+			<enumeration value="CRO"/>
+			<enumeration value="CTI"/>
+			<enumeration value="CTR"/>
+			<enumeration value="CUB"/>
+			<enumeration value="CVA"/>
+			<enumeration value="CYM"/>
+			<enumeration value="CYP"/>
+			<enumeration value="CZE"/>
+			<enumeration value="D"/>
+			<enumeration value="DGA"/>
+			<enumeration value="DJI"/>
+			<enumeration value="DMA"/>
+			<enumeration value="DNK"/>
+			<enumeration value="DOM"/>
+			<enumeration value="E"/>
+			<enumeration value="EGY"/>
+			<enumeration value="EQA"/>
+			<enumeration value="ERI"/>
+			<enumeration value="EST"/>
+			<enumeration value="ETH"/>
+			<enumeration value="F"/>
+			<enumeration value="FIN"/>
+			<enumeration value="FJI"/>
+			<enumeration value="FLK"/>
+			<enumeration value="FRO"/>
+			<enumeration value="FSM"/>
+			<enumeration value="G"/>
+			<enumeration value="GAB"/>
+			<enumeration value="GCA"/>
+			<enumeration value="GCC"/>
+			<enumeration value="GDL"/>
+			<enumeration value="GEO"/>
+			<enumeration value="GHA"/>
+			<enumeration value="GIB"/>
+			<enumeration value="GMB"/>
+			<enumeration value="GNB"/>
+			<enumeration value="GNE"/>
+			<enumeration value="GRC"/>
+			<enumeration value="GRD"/>
+			<enumeration value="GRL"/>
+			<enumeration value="GTM"/>
+			<enumeration value="GUF"/>
+			<enumeration value="GUI"/>
+			<enumeration value="GUM"/>
+			<enumeration value="GUY"/>
+			<enumeration value="HKG"/>
+			<enumeration value="HMD"/>
+			<enumeration value="HND"/>
+			<enumeration value="HNG"/>
+			<enumeration value="HOL"/>
+			<enumeration value="HRV"/>
+			<enumeration value="HTI"/>
+			<enumeration value="HWA"/>
+			<enumeration value="HWL"/>
+			<enumeration value="I"/>
+			<enumeration value="ICO"/>
+			<enumeration value="IND"/>
+			<enumeration value="INS"/>
+			<enumeration value="IRL"/>
+			<enumeration value="IRN"/>
+			<enumeration value="IRQ"/>
+			<enumeration value="ISL"/>
+			<enumeration value="ISR"/>
+			<enumeration value="J"/>
+			<enumeration value="JAR"/>
+			<enumeration value="JMC"/>
+			<enumeration value="JON"/>
+			<enumeration value="JOR"/>
+			<enumeration value="KAZ"/>
+			<enumeration value="KEN"/>
+			<enumeration value="KER"/>
+			<enumeration value="KGZ"/>
+			<enumeration value="KIR"/>
+			<enumeration value="KNA"/>
+			<enumeration value="KOR"/>
+			<enumeration value="KRE"/>
+			<enumeration value="KWT"/>
+			<enumeration value="LAO"/>
+			<enumeration value="LBN"/>
+			<enumeration value="LBR"/>
+			<enumeration value="LBY"/>
+			<enumeration value="LCA"/>
+			<enumeration value="LIE"/>
+			<enumeration value="LSO"/>
+			<enumeration value="LTU"/>
+			<enumeration value="LUX"/>
+			<enumeration value="LVA"/>
+			<enumeration value="MAC"/>
+			<enumeration value="MAU"/>
+			<enumeration value="MCO"/>
+			<enumeration value="MDA"/>
+			<enumeration value="MDG"/>
+			<enumeration value="MDR"/>
+			<enumeration value="MDW"/>
+			<enumeration value="MEX"/>
+			<enumeration value="MHL"/>
+			<enumeration value="MKD"/>
+			<enumeration value="MLA"/>
+			<enumeration value="MLD"/>
+			<enumeration value="MLI"/>
+			<enumeration value="MLT"/>
+			<enumeration value="MNE"/>
+			<enumeration value="MNG"/>
+			<enumeration value="MOZ"/>
+			<enumeration value="MRA"/>
+			<enumeration value="MRC"/>
+			<enumeration value="MRN"/>
+			<enumeration value="MRT"/>
+			<enumeration value="MSR"/>
+			<enumeration value="MTN"/>
+			<enumeration value="MWI"/>
+			<enumeration value="MWM"/>
+			<enumeration value="MYT"/>
+			<enumeration value="NCG"/>
+			<enumeration value="NCL"/>
+			<enumeration value="NFK"/>
+			<enumeration value="NGR"/>
+			<enumeration value="NIG"/>
+			<enumeration value="NIU"/>
+			<enumeration value="NMB"/>
+			<enumeration value="NOR"/>
+			<enumeration value="NPL"/>
+			<enumeration value="NRU"/>
+			<enumeration value="NZL"/>
+			<enumeration value="OCE"/>
+			<enumeration value="OMA"/>
+			<enumeration value="PAK"/>
+			<enumeration value="PAQ"/>
+			<enumeration value="PHL"/>
+			<enumeration value="PHX"/>
+			<enumeration value="PLM"/>
+			<enumeration value="PLW"/>
+			<enumeration value="PNG"/>
+			<enumeration value="PNR"/>
+			<enumeration value="POL"/>
+			<enumeration value="POR"/>
+			<enumeration value="PRG"/>
+			<enumeration value="PRU"/>
+			<enumeration value="PSE"/>
+			<enumeration value="PTC"/>
+			<enumeration value="PTR"/>
+			<enumeration value="QAT"/>
+			<enumeration value="REU"/>
+			<enumeration value="ROD"/>
+			<enumeration value="ROU"/>
+			<enumeration value="RRW"/>
+			<enumeration value="RUS"/>
+			<enumeration value="S"/>
+			<enumeration value="SCN"/>
+			<enumeration value="SDN"/>
+			<enumeration value="SEN"/>
+			<enumeration value="SEY"/>
+			<enumeration value="SHN"/>
+			<enumeration value="SLM"/>
+			<enumeration value="SLV"/>
+			<enumeration value="SMA"/>
+			<enumeration value="SMO"/>
+			<enumeration value="SMR"/>
+			<enumeration value="SNG"/>
+			<enumeration value="SOM"/>
+			<enumeration value="SPM"/>
+			<enumeration value="SRB"/>
+			<enumeration value="SRL"/>
+			<enumeration value="STP"/>
+			<enumeration value="SUI"/>
+			<enumeration value="SUR"/>
+			<enumeration value="SVK"/>
+			<enumeration value="SVN"/>
+			<enumeration value="SWN"/>
+			<enumeration value="SWZ"/>
+			<enumeration value="SYR"/>
+			<enumeration value="TCA"/>
+			<enumeration value="TCD"/>
+			<enumeration value="TGO"/>
+			<enumeration value="THA"/>
+			<enumeration value="TJK"/>
+			<enumeration value="TKL"/>
+			<enumeration value="TKM"/>
+			<enumeration value="TMP"/>
+			<enumeration value="TON"/>
+			<enumeration value="TRC"/>
+			<enumeration value="TRD"/>
+			<enumeration value="TUN"/>
+			<enumeration value="TUR"/>
+			<enumeration value="TUV"/>
+			<enumeration value="TZA"/>
+			<enumeration value="UAE"/>
+			<enumeration value="UGA"/>
+			<enumeration value="UKR"/>
+			<enumeration value="URG"/>
+			<enumeration value="USA"/>
+			<enumeration value="UZB"/>
+			<enumeration value="VCT"/>
+			<enumeration value="VEN"/>
+			<enumeration value="VIR"/>
+			<enumeration value="VRG"/>
+			<enumeration value="VTN"/>
+			<enumeration value="VUT"/>
+			<enumeration value="WAK"/>
+			<enumeration value="WAL"/>
+			<enumeration value="YEM"/>
+			<enumeration value="ZMB"/>
+			<enumeration value="ZWE"/>
+			<enumeration value="XAA"/>
+			<enumeration value="XAX"/>
+			<enumeration value="XBR"/>
+			<enumeration value="XCS"/>
+			<enumeration value="XGZ"/>
+			<enumeration value="XMM"/>
+			<enumeration value="XOA"/>
+			<enumeration value="XSC"/>
+			<enumeration value="XSP"/>
+			<enumeration value="XR1"/>
+			<enumeration value="XR2"/>
+			<enumeration value="XR3"/>
+			<enumeration value="XRY"/>
+			<enumeration value="XSU"/>
+			<enumeration value="XUN"/>
+			<enumeration value="XVE"/>
+			<enumeration value="XWB"/>
+			<enumeration value="XWM"/>
+			<enumeration value="XYU"/>
+			<enumeration value="XZZ"/>
+			<enumeration value="AFR"/>
+			<enumeration value="ANTR"/>
+			<enumeration value="ARCO"/>
+			<enumeration value="ASIA"/>
+			<enumeration value="CAME"/>
+			<enumeration value="CCEB"/>
+			<enumeration value="EEUR"/>
+			<enumeration value="EUR"/>
+			<enumeration value="GCA"/>
+			<enumeration value="GCC"/>
+			<enumeration value="GEOS"/>
+			<enumeration value="HEME"/>
+			<enumeration value="HEMN"/>
+			<enumeration value="HEMS"/>
+			<enumeration value="HEMW"/>
+			<enumeration value="INDO"/>
+			<enumeration value="INTL"/>
+			<enumeration value="ITU"/>
+			<enumeration value="LANT"/>
+			<enumeration value="MDE"/>
+			<enumeration value="MED"/>
+			<enumeration value="MULT"/>
+			<enumeration value="NGEO"/>
+			<enumeration value="OCNA"/>
+			<enumeration value="PAC"/>
+			<enumeration value="SPCE"/>
+			<enumeration value="UNKN"/>
+			<enumeration value="WEUR"/>
+			<enumeration value="NATO"/>
+			<enumeration value="NEUR"/>
+			<enumeration value="XAEW"/>
+			<enumeration value="XASC"/>
+			<enumeration value="XSFN"/>
+			<enumeration value="XHQ"/>
+			<enumeration value="XSMB"/>
+			<enumeration value="XO"/>
+			<enumeration value="XB"/>
+			<enumeration value="XBA"/>
+			<enumeration value="XBA1"/>
+			<enumeration value="XBA2"/>
+			<enumeration value="XBAD"/>
+			<enumeration value="XBA3"/>
+			<enumeration value="XBA4"/>
+			<enumeration value="XBA9"/>
+			<enumeration value="XBL"/>
+			<enumeration value="XBM"/>
+			<enumeration value="XBO1"/>
+			<enumeration value="XL"/>
+			<enumeration value="XN"/>
+			<enumeration value="XNA"/>
+			<enumeration value="XNA5"/>
+			<enumeration value="XNAD"/>
+			<enumeration value="XNA6"/>
+			<enumeration value="XNA7"/>
+			<enumeration value="XNA8"/>
+			<enumeration value="XNA0"/>
+			<enumeration value="XNL"/>
+			<enumeration value="XNM"/>
+			<enumeration value="XNO1"/>
+			<enumeration value="XNO2"/>
+			<enumeration value="XNO3"/>
+			<enumeration value="XT"/>
+			<enumeration value="XC3A"/>
+			<enumeration value="XCSA"/>
+			<enumeration value="AK"/>
+			<enumeration value="AL"/>
+			<enumeration value="AR"/>
+			<enumeration value="AZ"/>
+			<enumeration value="CA"/>
+			<enumeration value="CO"/>
+			<enumeration value="CT"/>
+			<enumeration value="DE"/>
+			<enumeration value="FL"/>
+			<enumeration value="GA"/>
+			<enumeration value="HI"/>
+			<enumeration value="IA"/>
+			<enumeration value="ID"/>
+			<enumeration value="IL"/>
+			<enumeration value="IN"/>
+			<enumeration value="KS"/>
+			<enumeration value="KY"/>
+			<enumeration value="LA"/>
+			<enumeration value="MA"/>
+			<enumeration value="MD"/>
+			<enumeration value="ME"/>
+			<enumeration value="MI"/>
+			<enumeration value="MN"/>
+			<enumeration value="MO"/>
+			<enumeration value="MS"/>
+			<enumeration value="MT"/>
+			<enumeration value="NC"/>
+			<enumeration value="ND"/>
+			<enumeration value="NE"/>
+			<enumeration value="NH"/>
+			<enumeration value="NJ"/>
+			<enumeration value="NM"/>
+			<enumeration value="NV"/>
+			<enumeration value="NY"/>
+			<enumeration value="OH"/>
+			<enumeration value="OK"/>
+			<enumeration value="OR"/>
+			<enumeration value="PA"/>
+			<enumeration value="RI"/>
+			<enumeration value="SC"/>
+			<enumeration value="SD"/>
+			<enumeration value="TN"/>
+			<enumeration value="TX"/>
+			<enumeration value="UT"/>
+			<enumeration value="VA"/>
+			<enumeration value="VT"/>
+			<enumeration value="WA"/>
+			<enumeration value="WI"/>
+			<enumeration value="WV"/>
+			<enumeration value="WY"/>
+			<enumeration value="CBN"/>
+			<enumeration value="DC"/>
+			<enumeration value="FE"/>
+			<enumeration value="GLM"/>
+			<enumeration value="GTLK"/>
+			<enumeration value="HWL"/>
+			<enumeration value="LAM"/>
+			<enumeration value="LERI"/>
+			<enumeration value="LHUR"/>
+			<enumeration value="LMIC"/>
+			<enumeration value="LONT"/>
+			<enumeration value="LSUP"/>
+			<enumeration value="NAME"/>
+			<enumeration value="PR"/>
+			<enumeration value="RCVR"/>
+			<enumeration value="SAME"/>
+			<enumeration value="SCAN"/>
+			<enumeration value="SCML"/>
+			<enumeration value="US"/>
+			<enumeration value="USCE"/>
+			<enumeration value="USMW"/>
+			<enumeration value="USNC"/>
+			<enumeration value="USNE"/>
+			<enumeration value="USNW"/>
+			<enumeration value="USP"/>
+			<enumeration value="USSC"/>
+			<enumeration value="USSE"/>
+			<enumeration value="USSW"/>
+			<enumeration value="USWE"/>
+			<enumeration value="VI"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAP">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-020] updated to allow X.</documentation>
+			<appinfo>code=FX:AP;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4"/>
+			<pattern value="HH|HV|VV|VH|ELHH|ELHV|ELVV|ELVH|X"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAR">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:AR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<enumeration value="NI"/>
+			<enumeration value="NIB"/>
+			<enumeration value="NPB"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAU">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:AU;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<enumeration value="T"/>
+			<enumeration value="R"/>
+			<enumeration value="TR"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListAV">
+		<annotation>
+			<appinfo>code=FX:AV;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|D"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListBO">
+		<annotation>
+			<appinfo>code=FX:BO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="Y|N"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListCA">
+		<annotation>
+			<appinfo>code=FX:CA;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<enumeration value="HF"/>
+			<enumeration value="NAV"/>
+			<enumeration value="OTHER"/>
+			<enumeration value="UHFAMS"/>
+			<enumeration value="VHFAMS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListCC">
+		<annotation>
+			<appinfo>code=FX:CC;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20"/>
+			<minLength value="1"/>
+			<enumeration value="HCS"/>
+			<enumeration value="COMINT"/>
+			<enumeration value="-GAMMA"/>
+			<enumeration value="-ECI"/>
+			<enumeration value="TALENT KEYHOLE"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListCL">
+		<annotation>
+			<appinfo>code=FX:CL;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="U|R|C|S|T"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListCO">
+		<annotation>
+			<appinfo>code=FX:CO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="G|NH|SH|WH|EH|NWQ|SWQ|NEQ|SEQ"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListCR">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:CR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="8"/>
+			<enumeration value="AU"/>
+			<enumeration value="AUTH"/>
+			<enumeration value="COORD"/>
+			<enumeration value="FM"/>
+			<enumeration value="GATEWAY"/>
+			<enumeration value="LICENSEE"/>
+			<enumeration value="OTHER"/>
+			<enumeration value="OWNER"/>
+			<enumeration value="PE"/>
+			<enumeration value="PM"/>
+			<enumeration value="SM"/>
+			<enumeration value="STNCTRL"/>
+			<enumeration value="STOP"/>
+			<enumeration value="SUPPLIER"/>
+			<enumeration value="USER"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListCT">
+		<annotation>
+			<appinfo>code=FX:CT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<pattern value="BASE|FILTER|GAIN|IFSEL1|IFSEL2|IFSEL3|IFSEL4|IFSEL5|INTMOD|RFSEL|RFSPCT|RXIMAG|RXRESP|TXHARM|TXSPUR"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListD1">
+		<annotation>
+			<appinfo>code=FX:D1;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="NG|RE|RS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListD2">
+		<annotation>
+			<appinfo>code=FX:D2;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|I|P|R"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListD3">
+		<annotation>
+			<appinfo>code=FX:D3;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="CO|CS|OT|SU"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDC">
+		<annotation>
+			<appinfo>code=FX:DC;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="CAW5|CAW15|CAWUD|COW5|COW15|COWUD|CLSGN|CLSGP|CMSKY|CWDGP|EXTGP|FQSGP|FRQGP|NEDEF|NETXP|NTSFX|NSDEF|PYRO|PYDEF|SHRGP|SMDEF|SMOKE"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDD">
+		<annotation>
+			<appinfo>code=FX:DD;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="DEP|REL|REQ|SUP"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDE">
+		<annotation>
+			<appinfo>code=FX:DE;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="D|E"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDF">
+		<annotation>
+			<appinfo>code=FX:DF;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="N|O|R|S|T|U|V|W|X|Y|Z"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDI">
+		<annotation>
+			<appinfo>code=FX:DI;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<pattern value="MD5|SHA1|SHA224|SHA256|SHA384|SHA512"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDO">
+		<annotation>
+			<appinfo>code=FX:DO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="PYRO|SMOKE"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDR">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] list modified to include more codes.</documentation>
+			<documentation source="SMADEF 1.2.4.b">Changed changed code value "COMMENT" to "CRDCMT" to fit into 6 characters. tony.greene@itt.com 2009-04-30T18:50:00</documentation>
+			<appinfo>code=FX:DR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<pattern value="ACCEPT|AOI|CRDCMT|INVMSG|MISREF|QUERY|RECALL|REJECT|UNSUP"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDS">
+		<annotation>
+			<appinfo>code=FX:DS;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="E|M"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListDT">
+		<annotation>
+			<appinfo>code=FX:DT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="AL|AN|AS|BS|CD|CE|CL|CN|CR|DE|DI|DP|DR|EX|FD|FE|HD|HO|IF|IM|JR|LA|LG|LT|MS|NT|OR|RA|RC|RH|RM|RN|RO|RP|RR|RT|RU|RV|SD|SR|TA|TR"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListEB">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:EB;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<enumeration value="CD"/>
+			<enumeration value="D"/>
+			<enumeration value="H"/>
+			<enumeration value="HR"/>
+			<enumeration value="R"/>
+			<enumeration value="S"/>
+			<enumeration value="SR"/>
+			<enumeration value="SW"/>
+			<enumeration value="W"/>
+			<enumeration value="WR"/>
+			<enumeration value="XD"/>
+			<enumeration value="Z"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListED">
+		<annotation>
+			<appinfo>code=FX:ED;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="[0-689A-HJKLNP-Z]"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListET">
+		<annotation>
+			<appinfo>code=FX:ET;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4"/>
+			<enumeration value="AA"/>
+			<enumeration value="AH"/>
+			<enumeration value="AV"/>
+			<enumeration value="F"/>
+			<enumeration value="LA"/>
+			<enumeration value="LN"/>
+			<enumeration value="LT"/>
+			<enumeration value="MA"/>
+			<enumeration value="ML"/>
+			<enumeration value="MW"/>
+			<enumeration value="UV"/>
+			<enumeration value="VA"/>
+			<enumeration value="VH"/>
+			<enumeration value="VP"/>
+			<enumeration value="WAA"/>
+			<enumeration value="WAB"/>
+			<enumeration value="WAC"/>
+			<enumeration value="WAD"/>
+			<enumeration value="WAE"/>
+			<enumeration value="WCA"/>
+			<enumeration value="WCB"/>
+			<enumeration value="WCC"/>
+			<enumeration value="WCD"/>
+			<enumeration value="WCE"/>
+			<enumeration value="WCF"/>
+			<enumeration value="WCG"/>
+			<enumeration value="WMA"/>
+			<enumeration value="WMB"/>
+			<enumeration value="WSA"/>
+			<enumeration value="WSB"/>
+			<enumeration value="WSC"/>
+			<enumeration value="WSD"/>
+			<enumeration value="WSE"/>
+			<enumeration value="WSF"/>
+			<enumeration value="WSG"/>
+			<enumeration value="WTA"/>
+			<enumeration value="WTB"/>
+			<enumeration value="WTC"/>
+			<enumeration value="WTD"/>
+			<enumeration value="WDE"/>
+			<enumeration value="WTF"/>
+			<enumeration value="WTG"/>
+			<enumeration value="WTH"/>
+			<enumeration value="WTI"/>
+			<enumeration value="WTJ"/>
+			<enumeration value="WTK"/>
+			<enumeration value="WTL"/>
+			<enumeration value="WTM"/>
+			<enumeration value="WTN"/>
+			<enumeration value="WTO"/>
+			<enumeration value="WTP"/>
+			<enumeration value="WTQ"/>
+			<enumeration value="WTR"/>
+			<enumeration value="WUA"/>
+			<enumeration value="WUB"/>
+			<enumeration value="WUC"/>
+			<enumeration value="WXA"/>
+			<enumeration value="WXB"/>
+			<enumeration value="WXC"/>
+			<enumeration value="WXD"/>
+			<enumeration value="WZA"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFC">
+		<annotation>
+			<appinfo>code=FX:FC;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="AIR|AMP|JNT|LAN|MAR|OTH|SF"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFD">
+		<annotation>
+			<appinfo>code=FX:FD;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="CL|CO|CR|PL|PO|PR"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFE">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] code validation correction.</documentation>
+			<appinfo>code=FX:FE;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="O|P"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFM">
+		<annotation>
+			<appinfo>code=FX:FM;</appinfo>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="1"/>
+			<pattern value="1|2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFN">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-12] new ListFN code list type.</documentation>
+			<documentation source="mailto:tony.greene@itt.com">Changed this definition from pattern to enumerated to ensure only proper values are entered and saved. 2009-04-24T08:44</documentation>
+			<appinfo>code=FX:FN;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="9"/>
+			<enumeration value="000000000"/>
+			<enumeration value="010000000"/>
+			<enumeration value="010010000"/>
+			<enumeration value="010010010"/>
+			<enumeration value="010010020"/>
+			<enumeration value="010010030"/>
+			<enumeration value="010010040"/>
+			<enumeration value="010010050"/>
+			<enumeration value="010010060"/>
+			<enumeration value="010010070"/>
+			<enumeration value="010010080"/>
+			<enumeration value="010010090"/>
+			<enumeration value="010020000"/>
+			<enumeration value="010020010"/>
+			<enumeration value="010020020"/>
+			<enumeration value="010020030"/>
+			<enumeration value="010020040"/>
+			<enumeration value="010020050"/>
+			<enumeration value="010020060"/>
+			<enumeration value="010020070"/>
+			<enumeration value="010020080"/>
+			<enumeration value="010020090"/>
+			<enumeration value="010020100"/>
+			<enumeration value="010020110"/>
+			<enumeration value="010030000"/>
+			<enumeration value="010030010"/>
+			<enumeration value="010030020"/>
+			<enumeration value="010030030"/>
+			<enumeration value="010030040"/>
+			<enumeration value="010030050"/>
+			<enumeration value="010030060"/>
+			<enumeration value="010030070"/>
+			<enumeration value="010030080"/>
+			<enumeration value="010030090"/>
+			<enumeration value="010030100"/>
+			<enumeration value="010030110"/>
+			<enumeration value="010040000"/>
+			<enumeration value="010040010"/>
+			<enumeration value="010040020"/>
+			<enumeration value="010040030"/>
+			<enumeration value="010040040"/>
+			<enumeration value="010040050"/>
+			<enumeration value="010040060"/>
+			<enumeration value="010040070"/>
+			<enumeration value="010040080"/>
+			<enumeration value="010050000"/>
+			<enumeration value="010060000"/>
+			<enumeration value="010060010"/>
+			<enumeration value="010060020"/>
+			<enumeration value="010060030"/>
+			<enumeration value="010060040"/>
+			<enumeration value="010060050"/>
+			<enumeration value="010060070"/>
+			<enumeration value="010060080"/>
+			<enumeration value="010060090"/>
+			<enumeration value="010060100"/>
+			<enumeration value="010060110"/>
+			<enumeration value="010060120"/>
+			<enumeration value="010060130"/>
+			<enumeration value="010060140"/>
+			<enumeration value="010060150"/>
+			<enumeration value="010070000"/>
+			<enumeration value="010070010"/>
+			<enumeration value="010070020"/>
+			<enumeration value="010070030"/>
+			<enumeration value="010070040"/>
+			<enumeration value="010070050"/>
+			<enumeration value="010080000"/>
+			<enumeration value="010090000"/>
+			<enumeration value="010100000"/>
+			<enumeration value="010100010"/>
+			<enumeration value="010100020"/>
+			<enumeration value="010110000"/>
+			<enumeration value="020000000"/>
+			<enumeration value="020010000"/>
+			<enumeration value="020010010"/>
+			<enumeration value="020010020"/>
+			<enumeration value="020010030"/>
+			<enumeration value="020010040"/>
+			<enumeration value="020010050"/>
+			<enumeration value="020010060"/>
+			<enumeration value="020020000"/>
+			<enumeration value="020020010"/>
+			<enumeration value="020020020"/>
+			<enumeration value="020020030"/>
+			<enumeration value="020030000"/>
+			<enumeration value="020030010"/>
+			<enumeration value="020030020"/>
+			<enumeration value="020030030"/>
+			<enumeration value="020040000"/>
+			<enumeration value="020040010"/>
+			<enumeration value="020040020"/>
+			<enumeration value="020040030"/>
+			<enumeration value="020040040"/>
+			<enumeration value="020040050"/>
+			<enumeration value="020040060"/>
+			<enumeration value="020040070"/>
+			<enumeration value="020040080"/>
+			<enumeration value="020040090"/>
+			<enumeration value="020040100"/>
+			<enumeration value="020050000"/>
+			<enumeration value="020050010"/>
+			<enumeration value="020060000"/>
+			<enumeration value="020070000"/>
+			<enumeration value="020080000"/>
+			<enumeration value="020090000"/>
+			<enumeration value="020090010"/>
+			<enumeration value="020090020"/>
+			<enumeration value="020090030"/>
+			<enumeration value="020090040"/>
+			<enumeration value="020090050"/>
+			<enumeration value="020090060"/>
+			<enumeration value="020090070"/>
+			<enumeration value="020090080"/>
+			<enumeration value="020100000"/>
+			<enumeration value="020100010"/>
+			<enumeration value="020100020"/>
+			<enumeration value="020100030"/>
+			<enumeration value="020100040"/>
+			<enumeration value="020110000"/>
+			<enumeration value="020120000"/>
+			<enumeration value="020120010"/>
+			<enumeration value="020120020"/>
+			<enumeration value="020120030"/>
+			<enumeration value="020120040"/>
+			<enumeration value="020120050"/>
+			<enumeration value="020130000"/>
+			<enumeration value="020140000"/>
+			<enumeration value="020140010"/>
+			<enumeration value="020150000"/>
+			<enumeration value="020160000"/>
+			<enumeration value="030000000"/>
+			<enumeration value="030010000"/>
+			<enumeration value="030010010"/>
+			<enumeration value="030020000"/>
+			<enumeration value="030030000"/>
+			<enumeration value="030040000"/>
+			<enumeration value="030050000"/>
+			<enumeration value="030050010"/>
+			<enumeration value="030060000"/>
+			<enumeration value="030060010"/>
+			<enumeration value="030070000"/>
+			<enumeration value="030080000"/>
+			<enumeration value="030090000"/>
+			<enumeration value="030090010"/>
+			<enumeration value="030100000"/>
+			<enumeration value="030100010"/>
+			<enumeration value="030100020"/>
+			<enumeration value="030110000"/>
+			<enumeration value="040000000"/>
+			<enumeration value="040010000"/>
+			<enumeration value="040020000"/>
+			<enumeration value="040020010"/>
+			<enumeration value="040020020"/>
+			<enumeration value="040020030"/>
+			<enumeration value="040020040"/>
+			<enumeration value="040020050"/>
+			<enumeration value="040020060"/>
+			<enumeration value="040020070"/>
+			<enumeration value="040020080"/>
+			<enumeration value="040020090"/>
+			<enumeration value="040020100"/>
+			<enumeration value="040020110"/>
+			<enumeration value="040030000"/>
+			<enumeration value="040040000"/>
+			<enumeration value="040040010"/>
+			<enumeration value="040040020"/>
+			<enumeration value="040050000"/>
+			<enumeration value="040050010"/>
+			<enumeration value="050000000"/>
+			<enumeration value="050010000"/>
+			<enumeration value="050020000"/>
+			<enumeration value="050030000"/>
+			<enumeration value="050030010"/>
+			<enumeration value="050030020"/>
+			<enumeration value="050030030"/>
+			<enumeration value="050030040"/>
+			<enumeration value="050040000"/>
+			<enumeration value="050050000"/>
+			<enumeration value="050060000"/>
+			<enumeration value="050060010"/>
+			<enumeration value="050060020"/>
+			<enumeration value="050060030"/>
+			<enumeration value="050060040"/>
+			<enumeration value="050060050"/>
+			<enumeration value="050070000"/>
+			<enumeration value="050070010"/>
+			<enumeration value="060000000"/>
+			<enumeration value="060010000"/>
+			<enumeration value="060010010"/>
+			<enumeration value="060010020"/>
+			<enumeration value="060010030"/>
+			<enumeration value="060010040"/>
+			<enumeration value="060010050"/>
+			<enumeration value="060010060"/>
+			<enumeration value="060010070"/>
+			<enumeration value="060020000"/>
+			<enumeration value="070000000"/>
+			<enumeration value="070010000"/>
+			<enumeration value="070020000"/>
+			<enumeration value="070020010"/>
+			<enumeration value="070020020"/>
+			<enumeration value="070020030"/>
+			<enumeration value="070020040"/>
+			<enumeration value="070030000"/>
+			<enumeration value="080000000"/>
+			<enumeration value="080010000"/>
+			<enumeration value="080010010"/>
+			<enumeration value="080010020"/>
+			<enumeration value="080010030"/>
+			<enumeration value="080010040"/>
+			<enumeration value="080010050"/>
+			<enumeration value="080010060"/>
+			<enumeration value="080020000"/>
+			<enumeration value="080020010"/>
+			<enumeration value="080020020"/>
+			<enumeration value="080020030"/>
+			<enumeration value="080020040"/>
+			<enumeration value="080020050"/>
+			<enumeration value="080030000"/>
+			<enumeration value="080030010"/>
+			<enumeration value="080030020"/>
+			<enumeration value="080030030"/>
+			<enumeration value="080030040"/>
+			<enumeration value="080030050"/>
+			<enumeration value="080030060"/>
+			<enumeration value="080030070"/>
+			<enumeration value="080040000"/>
+			<enumeration value="080050000"/>
+			<enumeration value="080050010"/>
+			<enumeration value="080050020"/>
+			<enumeration value="080050030"/>
+			<enumeration value="080050040"/>
+			<enumeration value="080050050"/>
+			<enumeration value="080050060"/>
+			<enumeration value="080050070"/>
+			<enumeration value="080050080"/>
+			<enumeration value="080050090"/>
+			<enumeration value="080050100"/>
+			<enumeration value="080050110"/>
+			<enumeration value="080060000"/>
+			<enumeration value="080060010"/>
+			<enumeration value="080060020"/>
+			<enumeration value="090000000"/>
+			<enumeration value="090010000"/>
+			<enumeration value="090010010"/>
+			<enumeration value="090010020"/>
+			<enumeration value="090010030"/>
+			<enumeration value="090010040"/>
+			<enumeration value="090010050"/>
+			<enumeration value="090010060"/>
+			<enumeration value="090030000"/>
+			<enumeration value="090030010"/>
+			<enumeration value="090030020"/>
+			<enumeration value="090030030"/>
+			<enumeration value="090030040"/>
+			<enumeration value="090030050"/>
+			<enumeration value="090030060"/>
+			<enumeration value="090030070"/>
+			<enumeration value="090030080"/>
+			<enumeration value="090030090"/>
+			<enumeration value="090030000"/>
+			<enumeration value="090030010"/>
+			<enumeration value="090030020"/>
+			<enumeration value="090030030"/>
+			<enumeration value="090030040"/>
+			<enumeration value="090040000"/>
+			<enumeration value="090040010"/>
+			<enumeration value="090040020"/>
+			<enumeration value="090040030"/>
+			<enumeration value="090040040"/>
+			<enumeration value="090040050"/>
+			<enumeration value="090040060"/>
+			<enumeration value="090040070"/>
+			<enumeration value="090050000"/>
+			<enumeration value="090050010"/>
+			<enumeration value="090060000"/>
+			<enumeration value="090060010"/>
+			<enumeration value="090060020"/>
+			<enumeration value="090060030"/>
+			<enumeration value="090060040"/>
+			<enumeration value="090060050"/>
+			<enumeration value="090060060"/>
+			<enumeration value="090060070"/>
+			<enumeration value="090060080"/>
+			<enumeration value="090060090"/>
+			<enumeration value="090060100"/>
+			<enumeration value="090060110"/>
+			<enumeration value="090060120"/>
+			<enumeration value="090070000"/>
+			<enumeration value="090070010"/>
+			<enumeration value="090070020"/>
+			<enumeration value="090070030"/>
+			<enumeration value="090070040"/>
+			<enumeration value="090070050"/>
+			<enumeration value="090070060"/>
+			<enumeration value="090070070"/>
+			<enumeration value="090070080"/>
+			<enumeration value="090070090"/>
+			<enumeration value="090080000"/>
+			<enumeration value="090080010"/>
+			<enumeration value="090080020"/>
+			<enumeration value="090080030"/>
+			<enumeration value="090080040"/>
+			<enumeration value="090080050"/>
+			<enumeration value="090080060"/>
+			<enumeration value="090080070"/>
+			<enumeration value="090080080"/>
+			<enumeration value="090090000"/>
+			<enumeration value="090090010"/>
+			<enumeration value="090090020"/>
+			<enumeration value="090100000"/>
+			<enumeration value="090100010"/>
+			<enumeration value="090100020"/>
+			<enumeration value="090110000"/>
+			<enumeration value="090110010"/>
+			<enumeration value="090110020"/>
+			<enumeration value="090110030"/>
+			<enumeration value="090110040"/>
+			<enumeration value="090110050"/>
+			<enumeration value="090110060"/>
+			<enumeration value="090110070"/>
+			<enumeration value="090110080"/>
+			<enumeration value="090110090"/>
+			<enumeration value="090120000"/>
+			<enumeration value="090130000"/>
+			<enumeration value="090130010"/>
+			<enumeration value="090130020"/>
+			<enumeration value="100000000"/>
+			<enumeration value="100010000"/>
+			<enumeration value="100010010"/>
+			<enumeration value="100010020"/>
+			<enumeration value="100010030"/>
+			<enumeration value="100010040"/>
+			<enumeration value="100010050"/>
+			<enumeration value="100010060"/>
+			<enumeration value="100020000"/>
+			<enumeration value="100030000"/>
+			<enumeration value="100030010"/>
+			<enumeration value="100030020"/>
+			<enumeration value="100030030"/>
+			<enumeration value="100030040"/>
+			<enumeration value="100030050"/>
+			<enumeration value="100030060"/>
+			<enumeration value="100030070"/>
+			<enumeration value="100040000"/>
+			<enumeration value="100040010"/>
+			<enumeration value="100040020"/>
+			<enumeration value="100040030"/>
+			<enumeration value="100040040"/>
+			<enumeration value="100040050"/>
+			<enumeration value="110000000"/>
+			<enumeration value="110010000"/>
+			<enumeration value="110020000"/>
+			<enumeration value="110030000"/>
+			<enumeration value="110040000"/>
+			<enumeration value="110050000"/>
+			<enumeration value="110050010"/>
+			<enumeration value="110060000"/>
+			<enumeration value="110070000"/>
+			<enumeration value="110070010"/>
+			<enumeration value="110080000"/>
+			<enumeration value="110090000"/>
+			<enumeration value="110100000"/>
+			<enumeration value="110100010"/>
+			<enumeration value="110110000"/>
+			<enumeration value="110120000"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFP">
+		<annotation>
+			<appinfo>code=FX:FP;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="E|O"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFR">
+		<annotation>
+			<appinfo>code=FX:FR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="C|P|S"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFS">
+		<annotation>
+			<appinfo>code=FX:FS;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="0|1|2|3|4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListFT">
+		<annotation>
+			<appinfo>code=FX:FT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="RPT|BDG|PLN|REF|REL"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListGT">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:GT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="8"/>
+			<enumeration value="CALLSIGN"/>
+			<enumeration value="CALLWORD"/>
+			<enumeration value="EXTRACT"/>
+			<enumeration value="FREQ"/>
+			<enumeration value="FREQSEP"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListHD">
+		<annotation>
+			<appinfo>code=FX:HD;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="Y|N|C"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListHN">
+		<annotation>
+			<appinfo>code=FX:HN;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|F|H|U"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListIE">
+		<annotation>
+			<appinfo>code=FX:IE;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="E|I"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListIF">
+		<annotation>
+			<appinfo>code=FX:IF;</appinfo>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="1"/>
+			<pattern value="[1-5]"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListIM">
+		<annotation>
+			<appinfo>code=FX:IM;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="E|M"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListIN">
+		<annotation>
+			<appinfo>code=FX:IN;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="1|2|3|A|E|H|I|J|K|L|M|N|O|P|Q|S|T|U|V|W|Y|Z"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListIR">
+		<annotation>
+			<appinfo>code=FX:IR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="R|U|I|O|P|M|N|S|Y"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListIT">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] code list validation correction.</documentation>
+			<appinfo>code=FX:IT;</appinfo>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="1"/>
+			<pattern value="1|2|3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListJ1">
+		<annotation>
+			<appinfo>code=FX:J1;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="ENV|INT|ITR|JAM|MEA"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListLA">
+		<annotation>
+			<appinfo>code=FX:LA;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="LA|LG|LT"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListLC">
+		<annotation>
+			<appinfo>code=FX:LC;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<enumeration value="A"/>
+			<enumeration value="ACD"/>
+			<enumeration value="ACS "/>
+			<enumeration value="ACT"/>
+			<enumeration value="ADM"/>
+			<enumeration value="AF"/>
+			<enumeration value="AFY"/>
+			<enumeration value="AGP"/>
+			<enumeration value="AGY"/>
+			<enumeration value="ANX"/>
+			<enumeration value="AP"/>
+			<enumeration value="AR"/>
+			<enumeration value="ARO"/>
+			<enumeration value="ARS"/>
+			<enumeration value="AST"/>
+			<enumeration value="AUG"/>
+			<enumeration value="B"/>
+			<enumeration value="BAS"/>
+			<enumeration value="BD"/>
+			<enumeration value="BDE"/>
+			<enumeration value="BKS"/>
+			<enumeration value="BLT"/>
+			<enumeration value="BN"/>
+			<enumeration value="BND"/>
+			<enumeration value="BR"/>
+			<enumeration value="BSN"/>
+			<enumeration value="BT"/>
+			<enumeration value="BTY"/>
+			<enumeration value="BU"/>
+			<enumeration value="CAY"/>
+			<enumeration value="CDC"/>
+			<enumeration value="CEC"/>
+			<enumeration value="CEP"/>
+			<enumeration value="CGC"/>
+			<enumeration value="CGE"/>
+			<enumeration value="CLN"/>
+			<enumeration value="CMD"/>
+			<enumeration value="CMN"/>
+			<enumeration value="CMP"/>
+			<enumeration value="CO"/>
+			<enumeration value="CPS"/>
+			<enumeration value="CRW"/>
+			<enumeration value="CTP"/>
+			<enumeration value="CTR"/>
+			<enumeration value="DAO"/>
+			<enumeration value="DAY"/>
+			<enumeration value="DEP"/>
+			<enumeration value="DET"/>
+			<enumeration value="DIR"/>
+			<enumeration value="DIV"/>
+			<enumeration value="DMB"/>
+			<enumeration value="DMF"/>
+			<enumeration value="DML"/>
+			<enumeration value="DMM"/>
+			<enumeration value="DMP"/>
+			<enumeration value="DMR"/>
+			<enumeration value="DMT"/>
+			<enumeration value="DMU"/>
+			<enumeration value="DSP"/>
+			<enumeration value="DST"/>
+			<enumeration value="DTL"/>
+			<enumeration value="ELE"/>
+			<enumeration value="FAC"/>
+			<enumeration value="FAR"/>
+			<enumeration value="FLO"/>
+			<enumeration value="FLT"/>
+			<enumeration value="FOA"/>
+			<enumeration value="FOR"/>
+			<enumeration value="FT"/>
+			<enumeration value="FTR"/>
+			<enumeration value="GAR"/>
+			<enumeration value="GRP"/>
+			<enumeration value="HBD"/>
+			<enumeration value="HHB"/>
+			<enumeration value="HHC"/>
+			<enumeration value="HHD"/>
+			<enumeration value="HHS"/>
+			<enumeration value="HHT"/>
+			<enumeration value="HM"/>
+			<enumeration value="HMC"/>
+			<enumeration value="HQ"/>
+			<enumeration value="HQC"/>
+			<enumeration value="HQD"/>
+			<enumeration value="HQS"/>
+			<enumeration value="HSB"/>
+			<enumeration value="HSC"/>
+			<enumeration value="HSP"/>
+			<enumeration value="INS"/>
+			<enumeration value="ISP"/>
+			<enumeration value="IST"/>
+			<enumeration value="LAB"/>
+			<enumeration value="LIB"/>
+			<enumeration value="MAA"/>
+			<enumeration value="MAG"/>
+			<enumeration value="MAW"/>
+			<enumeration value="MEB"/>
+			<enumeration value="MEF"/>
+			<enumeration value="MER"/>
+			<enumeration value="MEU"/>
+			<enumeration value="MF"/>
+			<enumeration value="MGR"/>
+			<enumeration value="MGZ"/>
+			<enumeration value="MIS"/>
+			<enumeration value="MSC"/>
+			<enumeration value="MSF"/>
+			<enumeration value="MTF"/>
+			<enumeration value="MUS"/>
+			<enumeration value="NSC"/>
+			<enumeration value="NSL"/>
+			<enumeration value="OBS"/>
+			<enumeration value="ODC"/>
+			<enumeration value="OFC"/>
+			<enumeration value="OFF"/>
+			<enumeration value="OIC"/>
+			<enumeration value="OL"/>
+			<enumeration value="OMC"/>
+			<enumeration value="PKG"/>
+			<enumeration value="PKT"/>
+			<enumeration value="PLN"/>
+			<enumeration value="PLT"/>
+			<enumeration value="PO"/>
+			<enumeration value="PRT"/>
+			<enumeration value="PTY"/>
+			<enumeration value="PVG"/>
+			<enumeration value="RCT"/>
+			<enumeration value="REG"/>
+			<enumeration value="REP"/>
+			<enumeration value="RES"/>
+			<enumeration value="RGN"/>
+			<enumeration value="RGT"/>
+			<enumeration value="RLT"/>
+			<enumeration value="RNG"/>
+			<enumeration value="SCH"/>
+			<enumeration value="SCM"/>
+			<enumeration value="SCO"/>
+			<enumeration value="SCT"/>
+			<enumeration value="SEC"/>
+			<enumeration value="SHP"/>
+			<enumeration value="SIP"/>
+			<enumeration value="SQ"/>
+			<enumeration value="SQD"/>
+			<enumeration value="SS"/>
+			<enumeration value="SST"/>
+			<enumeration value="STA"/>
+			<enumeration value="STF"/>
+			<enumeration value="STP"/>
+			<enumeration value="STR"/>
+			<enumeration value="SU"/>
+			<enumeration value="SUP"/>
+			<enumeration value="SVC"/>
+			<enumeration value="SYD"/>
+			<enumeration value="SYS"/>
+			<enumeration value="TE"/>
+			<enumeration value="TF"/>
+			<enumeration value="TG"/>
+			<enumeration value="TM"/>
+			<enumeration value="TML"/>
+			<enumeration value="TRN"/>
+			<enumeration value="TRP"/>
+			<enumeration value="TU"/>
+			<enumeration value="U"/>
+			<enumeration value="USS"/>
+			<enumeration value="WG"/>
+			<enumeration value="WKS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListLN">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-14] add new ListLN code list type.</documentation>
+			<appinfo>code=FX:LN;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<enumeration value="aa"/>
+			<enumeration value="ab"/>
+			<enumeration value="ae"/>
+			<enumeration value="af"/>
+			<enumeration value="ak"/>
+			<enumeration value="am"/>
+			<enumeration value="an"/>
+			<enumeration value="ar"/>
+			<enumeration value="as"/>
+			<enumeration value="av"/>
+			<enumeration value="ay"/>
+			<enumeration value="az"/>
+			<enumeration value="ba"/>
+			<enumeration value="be"/>
+			<enumeration value="bg"/>
+			<enumeration value="bh"/>
+			<enumeration value="bi"/>
+			<enumeration value="bm"/>
+			<enumeration value="bn"/>
+			<enumeration value="bo"/>
+			<enumeration value="br"/>
+			<enumeration value="bs"/>
+			<enumeration value="ca"/>
+			<enumeration value="ce"/>
+			<enumeration value="ch"/>
+			<enumeration value="co"/>
+			<enumeration value="cr"/>
+			<enumeration value="cs"/>
+			<enumeration value="cu"/>
+			<enumeration value="cv"/>
+			<enumeration value="cy"/>
+			<enumeration value="da"/>
+			<enumeration value="de"/>
+			<enumeration value="dv"/>
+			<enumeration value="dz"/>
+			<enumeration value="ee"/>
+			<enumeration value="el"/>
+			<enumeration value="en"/>
+			<enumeration value="eo"/>
+			<enumeration value="es"/>
+			<enumeration value="et"/>
+			<enumeration value="eu"/>
+			<enumeration value="fa"/>
+			<enumeration value="ff"/>
+			<enumeration value="fi"/>
+			<enumeration value="fj"/>
+			<enumeration value="fo"/>
+			<enumeration value="fr"/>
+			<enumeration value="fy"/>
+			<enumeration value="ga"/>
+			<enumeration value="gd"/>
+			<enumeration value="gl"/>
+			<enumeration value="gn"/>
+			<enumeration value="gu"/>
+			<enumeration value="gv"/>
+			<enumeration value="ha"/>
+			<enumeration value="he"/>
+			<enumeration value="hi"/>
+			<enumeration value="ho"/>
+			<enumeration value="hr"/>
+			<enumeration value="ht"/>
+			<enumeration value="hu"/>
+			<enumeration value="hy"/>
+			<enumeration value="hz"/>
+			<enumeration value="ia"/>
+			<enumeration value="id"/>
+			<enumeration value="ie"/>
+			<enumeration value="ig"/>
+			<enumeration value="ii"/>
+			<enumeration value="ik"/>
+			<enumeration value="io"/>
+			<enumeration value="is"/>
+			<enumeration value="it"/>
+			<enumeration value="iu"/>
+			<enumeration value="ja"/>
+			<enumeration value="jv"/>
+			<enumeration value="ka"/>
+			<enumeration value="kg"/>
+			<enumeration value="ki"/>
+			<enumeration value="kj"/>
+			<enumeration value="kk"/>
+			<enumeration value="kl"/>
+			<enumeration value="km"/>
+			<enumeration value="kn"/>
+			<enumeration value="ko"/>
+			<enumeration value="kr"/>
+			<enumeration value="ks"/>
+			<enumeration value="ku"/>
+			<enumeration value="kv"/>
+			<enumeration value="kw"/>
+			<enumeration value="ky"/>
+			<enumeration value="la"/>
+			<enumeration value="lb"/>
+			<enumeration value="lg"/>
+			<enumeration value="li"/>
+			<enumeration value="ln"/>
+			<enumeration value="lo"/>
+			<enumeration value="lt"/>
+			<enumeration value="lu"/>
+			<enumeration value="lv"/>
+			<enumeration value="mg"/>
+			<enumeration value="mh"/>
+			<enumeration value="mi"/>
+			<enumeration value="mk"/>
+			<enumeration value="ml"/>
+			<enumeration value="mn"/>
+			<enumeration value="mo"/>
+			<enumeration value="mr"/>
+			<enumeration value="ms"/>
+			<enumeration value="mt"/>
+			<enumeration value="my"/>
+			<enumeration value="na"/>
+			<enumeration value="nb"/>
+			<enumeration value="nd"/>
+			<enumeration value="ne"/>
+			<enumeration value="ng"/>
+			<enumeration value="nl"/>
+			<enumeration value="nn"/>
+			<enumeration value="no"/>
+			<enumeration value="nr"/>
+			<enumeration value="nv"/>
+			<enumeration value="ny"/>
+			<enumeration value="oc"/>
+			<enumeration value="oj"/>
+			<enumeration value="om"/>
+			<enumeration value="or"/>
+			<enumeration value="os"/>
+			<enumeration value="pa"/>
+			<enumeration value="pi"/>
+			<enumeration value="pl"/>
+			<enumeration value="ps"/>
+			<enumeration value="pt"/>
+			<enumeration value="qu"/>
+			<enumeration value="rm"/>
+			<enumeration value="rn"/>
+			<enumeration value="ro"/>
+			<enumeration value="ru"/>
+			<enumeration value="rw"/>
+			<enumeration value="sa"/>
+			<enumeration value="sc"/>
+			<enumeration value="sd"/>
+			<enumeration value="se"/>
+			<enumeration value="sg"/>
+			<enumeration value="sh"/>
+			<enumeration value="si"/>
+			<enumeration value="sk"/>
+			<enumeration value="sl"/>
+			<enumeration value="sm"/>
+			<enumeration value="sn"/>
+			<enumeration value="so"/>
+			<enumeration value="sq"/>
+			<enumeration value="sr"/>
+			<enumeration value="ss"/>
+			<enumeration value="st"/>
+			<enumeration value="su"/>
+			<enumeration value="sv"/>
+			<enumeration value="sw"/>
+			<enumeration value="ta"/>
+			<enumeration value="te"/>
+			<enumeration value="tg"/>
+			<enumeration value="th"/>
+			<enumeration value="ti"/>
+			<enumeration value="tk"/>
+			<enumeration value="tl"/>
+			<enumeration value="tn"/>
+			<enumeration value="to"/>
+			<enumeration value="tr"/>
+			<enumeration value="ts"/>
+			<enumeration value="tt"/>
+			<enumeration value="tw"/>
+			<enumeration value="ty"/>
+			<enumeration value="ug"/>
+			<enumeration value="uk"/>
+			<enumeration value="ur"/>
+			<enumeration value="uz"/>
+			<enumeration value="ve"/>
+			<enumeration value="vi"/>
+			<enumeration value="vo"/>
+			<enumeration value="wa"/>
+			<enumeration value="wo"/>
+			<enumeration value="xh"/>
+			<enumeration value="yi"/>
+			<enumeration value="yo"/>
+			<enumeration value="za"/>
+			<enumeration value="zh"/>
+			<enumeration value="zu"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListLO">
+		<annotation>
+			<appinfo>code=FX:LO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|B|E"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListLT">
+		<annotation>
+			<appinfo>code=FX:LT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="LG|LT"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListLU">
+		<annotation>
+			<appinfo>code=FX:LU;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="AG|AM|AS|AT|BD|EF|ET|MA|NO|RS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListMC">
+		<annotation>
+			<appinfo>code=FX:MC;</appinfo>
+		</annotation>
+		<restriction base="integer">
+			<minInclusive value="1"/>
+			<maxInclusive value="32"/>
+			<pattern value="\d{2}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListMO">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:MO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<enumeration value="AMC"/>
+			<enumeration value="AMS"/>
+			<enumeration value="ASK"/>
+			<enumeration value="AUDSK"/>
+			<enumeration value="BPSK"/>
+			<enumeration value="CDM"/>
+			<enumeration value="COFDM"/>
+			<enumeration value="DATA"/>
+			<enumeration value="DOFSK"/>
+			<enumeration value="DPSK"/>
+			<enumeration value="FDM|"/>
+			<enumeration value="FMC"/>
+			<enumeration value="FMS"/>
+			<enumeration value="FSK"/>
+			<enumeration value="GMSK"/>
+			<enumeration value="MDAT"/>
+			<enumeration value="MPCM"/>
+			<enumeration value="MSK"/>
+			<enumeration value="MUL"/>
+			<enumeration value="MVOI"/>
+			<enumeration value="NOISE"/>
+			<enumeration value="OFDM"/>
+			<enumeration value="PCM"/>
+			<enumeration value="PSK"/>
+			<enumeration value="QAM"/>
+			<enumeration value="QPRS"/>
+			<enumeration value="QPSK"/>
+			<enumeration value="SDATA"/>
+			<enumeration value="SNGL"/>
+			<enumeration value="SNGLV"/>
+			<enumeration value="SSVC"/>
+			<enumeration value="TDM"/>
+			<enumeration value="TFM"/>
+			<enumeration value="VIDEO"/>
+			<enumeration value="VODA"/>
+			<enumeration value="OTH"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListMT">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] no need for special comment because additional MIME types are included now.</documentation>
+			<appinfo>code=FX:MT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="40"/>
+			<enumeration value="application/msword"/>
+			<enumeration value="application/octet-stream"/>
+			<enumeration value="application/pdf"/>
+			<enumeration value="application/postscript"/>
+			<enumeration value="application/visio"/>
+			<enumeration value="application/vnd.ms-excel"/>
+			<enumeration value="application/vnd.ms-powerpoint"/>
+			<enumeration value="application/vnd.openxmlformats"/>
+			<enumeration value="application/vnd.sun.xml.calc"/>
+			<enumeration value="application/vnd.sun.xml.draw"/>
+			<enumeration value="application/vnd.sun.xml.impress"/>
+			<enumeration value="application/vnd.sun.xml.writer"/>
+			<enumeration value="application/wordperfect"/>
+			<enumeration value="application/x-dvi"/>
+			<enumeration value="application/x-latex"/>
+			<enumeration value="application/xhtml+xml"/>
+			<enumeration value="application/xml"/>
+			<enumeration value="application/xml-dtd"/>
+			<enumeration value="application/xslt+xml"/>
+			<enumeration value="application/zip"/>
+			<enumeration value="audio/mpeg"/>
+			<enumeration value="image/bmp"/>
+			<enumeration value="image/gif"/>
+			<enumeration value="image/jpeg"/>
+			<enumeration value="image/png"/>
+			<enumeration value="image/tiff"/>
+			<enumeration value="image/svg+xml"/>
+			<enumeration value="text/css"/>
+			<enumeration value="text/html"/>
+			<enumeration value="text/plain"/>
+			<enumeration value="text/rtf"/>
+			<enumeration value="text/sgml"/>
+			<enumeration value="video/mp4"/>
+			<enumeration value="video/mpeg"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListMV">
+		<annotation>
+			<appinfo>code=FX:MV;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|B|D|F|G|I|W|Y|Z"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListNR">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][SMB-07] add VHFAMS to ListNR.</documentation>
+			<appinfo>code=FX:NR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<enumeration value="HQFMT1"/>
+			<enumeration value="HQFMT2"/>
+			<enumeration value="HQFMT3"/>
+			<enumeration value="HQFMT4"/>
+			<enumeration value="HQOP"/>
+			<enumeration value="PMRVHF"/>
+			<enumeration value="PMRUHF"/>
+			<enumeration value="SATST"/>
+			<enumeration value="SATTRS"/>
+			<enumeration value="SATTRF"/>
+			<enumeration value="SATOPS"/>
+			<enumeration value="SATOPF"/>
+			<enumeration value="VHFAMS"/>
+			<enumeration value="UHFAMS"/>
+			<enumeration value="UHFNB"/>
+			<enumeration value="UHFOLD"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListNS">
+		<annotation>
+			<appinfo>code=FX:NS;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="C|L|N|T"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListNU">
+		<annotation>
+			<appinfo>code=FX:NU;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|N|P"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListOP">
+		<annotation>
+			<appinfo>code=FX:OP;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="EQ|GE|GT|LE|LT"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListOR">
+		<annotation>
+			<appinfo>code=FX:OR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="C|M|X"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListOT">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:OT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<enumeration value="A"/>
+			<enumeration value="AA"/>
+			<enumeration value="AB"/>
+			<enumeration value="B"/>
+			<enumeration value="C"/>
+			<enumeration value="E"/>
+			<enumeration value="F"/>
+			<enumeration value="FF"/>
+			<enumeration value="G"/>
+			<enumeration value="H"/>
+			<enumeration value="I"/>
+			<enumeration value="J"/>
+			<enumeration value="K"/>
+			<enumeration value="N"/>
+			<enumeration value="O"/>
+			<enumeration value="P"/>
+			<enumeration value="PF"/>
+			<enumeration value="Q"/>
+			<enumeration value="R"/>
+			<enumeration value="S"/>
+			<enumeration value="T"/>
+			<enumeration value="U"/>
+			<enumeration value="V"/>
+			<enumeration value="W"/>
+			<enumeration value="YY"/>
+			<enumeration value="Z"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPB">
+		<annotation>
+			<appinfo>code=FX:PB;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="C|E|G|P|T"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPC">
+		<annotation>
+			<appinfo>code=FX:PC;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="T|G|P"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPD">
+		<annotation>
+			<appinfo>code=FX:PD;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10"/>
+			<pattern value="AIR|BREAK|CEASE|CHALLENGE|COMMENCE|LIFT|NO|OBJ|REPLY|REQUEST"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPI">
+		<annotation>
+			<appinfo>code=FX:PI;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="Y|U|O|N"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPJ">
+		<annotation>
+			<appinfo>code=FX:PJ;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="C|E|M|O|P|X"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPO">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] use enumeration instead of pattern.</documentation>
+			<appinfo>code=FX:PO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<enumeration value="45"/>
+			<enumeration value="CL"/>
+			<enumeration value="CR"/>
+			<enumeration value="D"/>
+			<enumeration value="E"/>
+			<enumeration value="EL"/>
+			<enumeration value="ER"/>
+			<enumeration value="H"/>
+			<enumeration value="HV"/>
+			<enumeration value="L"/>
+			<enumeration value="M"/>
+			<enumeration value="O"/>
+			<enumeration value="R"/>
+			<enumeration value="SL"/>
+			<enumeration value="SR"/>
+			<enumeration value="TC"/>
+			<enumeration value="V"/>
+			<enumeration value="X"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPR">
+		<annotation>
+			<appinfo>code=FX:PR;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<pattern value="DFNORM|DFHIGH|P[012][23]S[235]O|P[012]HARM|VHF|UHF"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPS">
+		<annotation>
+			<appinfo>code=FX:PS;</appinfo>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="1"/>
+			<pattern value="1|2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPT">
+		<annotation>
+			<appinfo>code=FX:PT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="C|M|P|X"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListPY">
+		<annotation>
+			<appinfo>code=FX:PY;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="AC|AP|GC|GP|GSS|RC|RP|RSS|VSS|WC|WP|YSS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListRE">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] added STD and URI to ListRE.</documentation>
+			<appinfo>code=FX:RE;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<enumeration value="CONTR"/>
+			<enumeration value="DBRET"/>
+			<enumeration value="DOCU"/>
+			<enumeration value="ECSA"/>
+			<enumeration value="EMAIL"/>
+			<enumeration value="ENGIN"/>
+			<enumeration value="EWIR"/>
+			<enumeration value="FCC"/>
+			<enumeration value="INDUS"/>
+			<enumeration value="INTFR"/>
+			<enumeration value="ITUNO"/>
+			<enumeration value="JAWES"/>
+			<enumeration value="LICEN"/>
+			<enumeration value="MIPI"/>
+			<enumeration value="NAT"/>
+			<enumeration value="NOMEN"/>
+			<enumeration value="SIN"/>
+			<enumeration value="SPS"/>
+			<enumeration value="STD"/>
+			<enumeration value="TECH"/>
+			<enumeration value="URI"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListRL">
+		<annotation>
+			<appinfo>code=FX:RL;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|B|C|D|E|F|H|J|K|L|N|P|Q|R"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListRO">
+		<annotation>
+			<appinfo>code=FX:RO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="AUTH|COORD|SM"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListRP">
+		<annotation>
+			<appinfo>code=FX:RP;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4"/>
+			<pattern value="PEER|SELF|SUB|SUP"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListRT">
+		<annotation>
+			<appinfo>code=FX:RT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="B|C|D|G|H|J|K|L|N|O|P|U|V|Z"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSC">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] no need for special comment because AX and RG are no longer present.</documentation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] [USA-030] Added code X for Unknown. tony.greene@itt.com 2009-04-24T12:40:00</documentation>
+			<appinfo>code=FX:SC;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="4"/>
+			<enumeration value="AL"/>
+			<enumeration value="ALA"/>
+			<enumeration value="ALB"/>
+			<enumeration value="ALC"/>
+			<enumeration value="ALG"/>
+			<enumeration value="ALL"/>
+			<enumeration value="ALO"/>
+			<enumeration value="ALR"/>
+			<enumeration value="ALS"/>
+			<enumeration value="ALTM"/>
+			<enumeration value="ALTO"/>
+			<enumeration value="AM"/>
+			<enumeration value="AMA"/>
+			<enumeration value="AT"/>
+			<enumeration value="BC"/>
+			<enumeration value="BT"/>
+			<enumeration value="CA"/>
+			<enumeration value="CO"/>
+			<enumeration value="CP"/>
+			<enumeration value="CR"/>
+			<enumeration value="CV"/>
+			<enumeration value="DGP"/>
+			<enumeration value="E1"/>
+			<enumeration value="E2"/>
+			<enumeration value="E3"/>
+			<enumeration value="E4"/>
+			<enumeration value="EA"/>
+			<enumeration value="EB"/>
+			<enumeration value="EC"/>
+			<enumeration value="ED"/>
+			<enumeration value="EE"/>
+			<enumeration value="EF"/>
+			<enumeration value="EG"/>
+			<enumeration value="EH"/>
+			<enumeration value="EI"/>
+			<enumeration value="EJ"/>
+			<enumeration value="EK"/>
+			<enumeration value="EM"/>
+			<enumeration value="EN"/>
+			<enumeration value="EO"/>
+			<enumeration value="EQ"/>
+			<enumeration value="ER"/>
+			<enumeration value="ES"/>
+			<enumeration value="ET"/>
+			<enumeration value="EU"/>
+			<enumeration value="EV"/>
+			<enumeration value="EW"/>
+			<enumeration value="EX"/>
+			<enumeration value="EY"/>
+			<enumeration value="FA"/>
+			<enumeration value="FAB"/>
+			<enumeration value="FAC"/>
+			<enumeration value="FAD"/>
+			<enumeration value="FAT"/>
+			<enumeration value="FB"/>
+			<enumeration value="FBD"/>
+			<enumeration value="FC"/>
+			<enumeration value="FCB"/>
+			<enumeration value="FCD"/>
+			<enumeration value="FD"/>
+			<enumeration value="FG"/>
+			<enumeration value="FL"/>
+			<enumeration value="FLD"/>
+			<enumeration value="FLE"/>
+			<enumeration value="FLEA"/>
+			<enumeration value="FLEB"/>
+			<enumeration value="FLEC"/>
+			<enumeration value="FLH"/>
+			<enumeration value="FLU"/>
+			<enumeration value="FP"/>
+			<enumeration value="FR"/>
+			<enumeration value="FS"/>
+			<enumeration value="FX"/>
+			<enumeration value="FXD"/>
+			<enumeration value="FXE"/>
+			<enumeration value="FXH"/>
+			<enumeration value="GS"/>
+			<enumeration value="LR"/>
+			<enumeration value="MA"/>
+			<enumeration value="MAD"/>
+			<enumeration value="MAP"/>
+			<enumeration value="ME"/>
+			<enumeration value="ML"/>
+			<enumeration value="MLD"/>
+			<enumeration value="MLP"/>
+			<enumeration value="MO"/>
+			<enumeration value="MOB"/>
+			<enumeration value="MOD"/>
+			<enumeration value="MOE"/>
+			<enumeration value="MOEA"/>
+			<enumeration value="MOEB"/>
+			<enumeration value="MOEC"/>
+			<enumeration value="MOH"/>
+			<enumeration value="MOP"/>
+			<enumeration value="MOU"/>
+			<enumeration value="MR"/>
+			<enumeration value="MRP"/>
+			<enumeration value="MS"/>
+			<enumeration value="MSD"/>
+			<enumeration value="MSP"/>
+			<enumeration value="MX"/>
+			<enumeration value="NL"/>
+			<enumeration value="NLC"/>
+			<enumeration value="NLM"/>
+			<enumeration value="NR"/>
+			<enumeration value="OD"/>
+			<enumeration value="OE"/>
+			<enumeration value="OT"/>
+			<enumeration value="PA"/>
+			<enumeration value="PL"/>
+			<enumeration value="PX"/>
+			<enumeration value="RA"/>
+			<enumeration value="RC"/>
+			<enumeration value="RD"/>
+			<enumeration value="RM"/>
+			<enumeration value="RN"/>
+			<enumeration value="RNL"/>
+			<enumeration value="RT"/>
+			<enumeration value="SA"/>
+			<enumeration value="SAR"/>
+			<enumeration value="SM"/>
+			<enumeration value="SMB"/>
+			<enumeration value="SMD"/>
+			<enumeration value="SMRG"/>
+			<enumeration value="SN"/>
+			<enumeration value="SP"/>
+			<enumeration value="SS"/>
+			<enumeration value="TA"/>
+			<enumeration value="TB"/>
+			<enumeration value="TC"/>
+			<enumeration value="TD"/>
+			<enumeration value="TE"/>
+			<enumeration value="TF"/>
+			<enumeration value="TG"/>
+			<enumeration value="TH"/>
+			<enumeration value="TI"/>
+			<enumeration value="TJ"/>
+			<enumeration value="TK"/>
+			<enumeration value="TL"/>
+			<enumeration value="TM"/>
+			<enumeration value="TN"/>
+			<enumeration value="TO"/>
+			<enumeration value="TP"/>
+			<enumeration value="TQ"/>
+			<enumeration value="TR"/>
+			<enumeration value="TS"/>
+			<enumeration value="TT"/>
+			<enumeration value="TU"/>
+			<enumeration value="TV"/>
+			<enumeration value="TW"/>
+			<enumeration value="TX"/>
+			<enumeration value="TY"/>
+			<enumeration value="TZ"/>
+			<enumeration value="UA"/>
+			<enumeration value="UB"/>
+			<enumeration value="UD"/>
+			<enumeration value="UE"/>
+			<enumeration value="UH"/>
+			<enumeration value="UK"/>
+			<enumeration value="UM"/>
+			<enumeration value="UN"/>
+			<enumeration value="UR"/>
+			<enumeration value="UT"/>
+			<enumeration value="UV"/>
+			<enumeration value="UW"/>
+			<enumeration value="UY"/>
+			<enumeration value="VA"/>
+			<enumeration value="XC"/>
+			<enumeration value="XD"/>
+			<enumeration value="XE"/>
+			<enumeration value="XM"/>
+			<enumeration value="XR"/>
+			<enumeration value="XT"/>
+			<enumeration value="X"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSD">
+		<annotation>
+			<appinfo>code=FX:SD;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<pattern value="DANGER|NO|REAL|SAFE|TARGET"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSE">
+		<annotation>
+			<appinfo>code=FX:SE;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="SN|SINAD|BER|MDS|MTR"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSG">
+		<annotation>
+			<appinfo>code=FX:SG;</appinfo>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="1"/>
+			<pattern value="2|3|4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSM">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] validation correction.</documentation>
+			<appinfo>code=FX:SM;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="G|R|V|W|Y"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSN">
+		<annotation>
+			<appinfo>code=FX:SN;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="10"/>
+			<enumeration value="AFS"/>
+			<enumeration value="AM(OR)S"/>
+			<enumeration value="AM(R)S"/>
+			<enumeration value="AMS"/>
+			<enumeration value="AMS(OR)S"/>
+			<enumeration value="AMS(R)S"/>
+			<enumeration value="AMSS"/>
+			<enumeration value="ARNS"/>
+			<enumeration value="ARNSS"/>
+			<enumeration value="AS"/>
+			<enumeration value="ASS"/>
+			<enumeration value="BS"/>
+			<enumeration value="BSS"/>
+			<enumeration value="EESS"/>
+			<enumeration value="FS"/>
+			<enumeration value="FSS"/>
+			<enumeration value="ISS"/>
+			<enumeration value="LMS"/>
+			<enumeration value="LMSS"/>
+			<enumeration value="METAIDS"/>
+			<enumeration value="METSS"/>
+			<enumeration value="MMS"/>
+			<enumeration value="MMSS"/>
+			<enumeration value="MRNS"/>
+			<enumeration value="MRNSS"/>
+			<enumeration value="MS"/>
+			<enumeration value="MSS"/>
+			<enumeration value="RAS"/>
+			<enumeration value="RDS"/>
+			<enumeration value="RDSS"/>
+			<enumeration value="RLS"/>
+			<enumeration value="RLSS"/>
+			<enumeration value="RNS"/>
+			<enumeration value="RNSS"/>
+			<enumeration value="SFTSS"/>
+			<enumeration value="SFTSSS"/>
+			<enumeration value="SMRS"/>
+			<enumeration value="SOS"/>
+			<enumeration value="SRS"/>
+			<enumeration value="SS"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSR">
+		<annotation>
+			<appinfo>code=FX:SR;</appinfo>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a] [SMB-20] ListSR replaced ListRC. tony.greene@itt.com, 2009-04-24T10:23:00</documentation>
+			<documentation source="SMADEF 1.2.4.b">Removed leading zeros to prevent confusion with software that does not include leading zeros in numerical values. tony.greene@itt.com 2009-04-30T15:26:00</documentation>
+		</annotation>
+		<restriction base="integer">
+			<totalDigits value="2"/>
+			<pattern value="1|3|5|6|7|8|9|10|11|12|13|14|16|17|19|20|27|30|31|32|33|34|40|41|42|43|44|45|47|51|52|55|57|63|67|77|87|99"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSS">
+		<annotation>
+			<appinfo>code=FX:SS;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="[1-9AF]"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListST">
+		<annotation>
+			<appinfo>code=FX:ST;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="25"/>
+			<enumeration value="ACCEPTED BY"/>
+			<enumeration value="ACTIVATED BY"/>
+			<enumeration value="ADMIN MOD BY"/>
+			<enumeration value="APPROVED BY"/>
+			<enumeration value="ASSIGNED BY"/>
+			<enumeration value="AUTHORISED BY"/>
+			<enumeration value="COMPLIANCE"/>
+			<enumeration value="COORDINATION"/>
+			<enumeration value="DELETED BY"/>
+			<enumeration value="EXPIRED BY"/>
+			<enumeration value="FORWARDED"/>
+			<enumeration value="IMPORTED BY"/>
+			<enumeration value="IN-PROCESS AT"/>
+			<enumeration value="INFO"/>
+			<enumeration value="LATERAL COORDINATION"/>
+			<enumeration value="MODIFIED BY"/>
+			<enumeration value="NOTIFIED BY"/>
+			<enumeration value="ORIGINATED BY"/>
+			<enumeration value="RECALLED"/>
+			<enumeration value="RECEIVED BY"/>
+			<enumeration value="REGISTERED WITH"/>
+			<enumeration value="REJECTED"/>
+			<enumeration value="RESOLVED"/>
+			<enumeration value="REVIEW REQUIRED"/>
+			<enumeration value="SUBMITTED TO"/>
+			<enumeration value="TABLED BY"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSV">
+		<annotation>
+			<appinfo>code=FX:SV;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="AS|AX|CA|CO|CP|CR|CV|FS|HP|MX|OT|PX|RC|RD|RG|RT|ST"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListSY">
+		<annotation>
+			<appinfo>code=FX:SY;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="APP6A|2525B"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListTA">
+		<annotation>
+			<appinfo>code=FX:TA;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="C|R|S|T"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListTE">
+		<annotation>
+			<appinfo>code=FX:TE;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="INTS|NATS|NATO|NATU|OTHER|WEB"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListTI">
+		<annotation>
+			<appinfo>code=FX:TI;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="HJ|HN|HX|H24|HT"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListTO">
+		<annotation>
+			<documentation source="SMADEF 1.2.4.a">[SMADEF 1.2.4.a][USA-075] added PN to ListTO.</documentation>
+			<appinfo>code=FX:TO;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="CIV|MIL|GEN|GOV|PN|OTH"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListTS">
+		<annotation>
+			<appinfo>code=FX:TS;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="3"/>
+			<pattern value="APP|PND|REV"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListTT">
+		<annotation>
+			<appinfo>code=FX:TT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="6"/>
+			<pattern value="TELCIV|TELMIL|TELOTH|FAXCIV|FAXMIL|FAXOTH"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListTU">
+		<annotation>
+			<appinfo>code=FX:TU;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="F|C|S|A|B|D"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListUT">
+		<annotation>
+			<appinfo>code=FX:UT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="A|C|O|P|S|T|U|X"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListVS">
+		<annotation>
+			<appinfo>code=FX:VS;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="B|S|V"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListVT">
+		<annotation>
+			<appinfo>code=FX:VT;</appinfo>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="1"/>
+			<pattern value="S|V"/>
+		</restriction>
+	</simpleType>
+</schema>

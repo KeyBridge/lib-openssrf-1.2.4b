@@ -1,0 +1,128 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+	<include schemaLocation="ssrf_common.xsd"/>
+	<include schemaLocation="ssrf_organisation.xsd"/>
+	<include schemaLocation="ssrf_location.xsd"/>
+	<!--
+======================================
+Subsidiary Types 
+======================================
+-->
+	<complexType name="TFETxRx">
+		<sequence>
+			<element name="Quantity" type="s:TQuantity" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<complexType name="TFEAntenna">
+		<sequence>
+			<element name="Quantity" type="s:TQuantity" minOccurs="0"/>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<complexType name="TSymbol">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="type" type="s:ListSY" use="required"/>
+		<attribute name="code" type="s:C15" use="required"/>
+	</complexType>
+	<complexType name="TDescriptor">
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="unit" type="s:ListD1" use="required"/>
+		<attribute name="status" type="s:ListD2" use="required"/>
+		<attribute name="role" type="s:ListD3" use="required"/>
+	</complexType>
+	<complexType name="TRouteRef">
+		<sequence>
+			<element name="AtWayPoint" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="cls" type="s:ListCL"/>
+					<attribute name="wayPointIdx" type="s:UN3" use="required"/>
+					<attribute name="dateTime" type="dateTime" use="required"/>
+					<attribute name="speed" type="s:UN7_2"/>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="cls" type="s:ListCL"/>
+		<attribute name="serial" type="s:TSerial" use="required"/>
+	</complexType>
+	<complexType name="TRoute">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="WayPoint" minOccurs="2" maxOccurs="unbounded">
+						<complexType>
+							<attribute name="cls" type="s:ListCL"/>
+							<attribute name="idx" type="s:UN2" use="required"/>
+							<attributeGroup ref="s:ALonLat"/>
+							<attribute name="alt" type="s:SN7_2"/>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="name" type="s:c100" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--
+============================
+ForceElement Type Definition
+============================
+-->
+	<complexType name="TFEDeployment">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="TimeFrame" type="s:TTimeFrame" minOccurs="0"/>
+					<element name="FERef" type="s:TElmRef"/>
+					<choice>
+						<element name="LocationRef" type="s:TLocationRef" minOccurs="0"/>
+						<element name="RouteRef" type="s:TRouteRef" minOccurs="0"/>
+					</choice>
+				</sequence>
+				<attribute name="type" type="s:ListFD"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- -->
+	<complexType name="TForceElement">
+		<complexContent>
+			<extension base="s:TCommon">
+				<sequence>
+					<element name="Nomenclature" type="s:TNomenclature" maxOccurs="unbounded"/>
+					<element name="StockNum" type="s:TStockNum" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="Descriptor" type="s:TDescriptor" minOccurs="0"/>
+					<element name="Symbol" type="s:TSymbol" minOccurs="0"/>
+					<element name="FETxRx" type="s:TFETxRx" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FEAntenna" type="s:TFEAntenna" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="RelatedOrg" type="s:TRelatedOrg" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="type" type="s:ListTO"/>
+				<attribute name="country" type="s:ListAO" use="required"/>
+				<attribute name="name" type="s:c100"/>
+				<attribute name="FEType" type="s:ListFP" use="required"/>
+				<attribute name="cat" type="s:ListFE" use="required"/>
+				<attribute name="comp" type="s:ListFC"/>
+				<attribute name="missionCode" type="s:ListMC"/>
+				<attribute name="cmdLevel" type="s:ListLC"/>
+				<attribute name="opsCountry" type="s:ListAO"/>
+				<attribute name="role" type="s:ListSR"/>
+				<attribute name="platform" type="s:ListET"/>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:s="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	xmlns:ddms="http://metadata.dod.mil/mdr/ns/DDMS/1.4/" 
+	xmlns:ICISM="urn:us:gov:ic:ism:v2" 
+	targetNamespace="urn:us:gov:dod:standard:ssrf:1.2.4.b" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<annotation>
+		<documentation>
+		      <ddms:security ICISM:classification="U" ICISM:ownerProducer="US" ICISM:nonICmarkings="DIST_STMT_C" />
+		</documentation>
+		<documentation source="J65A email 2009-05-08">Releasability: Unlimited. This document is approved for public release.</documentation>
+	</annotation>
+
+<include schemaLocation="ssrf_common.xsd"/>
+<!--
+======================================
+Subsidiary Types
+======================================
+-->
+<complexType name="TDielectrics">
+	<attribute name="cls" type="s:ListCL"/>
+	<attribute name="permittivity" type="s:UN5_2"/>
+	<attribute name="conductivity" type="s:UN8_6"/>
+	<attribute name="refractivity" type="s:UN5_2"/>
+</complexType>
+
+</schema>
