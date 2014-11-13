@@ -1,18 +1,33 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.allotment;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.shared.TimeFrame;
 
 /**
  * Net
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TNet", propOrder = {
@@ -25,7 +40,7 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.TimeFrame;
 public class Net {
 
   @XmlElement(name = "CallInfo")
-  protected Set<Net.CallInfo> callInfo;
+  protected List<Net.CallInfo> callInfo;
 
   @XmlElement(name = "Colour")
   protected Net.Colour colour;
@@ -34,7 +49,7 @@ public class Net {
   protected Net.COMSECKeymat comsecKeymat;
 
   @XmlElement(name = "GuardRequirements")
-  protected Set<Net.GuardRequirements> guardRequirements;
+  protected List<Net.GuardRequirements> guardRequirements;
 
   @XmlElement(name = "MissionPriority")
   protected Net.MissionPriority missionPriority;
@@ -66,9 +81,9 @@ public class Net {
   @XmlAttribute(name = "pushNum")
   protected String pushNum;
 
-  public Set<Net.CallInfo> getCallInfo() {
+  public List<Net.CallInfo> getCallInfo() {
     if (callInfo == null) {
-      callInfo = new HashSet<>();
+      callInfo = new ArrayList<>();
     }
     return this.callInfo;
   }
@@ -120,9 +135,9 @@ public class Net {
     return (this.comsecKeymat != null);
   }
 
-  public Set<Net.GuardRequirements> getGuardRequirements() {
+  public List<Net.GuardRequirements> getGuardRequirements() {
     if (guardRequirements == null) {
-      guardRequirements = new HashSet<>();
+      guardRequirements = new ArrayList<>();
     }
     return this.guardRequirements;
   }

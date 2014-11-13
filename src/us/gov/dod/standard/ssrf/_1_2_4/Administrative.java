@@ -1,9 +1,24 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.administrative.Dataset;
 import us.gov.dod.standard.ssrf._1_2_4.shared.*;
@@ -33,8 +48,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
  * &lt;/Administrative&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TAdministrative", propOrder = {
@@ -49,10 +64,10 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
 public class Administrative {
 
   @XmlElement(name = "Compartment")
-  protected Set<Compartment> compartment;
+  protected List<Compartment> compartment;
 
   @XmlElement(name = "ContactOrgRef", required = true)
-  protected Set<ContactOrgRef> contactOrgRef;
+  protected List<ContactOrgRef> contactOrgRef;
   /**
    * remarks - Links to Data Item Remarks (Optional)
    * <p>
@@ -63,7 +78,7 @@ public class Administrative {
    * @since 3.1.0
    */
   @XmlElement(name = "Remarks")
-  protected Set<Remarks> remarks;
+  protected List<Remarks> remarks;
 
   @XmlElement(name = "Title")
   protected Title title;
@@ -76,7 +91,7 @@ public class Administrative {
    * @since 3.1.0
    */
   @XmlElement(name = "Dataset")
-  protected Set<Dataset> dataset;
+  protected List<Dataset> dataset;
   /**
    * MessageRef - Message Reference (Optional)
    * <p>
@@ -99,7 +114,7 @@ public class Administrative {
    * @since 3.1.0
    */
   @XmlElement(name = "ExtRef")
-  protected Set<ExtRef> extRef;
+  protected List<ExtRef> extRef;
   /**
    * cls - Classification (Required)
    * <p>
@@ -128,9 +143,9 @@ public class Administrative {
    * @return a {@link Compartment} instance
    * @since 3.1.0
    */
-  public Set<Compartment> getCompartment() {
+  public List<Compartment> getCompartment() {
     if (compartment == null) {
-      compartment = new HashSet<>();
+      compartment = new ArrayList<>();
     }
     return this.compartment;
   }
@@ -152,9 +167,9 @@ public class Administrative {
    * @return a {@link ContactOrgRef} instance
    * @since 3.1.0
    */
-  public Set<ContactOrgRef> getContactOrgRef() {
+  public List<ContactOrgRef> getContactOrgRef() {
     if (contactOrgRef == null) {
-      contactOrgRef = new HashSet<>();
+      contactOrgRef = new ArrayList<>();
     }
     return this.contactOrgRef;
   }
@@ -177,9 +192,9 @@ public class Administrative {
    * @return a {@link Remarks} instance
    * @since 3.1.0
    */
-  public Set<Remarks> getRemarks() {
+  public List<Remarks> getRemarks() {
     if (remarks == null) {
-      remarks = new HashSet<>();
+      remarks = new ArrayList<>();
     }
     return this.remarks;
   }
@@ -228,9 +243,9 @@ public class Administrative {
    * @return a {@link Dataset} instance
    * @since 3.1.0
    */
-  public Set<Dataset> getDataset() {
+  public List<Dataset> getDataset() {
     if (dataset == null) {
-      dataset = new HashSet<>();
+      dataset = new ArrayList<>();
     }
     return this.dataset;
   }
@@ -277,9 +292,9 @@ public class Administrative {
    * @return a {@link ExtRef} instance
    * @since 3.1.0
    */
-  public Set<ExtRef> getExtRef() {
+  public List<ExtRef> getExtRef() {
     if (extRef == null) {
-      extRef = new HashSet<>();
+      extRef = new ArrayList<>();
     }
     return this.extRef;
   }

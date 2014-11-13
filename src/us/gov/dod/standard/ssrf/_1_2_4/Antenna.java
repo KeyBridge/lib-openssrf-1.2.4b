@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.*;
@@ -29,8 +44,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
  *   &lt;/Antenna&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TAntenna", propOrder = {
@@ -65,16 +80,16 @@ public class Antenna extends Common<Antenna> {
    * @since 3.1.0
    */
   @XmlElement(name = "Nomenclature", required = true)
-  protected Set<Nomenclature> nomenclature;
+  protected List<Nomenclature> nomenclature;
 
   @XmlElement(name = "StockNum")
-  protected Set<StockNum> stockNum;
+  protected List<StockNum> stockNum;
 
   @XmlElement(name = "WillReplace")
-  protected Set<WillReplace> willReplace;
+  protected List<WillReplace> willReplace;
 
   @XmlElement(name = "FreqSingle")
-  protected Set<FreqSingle> freqSingle;
+  protected List<FreqSingle> freqSingle;
 
   @XmlElement(name = "FreqRange")
   protected FreqRange freqRange;
@@ -94,10 +109,10 @@ public class Antenna extends Common<Antenna> {
   protected AntType antType;
 
   @XmlElement(name = "Curve")
-  protected Set<Curve> curve;
+  protected List<Curve> curve;
 
   @XmlElement(name = "AntPattern")
-  protected Set<AntPattern> antPattern;
+  protected List<AntPattern> antPattern;
   /**
    * HorzDimension - Horizontal Dimension (Optional)
    * <p>
@@ -164,7 +179,7 @@ public class Antenna extends Common<Antenna> {
    * @since 3.1.0
    */
   @XmlElement(name = "AntMode", required = true)
-  protected Set<AntMode> antMode;
+  protected List<AntMode> antMode;
 
   @XmlAttribute(name = "motionType", required = true)
   protected String motionType;
@@ -192,9 +207,9 @@ public class Antenna extends Common<Antenna> {
    * @return a {@link Nomenclature} instance
    * @since 3.1.0
    */
-  public Set<Nomenclature> getNomenclature() {
+  public List<Nomenclature> getNomenclature() {
     if (nomenclature == null) {
-      nomenclature = new HashSet<>();
+      nomenclature = new ArrayList<>();
     }
     return this.nomenclature;
   }
@@ -216,9 +231,9 @@ public class Antenna extends Common<Antenna> {
    * @return a {@link StockNum} instance
    * @since 3.1.0
    */
-  public Set<StockNum> getStockNum() {
+  public List<StockNum> getStockNum() {
     if (stockNum == null) {
-      stockNum = new HashSet<>();
+      stockNum = new ArrayList<>();
     }
     return this.stockNum;
   }
@@ -240,9 +255,9 @@ public class Antenna extends Common<Antenna> {
    * @return a {@link WillReplace} instance
    * @since 3.1.0
    */
-  public Set<WillReplace> getWillReplace() {
+  public List<WillReplace> getWillReplace() {
     if (willReplace == null) {
-      willReplace = new HashSet<>();
+      willReplace = new ArrayList<>();
     }
     return this.willReplace;
   }
@@ -264,9 +279,9 @@ public class Antenna extends Common<Antenna> {
    * @return a {@link FreqSingle} instance
    * @since 3.1.0
    */
-  public Set<FreqSingle> getFreqSingle() {
+  public List<FreqSingle> getFreqSingle() {
     if (freqSingle == null) {
-      freqSingle = new HashSet<>();
+      freqSingle = new ArrayList<>();
     }
     return this.freqSingle;
   }
@@ -360,9 +375,9 @@ public class Antenna extends Common<Antenna> {
    * @return a {@link Curve} instance
    * @since 3.1.0
    */
-  public Set<Curve> getCurve() {
+  public List<Curve> getCurve() {
     if (curve == null) {
-      curve = new HashSet<>();
+      curve = new ArrayList<>();
     }
     return this.curve;
   }
@@ -384,9 +399,9 @@ public class Antenna extends Common<Antenna> {
    * @return a {@link AntPattern} instance
    * @since 3.1.0
    */
-  public Set<AntPattern> getAntPattern() {
+  public List<AntPattern> getAntPattern() {
     if (antPattern == null) {
-      antPattern = new HashSet<>();
+      antPattern = new ArrayList<>();
     }
     return this.antPattern;
   }
@@ -535,9 +550,9 @@ public class Antenna extends Common<Antenna> {
    * @return a {@link AntMode} instance
    * @since 3.1.0
    */
-  public Set<AntMode> getAntMode() {
+  public List<AntMode> getAntMode() {
     if (antMode == null) {
-      antMode = new HashSet<>();
+      antMode = new ArrayList<>();
     }
     return this.antMode;
   }

@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.*;
@@ -26,8 +41,8 @@ import us.gov.dod.standard.ssrf._1_2_4.txrx.TxRx;
  * Sub-Elements are
  * {@link CaseNum}, {@link ExtReferenceRef}, {@link Remarks}, {@link SecurityClass}
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TCommon", propOrder = {
@@ -80,13 +95,13 @@ public abstract class Common<T> {
   protected DatasetCls datasetCls;
 
   @XmlElement(name = "Compartment")
-  protected Set<Compartment> compartment;
+  protected List<Compartment> compartment;
 
   @XmlElement(name = "Handling")
-  protected Set<Handling> handling;
+  protected List<Handling> handling;
 
   @XmlElement(name = "ReleasableTo")
-  protected Set<ReleasableTo> releasableTo;
+  protected List<ReleasableTo> releasableTo;
 
   @XmlElement(name = "EffDate")
   protected TDateTime effDate;
@@ -108,10 +123,10 @@ public abstract class Common<T> {
   protected TDateTime review;
 
   @XmlElement(name = "ContactOrgRef", required = true)
-  protected Set<ContactOrgRef> contactOrgRef;
+  protected List<ContactOrgRef> contactOrgRef;
 
   @XmlElement(name = "Status", required = true)
-  protected Set<Status> status;
+  protected List<Status> status;
   /**
    * extReferences - Links to External References (Optional)
    * <p>
@@ -123,16 +138,16 @@ public abstract class Common<T> {
    * @since 3.1.0
    */
   @XmlElement(name = "ExtRef")
-  protected Set<ExtRef> extRef;
+  protected List<ExtRef> extRef;
 
   @XmlElement(name = "LegacyNum")
-  protected Set<LegacyNum> legacyNum;
+  protected List<LegacyNum> legacyNum;
 
   @XmlElement(name = "Project")
-  protected Set<Project> project;
+  protected List<Project> project;
 
   @XmlElement(name = "DatasetReplaced")
-  protected Set<Common.DatasetReplaced> datasetReplaced;
+  protected List<Common.DatasetReplaced> datasetReplaced;
   /**
    * remarks - Links to Data Item Remarks (Optional)
    * <p>
@@ -143,7 +158,7 @@ public abstract class Common<T> {
    * @since 3.1.0
    */
   @XmlElement(name = "Remarks")
-  protected Set<Remarks> remarks;
+  protected List<Remarks> remarks;
   /**
    * cls - Classification (Required)
    * <p>
@@ -268,9 +283,9 @@ public abstract class Common<T> {
    * @return a {@link Compartment} instance
    * @since 3.1.0
    */
-  public Set<Compartment> getCompartment() {
+  public List<Compartment> getCompartment() {
     if (compartment == null) {
-      compartment = new HashSet<>();
+      compartment = new ArrayList<>();
     }
     return this.compartment;
   }
@@ -292,9 +307,9 @@ public abstract class Common<T> {
    * @return a {@link Handling} instance
    * @since 3.1.0
    */
-  public Set<Handling> getHandling() {
+  public List<Handling> getHandling() {
     if (handling == null) {
-      handling = new HashSet<>();
+      handling = new ArrayList<>();
     }
     return this.handling;
   }
@@ -316,9 +331,9 @@ public abstract class Common<T> {
    * @return a {@link ReleasableTo} instance
    * @since 3.1.0
    */
-  public Set<ReleasableTo> getReleasableTo() {
+  public List<ReleasableTo> getReleasableTo() {
     if (releasableTo == null) {
-      releasableTo = new HashSet<>();
+      releasableTo = new ArrayList<>();
     }
     return this.releasableTo;
   }
@@ -412,9 +427,9 @@ public abstract class Common<T> {
    * @return a {@link ContactOrgRef} instance
    * @since 3.1.0
    */
-  public Set<ContactOrgRef> getContactOrgRef() {
+  public List<ContactOrgRef> getContactOrgRef() {
     if (contactOrgRef == null) {
-      contactOrgRef = new HashSet<>();
+      contactOrgRef = new ArrayList<>();
     }
     return this.contactOrgRef;
   }
@@ -436,9 +451,9 @@ public abstract class Common<T> {
    * @return a {@link Status} instance
    * @since 3.1.0
    */
-  public Set<Status> getStatus() {
+  public List<Status> getStatus() {
     if (status == null) {
-      status = new HashSet<>();
+      status = new ArrayList<>();
     }
     return this.status;
   }
@@ -461,9 +476,9 @@ public abstract class Common<T> {
    * @return a {@link ExtRef} instance
    * @since 3.1.0
    */
-  public Set<ExtRef> getExtRef() {
+  public List<ExtRef> getExtRef() {
     if (extRef == null) {
-      extRef = new HashSet<>();
+      extRef = new ArrayList<>();
     }
     return this.extRef;
   }
@@ -485,9 +500,9 @@ public abstract class Common<T> {
    * @return a {@link LegacyNum} instance
    * @since 3.1.0
    */
-  public Set<LegacyNum> getLegacyNum() {
+  public List<LegacyNum> getLegacyNum() {
     if (legacyNum == null) {
-      legacyNum = new HashSet<>();
+      legacyNum = new ArrayList<>();
     }
     return this.legacyNum;
   }
@@ -509,9 +524,9 @@ public abstract class Common<T> {
    * @return a {@link Project} instance
    * @since 3.1.0
    */
-  public Set<Project> getProject() {
+  public List<Project> getProject() {
     if (project == null) {
-      project = new HashSet<>();
+      project = new ArrayList<>();
     }
     return this.project;
   }
@@ -527,9 +542,9 @@ public abstract class Common<T> {
     this.project = null;
   }
 
-  public Set<Common.DatasetReplaced> getDatasetReplaced() {
+  public List<Common.DatasetReplaced> getDatasetReplaced() {
     if (datasetReplaced == null) {
-      datasetReplaced = new HashSet<>();
+      datasetReplaced = new ArrayList<>();
     }
     return this.datasetReplaced;
   }
@@ -552,9 +567,9 @@ public abstract class Common<T> {
    * @return a {@link Remarks} instance
    * @since 3.1.0
    */
-  public Set<Remarks> getRemarks() {
+  public List<Remarks> getRemarks() {
     if (remarks == null) {
-      remarks = new HashSet<>();
+      remarks = new ArrayList<>();
     }
     return this.remarks;
   }

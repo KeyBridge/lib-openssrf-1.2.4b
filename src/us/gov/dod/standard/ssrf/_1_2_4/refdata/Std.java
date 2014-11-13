@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.refdata;
 
 import java.util.*;
@@ -13,8 +28,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.Remarks;
 /**
  * Std
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TStd", propOrder = {
@@ -38,7 +53,7 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.Remarks;
 public abstract class Std<T> {
 
   @XmlElement(name = "Compartment")
-  protected Set<Compartment> compartment;
+  protected List<Compartment> compartment;
   /**
    * extReferences - Links to External References (Optional)
    * <p>
@@ -50,7 +65,7 @@ public abstract class Std<T> {
    * @since 3.1.0
    */
   @XmlElement(name = "ExtRef")
-  protected Set<ExtRef> extRef;
+  protected List<ExtRef> extRef;
   /**
    * remarks - Links to Data Item Remarks (Optional)
    * <p>
@@ -61,7 +76,7 @@ public abstract class Std<T> {
    * @since 3.1.0
    */
   @XmlElement(name = "Remarks")
-  protected Set<Remarks> remarks;
+  protected List<Remarks> remarks;
   /**
    * cls - Classification (Required)
    * <p>
@@ -103,9 +118,9 @@ public abstract class Std<T> {
    * @return a {@link Compartment} instance
    * @since 3.1.0
    */
-  public Set<Compartment> getCompartment() {
+  public List<Compartment> getCompartment() {
     if (compartment == null) {
-      compartment = new HashSet<>();
+      compartment = new ArrayList<>();
     }
     return this.compartment;
   }
@@ -128,9 +143,9 @@ public abstract class Std<T> {
    * @return a {@link ExtRef} instance
    * @since 3.1.0
    */
-  public Set<ExtRef> getExtRef() {
+  public List<ExtRef> getExtRef() {
     if (extRef == null) {
-      extRef = new HashSet<>();
+      extRef = new ArrayList<>();
     }
     return this.extRef;
   }
@@ -153,9 +168,9 @@ public abstract class Std<T> {
    * @return a {@link Remarks} instance
    * @since 3.1.0
    */
-  public Set<Remarks> getRemarks() {
+  public List<Remarks> getRemarks() {
     if (remarks == null) {
-      remarks = new HashSet<>();
+      remarks = new ArrayList<>();
     }
     return this.remarks;
   }

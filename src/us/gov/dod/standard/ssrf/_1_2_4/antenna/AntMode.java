@@ -1,9 +1,24 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.antenna;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.Antenna;
 import us.gov.dod.standard.ssrf._1_2_4.Mode;
@@ -31,8 +46,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.FreqSingle;
  *   &lt;/AntMode&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TAntMode", propOrder = {
@@ -70,7 +85,7 @@ public class AntMode
   protected Beamwidth beamwidth;
 
   @XmlElement(name = "FreqSingle")
-  protected Set<FreqSingle> freqSingle;
+  protected List<FreqSingle> freqSingle;
 
   @XmlElement(name = "FreqRange")
   protected FreqRange freqRange;
@@ -129,7 +144,7 @@ public class AntMode
    * @since 3.1.0
    */
   @XmlElement(name = "AntPattern")
-  protected Set<AntPattern> antPattern;
+  protected List<AntPattern> antPattern;
 
   @XmlAttribute(name = "code", required = true)
   protected String code;
@@ -214,9 +229,9 @@ public class AntMode
    * @return a {@link FreqSingle} instance
    * @since 3.1.0
    */
-  public Set<FreqSingle> getFreqSingle() {
+  public List<FreqSingle> getFreqSingle() {
     if (freqSingle == null) {
-      freqSingle = new HashSet<>();
+      freqSingle = new ArrayList<>();
     }
     return this.freqSingle;
   }
@@ -351,9 +366,9 @@ public class AntMode
    * @return a {@link AntPattern} instance
    * @since 3.1.0
    */
-  public Set<AntPattern> getAntPattern() {
+  public List<AntPattern> getAntPattern() {
     if (antPattern == null) {
-      antPattern = new HashSet<>();
+      antPattern = new ArrayList<>();
     }
     return this.antPattern;
   }

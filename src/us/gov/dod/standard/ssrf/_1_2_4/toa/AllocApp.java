@@ -1,10 +1,25 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.toa;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.TDateTime;
 import us.gov.dod.standard.ssrf._1_2_4.metadata.lists.ListAR;
@@ -18,8 +33,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.NationalElmRef;
 /**
  * AllocApp
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TAllocApp", propOrder = {
@@ -55,40 +70,40 @@ public class AllocApp {
   protected ElmRef bandAppRef;
 
   @XmlElement(name = "AntStdRef")
-  protected Set<NationalElmRef> antStdRef;
+  protected List<NationalElmRef> antStdRef;
 
   @XmlElement(name = "ChnlPlanRef")
-  protected Set<ElmRef> chnlPlanRef;
+  protected List<ElmRef> chnlPlanRef;
 
   @XmlElement(name = "CoordStdRef")
-  protected Set<ElmRef> coordStdRef;
+  protected List<ElmRef> coordStdRef;
 
   @XmlElement(name = "CurveStdRef")
-  protected Set<NationalElmRef> curveStdRef;
+  protected List<NationalElmRef> curveStdRef;
 
   @XmlElement(name = "EmsMaskStdRef")
-  protected Set<NationalElmRef> emsMaskStdRef;
+  protected List<NationalElmRef> emsMaskStdRef;
 
   @XmlElement(name = "EmsStdRef")
-  protected Set<ElmRef> emsStdRef;
+  protected List<ElmRef> emsStdRef;
 
   @XmlElement(name = "LocationRef")
-  protected Set<LocationRef> locationRef;
+  protected List<LocationRef> locationRef;
 
   @XmlElement(name = "NoteRef")
-  protected Set<NoteRef> noteRef;
+  protected List<NoteRef> noteRef;
 
   @XmlElement(name = "RxStdRef")
-  protected Set<NationalElmRef> rxStdRef;
+  protected List<NationalElmRef> rxStdRef;
 
   @XmlElement(name = "ServiceUse")
-  protected Set<AllocApp.ServiceUse> serviceUse;
+  protected List<AllocApp.ServiceUse> serviceUse;
 
   @XmlElement(name = "StnClass")
-  protected Set<AllocApp.StnClass> stnClass;
+  protected List<AllocApp.StnClass> stnClass;
 
   @XmlElement(name = "BandUserRef")
-  protected Set<ElmRef> bandUserRef;
+  protected List<ElmRef> bandUserRef;
   /**
    * cls - Classification (Required)
    * <p>
@@ -213,9 +228,9 @@ public class AllocApp {
    * @return a {@link NationalElmRef} instance
    * @since 3.1.0
    */
-  public Set<NationalElmRef> getAntStdRef() {
+  public List<NationalElmRef> getAntStdRef() {
     if (antStdRef == null) {
-      antStdRef = new HashSet<>();
+      antStdRef = new ArrayList<>();
     }
     return this.antStdRef;
   }
@@ -237,9 +252,9 @@ public class AllocApp {
    * @return a {@link ElmRef} instance
    * @since 3.1.0
    */
-  public Set<ElmRef> getChnlPlanRef() {
+  public List<ElmRef> getChnlPlanRef() {
     if (chnlPlanRef == null) {
-      chnlPlanRef = new HashSet<>();
+      chnlPlanRef = new ArrayList<>();
     }
     return this.chnlPlanRef;
   }
@@ -261,9 +276,9 @@ public class AllocApp {
    * @return a {@link ElmRef} instance
    * @since 3.1.0
    */
-  public Set<ElmRef> getCoordStdRef() {
+  public List<ElmRef> getCoordStdRef() {
     if (coordStdRef == null) {
-      coordStdRef = new HashSet<>();
+      coordStdRef = new ArrayList<>();
     }
     return this.coordStdRef;
   }
@@ -285,9 +300,9 @@ public class AllocApp {
    * @return a {@link NationalElmRef} instance
    * @since 3.1.0
    */
-  public Set<NationalElmRef> getCurveStdRef() {
+  public List<NationalElmRef> getCurveStdRef() {
     if (curveStdRef == null) {
-      curveStdRef = new HashSet<>();
+      curveStdRef = new ArrayList<>();
     }
     return this.curveStdRef;
   }
@@ -309,9 +324,9 @@ public class AllocApp {
    * @return a {@link NationalElmRef} instance
    * @since 3.1.0
    */
-  public Set<NationalElmRef> getEmsMaskStdRef() {
+  public List<NationalElmRef> getEmsMaskStdRef() {
     if (emsMaskStdRef == null) {
-      emsMaskStdRef = new HashSet<>();
+      emsMaskStdRef = new ArrayList<>();
     }
     return this.emsMaskStdRef;
   }
@@ -333,9 +348,9 @@ public class AllocApp {
    * @return a {@link ElmRef} instance
    * @since 3.1.0
    */
-  public Set<ElmRef> getEmsStdRef() {
+  public List<ElmRef> getEmsStdRef() {
     if (emsStdRef == null) {
-      emsStdRef = new HashSet<>();
+      emsStdRef = new ArrayList<>();
     }
     return this.emsStdRef;
   }
@@ -357,9 +372,9 @@ public class AllocApp {
    * @return a {@link LocationRef} instance
    * @since 3.1.0
    */
-  public Set<LocationRef> getLocationRef() {
+  public List<LocationRef> getLocationRef() {
     if (locationRef == null) {
-      locationRef = new HashSet<>();
+      locationRef = new ArrayList<>();
     }
     return this.locationRef;
   }
@@ -381,9 +396,9 @@ public class AllocApp {
    * @return a {@link NoteRef} instance
    * @since 3.1.0
    */
-  public Set<NoteRef> getNoteRef() {
+  public List<NoteRef> getNoteRef() {
     if (noteRef == null) {
-      noteRef = new HashSet<>();
+      noteRef = new ArrayList<>();
     }
     return this.noteRef;
   }
@@ -405,9 +420,9 @@ public class AllocApp {
    * @return a {@link NationalElmRef} instance
    * @since 3.1.0
    */
-  public Set<NationalElmRef> getRxStdRef() {
+  public List<NationalElmRef> getRxStdRef() {
     if (rxStdRef == null) {
-      rxStdRef = new HashSet<>();
+      rxStdRef = new ArrayList<>();
     }
     return this.rxStdRef;
   }
@@ -423,9 +438,9 @@ public class AllocApp {
     this.rxStdRef = null;
   }
 
-  public Set<AllocApp.ServiceUse> getServiceUse() {
+  public List<AllocApp.ServiceUse> getServiceUse() {
     if (serviceUse == null) {
-      serviceUse = new HashSet<>();
+      serviceUse = new ArrayList<>();
     }
     return this.serviceUse;
   }
@@ -441,9 +456,9 @@ public class AllocApp {
     this.serviceUse = null;
   }
 
-  public Set<AllocApp.StnClass> getStnClass() {
+  public List<AllocApp.StnClass> getStnClass() {
     if (stnClass == null) {
-      stnClass = new HashSet<>();
+      stnClass = new ArrayList<>();
     }
     return this.stnClass;
   }
@@ -465,9 +480,9 @@ public class AllocApp {
    * @return a {@link ElmRef} instance
    * @since 3.1.0
    */
-  public Set<ElmRef> getBandUserRef() {
+  public List<ElmRef> getBandUserRef() {
     if (bandUserRef == null) {
-      bandUserRef = new HashSet<>();
+      bandUserRef = new ArrayList<>();
     }
     return this.bandUserRef;
   }

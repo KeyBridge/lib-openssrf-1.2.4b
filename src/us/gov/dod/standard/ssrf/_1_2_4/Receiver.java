@@ -1,9 +1,24 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.shared.Curve;
 import us.gov.dod.standard.ssrf._1_2_4.shared.Nomenclature;
@@ -32,8 +47,8 @@ import us.gov.dod.standard.ssrf._1_2_4.txrx.*;
  * &lt;/Receiver&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TReceiver", propOrder = {
@@ -60,13 +75,13 @@ public class Receiver {
    * @since 3.1.0
    */
   @XmlElement(name = "Nomenclature")
-  protected Set<Nomenclature> nomenclature;
+  protected List<Nomenclature> nomenclature;
 
   @XmlElement(name = "StockNum")
-  protected Set<StockNum> stockNum;
+  protected List<StockNum> stockNum;
 
   @XmlElement(name = "SignalTuning")
-  protected Set<SignalTuning> signalTuning;
+  protected List<SignalTuning> signalTuning;
   /**
    * Curve (Optional)
    * <p>
@@ -79,13 +94,13 @@ public class Receiver {
    * @since 3.1.0
    */
   @XmlElement(name = "Curve")
-  protected Set<Curve> curve;
+  protected List<Curve> curve;
 
   @XmlElement(name = "FreqTolerance")
   protected ClassFreq freqTolerance;
 
   @XmlElement(name = "IFreq")
-  protected Set<IFreq> iFreq;
+  protected List<IFreq> iFreq;
   /**
    * PreSelectionType - Preselection Type (Optional)
    * <p>
@@ -121,9 +136,9 @@ public class Receiver {
    * @return a {@link Nomenclature} instance
    * @since 3.1.0
    */
-  public Set<Nomenclature> getNomenclature() {
+  public List<Nomenclature> getNomenclature() {
     if (nomenclature == null) {
-      nomenclature = new HashSet<>();
+      nomenclature = new ArrayList<>();
     }
     return this.nomenclature;
   }
@@ -145,9 +160,9 @@ public class Receiver {
    * @return a {@link StockNum} instance
    * @since 3.1.0
    */
-  public Set<StockNum> getStockNum() {
+  public List<StockNum> getStockNum() {
     if (stockNum == null) {
-      stockNum = new HashSet<>();
+      stockNum = new ArrayList<>();
     }
     return this.stockNum;
   }
@@ -169,9 +184,9 @@ public class Receiver {
    * @return a {@link SignalTuning} instance
    * @since 3.1.0
    */
-  public Set<SignalTuning> getSignalTuning() {
+  public List<SignalTuning> getSignalTuning() {
     if (signalTuning == null) {
-      signalTuning = new HashSet<>();
+      signalTuning = new ArrayList<>();
     }
     return this.signalTuning;
   }
@@ -199,9 +214,9 @@ public class Receiver {
    * @return a {@link Curve} instance
    * @since 3.1.0
    */
-  public Set<Curve> getCurve() {
+  public List<Curve> getCurve() {
     if (curve == null) {
-      curve = new HashSet<>();
+      curve = new ArrayList<>();
     }
     return this.curve;
   }
@@ -247,9 +262,9 @@ public class Receiver {
    * @return a {@link IFreq} instance
    * @since 3.1.0
    */
-  public Set<IFreq> getIFreq() {
+  public List<IFreq> getIFreq() {
     if (iFreq == null) {
-      iFreq = new HashSet<>();
+      iFreq = new ArrayList<>();
     }
     return this.iFreq;
   }

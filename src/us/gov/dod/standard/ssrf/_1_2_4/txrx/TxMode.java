@@ -1,10 +1,25 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.txrx;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.Mode;
 import us.gov.dod.standard.ssrf._1_2_4.Transmitter;
@@ -57,8 +72,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.Curve;
  * &lt;/TxMode&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TTxMode", propOrder = {
@@ -72,7 +87,7 @@ public class TxMode
   extends Mode {
 
   @XmlElement(name = "SignalTuning")
-  protected Set<SignalTuning> signalTuning;
+  protected List<SignalTuning> signalTuning;
   /**
    * PowerLimit - Power Limit (Optional)
    * <p>
@@ -83,7 +98,7 @@ public class TxMode
    * @since 3.1.0
    */
   @XmlElement(name = "Power", required = true)
-  protected Set<Power> power;
+  protected List<Power> power;
   /**
    * SubcarrierFreq (Optional)
    * <p>
@@ -92,10 +107,10 @@ public class TxMode
    * @since 3.1.0
    */
   @XmlElement(name = "SubcarrierFreq")
-  protected Set<ClassFreq> subcarrierFreq;
+  protected List<ClassFreq> subcarrierFreq;
 
   @XmlElement(name = "SubcarrierTone")
-  protected Set<ClassFreq> subcarrierTone;
+  protected List<ClassFreq> subcarrierTone;
 
   @XmlElement(name = "CositeSep")
   protected CositeSep cositeSep;
@@ -133,9 +148,9 @@ public class TxMode
    * @return a {@link SignalTuning} instance
    * @since 3.1.0
    */
-  public Set<SignalTuning> getSignalTuning() {
+  public List<SignalTuning> getSignalTuning() {
     if (signalTuning == null) {
-      signalTuning = new HashSet<>();
+      signalTuning = new ArrayList<>();
     }
     return this.signalTuning;
   }
@@ -157,9 +172,9 @@ public class TxMode
    * @return a {@link Power} instance
    * @since 3.1.0
    */
-  public Set<Power> getPower() {
+  public List<Power> getPower() {
     if (power == null) {
-      power = new HashSet<>();
+      power = new ArrayList<>();
     }
     return this.power;
   }
@@ -187,9 +202,9 @@ public class TxMode
    * @return a {@link ClassFreq} instance
    * @since 3.1.0
    */
-  public Set<ClassFreq> getSubcarrierFreq() {
+  public List<ClassFreq> getSubcarrierFreq() {
     if (subcarrierFreq == null) {
-      subcarrierFreq = new HashSet<>();
+      subcarrierFreq = new ArrayList<>();
     }
     return this.subcarrierFreq;
   }
@@ -211,9 +226,9 @@ public class TxMode
    * @return a {@link ClassFreq} instance
    * @since 3.1.0
    */
-  public Set<ClassFreq> getSubcarrierTone() {
+  public List<ClassFreq> getSubcarrierTone() {
     if (subcarrierTone == null) {
-      subcarrierTone = new HashSet<>();
+      subcarrierTone = new ArrayList<>();
     }
     return this.subcarrierTone;
   }

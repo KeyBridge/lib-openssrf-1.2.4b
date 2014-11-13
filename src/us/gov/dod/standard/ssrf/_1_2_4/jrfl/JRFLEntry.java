@@ -1,9 +1,24 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.jrfl;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.JRFL;
 import us.gov.dod.standard.ssrf._1_2_4.shared.*;
@@ -23,8 +38,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
  * Sub-Elements are
  * {@link JRFLEntryLocation}, {@link POCInformation}, {@link Project}
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TJRFLEntry", propOrder = {
@@ -55,7 +70,7 @@ public class JRFLEntry {
   protected AsgnAllotRef asgnAllotRef;
 
   @XmlElement(name = "OrganisationRef")
-  protected Set<ElmRef> organisationRef;
+  protected List<ElmRef> organisationRef;
 
   @XmlElement(name = "TimeFrame")
   protected TimeFrame timeFrame;
@@ -64,13 +79,13 @@ public class JRFLEntry {
   protected LocationRef locationRef;
 
   @XmlElement(name = "FreqSingle")
-  protected Set<FreqSingle> freqSingle;
+  protected List<FreqSingle> freqSingle;
 
   @XmlElement(name = "AuthorisedBw")
   protected AuthorisedBw authorisedBw;
 
   @XmlElement(name = "FreqRange")
-  protected Set<FreqRange> freqRange;
+  protected List<FreqRange> freqRange;
   /**
    * cls - Classification (Required)
    * <p>
@@ -157,9 +172,9 @@ public class JRFLEntry {
    * @return a {@link ElmRef} instance
    * @since 3.1.0
    */
-  public Set<ElmRef> getOrganisationRef() {
+  public List<ElmRef> getOrganisationRef() {
     if (organisationRef == null) {
-      organisationRef = new HashSet<>();
+      organisationRef = new ArrayList<>();
     }
     return this.organisationRef;
   }
@@ -229,9 +244,9 @@ public class JRFLEntry {
    * @return a {@link FreqSingle} instance
    * @since 3.1.0
    */
-  public Set<FreqSingle> getFreqSingle() {
+  public List<FreqSingle> getFreqSingle() {
     if (freqSingle == null) {
-      freqSingle = new HashSet<>();
+      freqSingle = new ArrayList<>();
     }
     return this.freqSingle;
   }
@@ -277,9 +292,9 @@ public class JRFLEntry {
    * @return a {@link FreqRange} instance
    * @since 3.1.0
    */
-  public Set<FreqRange> getFreqRange() {
+  public List<FreqRange> getFreqRange() {
     if (freqRange == null) {
-      freqRange = new HashSet<>();
+      freqRange = new ArrayList<>();
     }
     return this.freqRange;
   }

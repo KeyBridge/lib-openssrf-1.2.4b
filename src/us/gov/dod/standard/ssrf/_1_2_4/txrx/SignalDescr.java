@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.txrx;
 
 import java.util.*;
@@ -11,8 +26,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
 /**
  * SignalDescr
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TSignalDescr", propOrder = {
@@ -30,16 +45,16 @@ public class SignalDescr extends Common<SignalDescr> {
   protected Title title;
 
   @XmlElement(name = "SignalTuning")
-  protected Set<SignalTuning> signalTuning;
+  protected List<SignalTuning> signalTuning;
 
   @XmlElement(name = "FreqTolerance")
   protected ClassFreq freqTolerance;
 
   @XmlElement(name = "EqpFnct")
-  protected Set<EqpFnct> eqpFnct;
+  protected List<EqpFnct> eqpFnct;
 
   @XmlElement(name = "TxRxMode", required = true)
-  protected Set<TxRxMode> txRxMode;
+  protected List<TxRxMode> txRxMode;
 
   @XmlElement(name = "SignalTx")
   protected SignalTx signalTx;
@@ -77,9 +92,9 @@ public class SignalDescr extends Common<SignalDescr> {
    * @return a {@link SignalTuning} instance
    * @since 3.1.0
    */
-  public Set<SignalTuning> getSignalTuning() {
+  public List<SignalTuning> getSignalTuning() {
     if (signalTuning == null) {
-      signalTuning = new HashSet<>();
+      signalTuning = new ArrayList<>();
     }
     return this.signalTuning;
   }
@@ -125,9 +140,9 @@ public class SignalDescr extends Common<SignalDescr> {
    * @return a {@link EqpFnct} instance
    * @since 3.1.0
    */
-  public Set<EqpFnct> getEqpFnct() {
+  public List<EqpFnct> getEqpFnct() {
     if (eqpFnct == null) {
-      eqpFnct = new HashSet<>();
+      eqpFnct = new ArrayList<>();
     }
     return this.eqpFnct;
   }
@@ -149,9 +164,9 @@ public class SignalDescr extends Common<SignalDescr> {
    * @return a {@link TxRxMode} instance
    * @since 3.1.0
    */
-  public Set<TxRxMode> getTxRxMode() {
+  public List<TxRxMode> getTxRxMode() {
     if (txRxMode == null) {
-      txRxMode = new HashSet<>();
+      txRxMode = new ArrayList<>();
     }
     return this.txRxMode;
   }

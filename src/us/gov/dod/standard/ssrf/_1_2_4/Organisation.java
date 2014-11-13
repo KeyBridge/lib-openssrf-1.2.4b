@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.*;
@@ -32,8 +47,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
  * &lt;/Organisation&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TOrganisation", propOrder = {
@@ -55,13 +70,13 @@ public class Organisation {
   protected DatasetCls datasetCls;
 
   @XmlElement(name = "Compartment")
-  protected Set<Compartment> compartment;
+  protected List<Compartment> compartment;
 
   @XmlElement(name = "Handling")
-  protected Set<Handling> handling;
+  protected List<Handling> handling;
 
   @XmlElement(name = "ReleasableTo")
-  protected Set<ReleasableTo> releasableTo;
+  protected List<ReleasableTo> releasableTo;
 
   @XmlElement(name = "EffDate", required = true)
   protected TDateTime effDate;
@@ -88,13 +103,13 @@ public class Organisation {
   protected TDateTime review;
 
   @XmlElement(name = "Title")
-  protected Set<Title> title;
+  protected List<Title> title;
 
   @XmlElement(name = "Project")
-  protected Set<Project> project;
+  protected List<Project> project;
 
   @XmlElement(name = "RelatedOrg")
-  protected Set<RelatedOrg> relatedOrg;
+  protected List<RelatedOrg> relatedOrg;
   /**
    * remarks - Links to Data Item Remarks (Optional)
    * <p>
@@ -105,7 +120,7 @@ public class Organisation {
    * @since 3.1.0
    */
   @XmlElement(name = "Remarks")
-  protected Set<Remarks> remarks;
+  protected List<Remarks> remarks;
   /**
    * cls - Classification (Required)
    * <p>
@@ -199,9 +214,9 @@ public class Organisation {
    * @return a {@link Compartment} instance
    * @since 3.1.0
    */
-  public Set<Compartment> getCompartment() {
+  public List<Compartment> getCompartment() {
     if (compartment == null) {
-      compartment = new HashSet<>();
+      compartment = new ArrayList<>();
     }
     return this.compartment;
   }
@@ -223,9 +238,9 @@ public class Organisation {
    * @return a {@link Handling} instance
    * @since 3.1.0
    */
-  public Set<Handling> getHandling() {
+  public List<Handling> getHandling() {
     if (handling == null) {
-      handling = new HashSet<>();
+      handling = new ArrayList<>();
     }
     return this.handling;
   }
@@ -247,9 +262,9 @@ public class Organisation {
    * @return a {@link ReleasableTo} instance
    * @since 3.1.0
    */
-  public Set<ReleasableTo> getReleasableTo() {
+  public List<ReleasableTo> getReleasableTo() {
     if (releasableTo == null) {
-      releasableTo = new HashSet<>();
+      releasableTo = new ArrayList<>();
     }
     return this.releasableTo;
   }
@@ -353,9 +368,9 @@ public class Organisation {
    * @return a {@link Title} instance
    * @since 3.1.0
    */
-  public Set<Title> getTitle() {
+  public List<Title> getTitle() {
     if (title == null) {
-      title = new HashSet<>();
+      title = new ArrayList<>();
     }
     return this.title;
   }
@@ -377,9 +392,9 @@ public class Organisation {
    * @return a {@link Project} instance
    * @since 3.1.0
    */
-  public Set<Project> getProject() {
+  public List<Project> getProject() {
     if (project == null) {
-      project = new HashSet<>();
+      project = new ArrayList<>();
     }
     return this.project;
   }
@@ -401,9 +416,9 @@ public class Organisation {
    * @return a {@link RelatedOrg} instance
    * @since 3.1.0
    */
-  public Set<RelatedOrg> getRelatedOrg() {
+  public List<RelatedOrg> getRelatedOrg() {
     if (relatedOrg == null) {
-      relatedOrg = new HashSet<>();
+      relatedOrg = new ArrayList<>();
     }
     return this.relatedOrg;
   }
@@ -426,9 +441,9 @@ public class Organisation {
    * @return a {@link Remarks} instance
    * @since 3.1.0
    */
-  public Set<Remarks> getRemarks() {
+  public List<Remarks> getRemarks() {
     if (remarks == null) {
-      remarks = new HashSet<>();
+      remarks = new ArrayList<>();
     }
     return this.remarks;
   }

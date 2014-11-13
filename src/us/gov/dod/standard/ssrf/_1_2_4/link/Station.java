@@ -1,9 +1,24 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.link;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import sun.org.mozilla.javascript.ast.Assignment;
 import us.gov.dod.standard.ssrf._1_2_4.shared.ContactOrgRef;
@@ -27,8 +42,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.NumUnits;
  *   &lt;/Station&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TStation", propOrder = {
@@ -52,7 +67,7 @@ public class Station {
    * @since 3.1.0
    */
   @XmlElement(name = "StationLoc", required = true)
-  protected Set<StationLoc> stationLoc;
+  protected List<StationLoc> stationLoc;
   /**
    * CositeSep - Cosite Separation (Optional)
    * <p>
@@ -78,7 +93,7 @@ public class Station {
   protected CositeSep cositeSep;
 
   @XmlElement(name = "ContactOrgRef")
-  protected Set<ContactOrgRef> contactOrgRef;
+  protected List<ContactOrgRef> contactOrgRef;
 
   @XmlElement(name = "NumUnits")
   protected NumUnits numUnits;
@@ -95,7 +110,7 @@ public class Station {
   protected UserCode userCode;
 
   @XmlElement(name = "TSDF")
-  protected Set<TSDF> tsdf;
+  protected List<TSDF> tsdf;
   /**
    * cls - Classification (Required)
    * <p>
@@ -146,9 +161,9 @@ public class Station {
    * @return a {@link StationLoc} instance
    * @since 3.1.0
    */
-  public Set<StationLoc> getStationLoc() {
+  public List<StationLoc> getStationLoc() {
     if (stationLoc == null) {
-      stationLoc = new HashSet<>();
+      stationLoc = new ArrayList<>();
     }
     return this.stationLoc;
   }
@@ -218,9 +233,9 @@ public class Station {
    * @return a {@link ContactOrgRef} instance
    * @since 3.1.0
    */
-  public Set<ContactOrgRef> getContactOrgRef() {
+  public List<ContactOrgRef> getContactOrgRef() {
     if (contactOrgRef == null) {
-      contactOrgRef = new HashSet<>();
+      contactOrgRef = new ArrayList<>();
     }
     return this.contactOrgRef;
   }
@@ -290,9 +305,9 @@ public class Station {
    * @return a {@link TSDF} instance
    * @since 3.1.0
    */
-  public Set<TSDF> getTSDF() {
+  public List<TSDF> getTSDF() {
     if (tsdf == null) {
-      tsdf = new HashSet<>();
+      tsdf = new ArrayList<>();
     }
     return this.tsdf;
   }

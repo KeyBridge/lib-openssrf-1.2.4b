@@ -1,9 +1,24 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 import us.gov.dod.standard.ssrf._1_2_4.administrative.Codes;
 import us.gov.dod.standard.ssrf._1_2_4.administrative.Deletion;
@@ -27,8 +42,8 @@ import us.gov.dod.standard.ssrf._1_2_4.txrx.TxRx;
 /**
  * SSRF
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -157,7 +172,7 @@ public class SSRF {
   public static class Body {
 
     @XmlElement(name = "Compartment")
-    protected Set<Compartment> compartment;
+    protected List<Compartment> compartment;
     /**
      * remarks - Links to Data Item Remarks (Optional)
      * <p>
@@ -168,7 +183,7 @@ public class SSRF {
      * @since 3.1.0
      */
     @XmlElement(name = "Remarks")
-    protected Set<Remarks> remarks;
+    protected List<Remarks> remarks;
     /**
      * extReferences - Links to External References (Optional)
      * <p>
@@ -180,118 +195,118 @@ public class SSRF {
      * @since 3.1.0
      */
     @XmlElement(name = "ExtReference")
-    protected Set<ExtReference> extReference;
+    protected List<ExtReference> extReference;
 
     @XmlElement(name = "Deletion")
-    protected Set<Deletion> deletion;
+    protected List<Deletion> deletion;
 
     @XmlElement(name = "Administrative")
-    protected Set<Administrative> administrative;
+    protected List<Administrative> administrative;
 
     @XmlElement(name = "Response")
-    protected Set<Response> response;
+    protected List<Response> response;
 
     @XmlElement(name = "Codes")
-    protected Set<Codes> codes;
+    protected List<Codes> codes;
 
     @XmlElement(name = "Note")
-    protected Set<Note> note;
+    protected List<Note> note;
 
     @XmlElement(name = "BandUser")
-    protected Set<BandUser> bandUser;
+    protected List<BandUser> bandUser;
 
     @XmlElement(name = "BandApplication")
-    protected Set<BandApplication> bandApplication;
+    protected List<BandApplication> bandApplication;
 
     @XmlElement(name = "AntStd")
-    protected Set<AntStd> antStd;
+    protected List<AntStd> antStd;
 
     @XmlElement(name = "ChnlPlan")
-    protected Set<ChnlPlan> chnlPlan;
+    protected List<ChnlPlan> chnlPlan;
 
     @XmlElement(name = "CoordStd")
-    protected Set<CoordStd> coordStd;
+    protected List<CoordStd> coordStd;
 
     @XmlElement(name = "CurveStd")
-    protected Set<CurveStd> curveStd;
+    protected List<CurveStd> curveStd;
 
     @XmlElement(name = "EmsMaskStd")
-    protected Set<EmsMaskStd> emsMaskStd;
+    protected List<EmsMaskStd> emsMaskStd;
 
     @XmlElement(name = "EmsStd")
-    protected Set<EmsStd> emsStd;
+    protected List<EmsStd> emsStd;
 
     @XmlElement(name = "RxStd")
-    protected Set<RxStd> rxStd;
+    protected List<RxStd> rxStd;
 
     @XmlElement(name = "Organisation")
-    protected Set<Organisation> organisation;
+    protected List<Organisation> organisation;
 
     @XmlElement(name = "Contact")
-    protected Set<Contact> contact;
+    protected List<Contact> contact;
 
     @XmlElement(name = "Role")
-    protected Set<Role> role;
+    protected List<Role> role;
 
     @XmlElement(name = "Location")
-    protected Set<Location> location;
+    protected List<Location> location;
 
     @XmlElement(name = "LocationSet")
-    protected Set<LocationSet> locationSet;
+    protected List<LocationSet> locationSet;
 
     @XmlElement(name = "TOA")
-    protected Set<TOA> toa;
+    protected List<TOA> toa;
 
     @XmlElement(name = "SignalDescr")
-    protected Set<SignalDescr> signalDescr;
+    protected List<SignalDescr> signalDescr;
 
     @XmlElement(name = "TxRx")
-    protected Set<TxRx> txRx;
+    protected List<TxRx> txRx;
 
     @XmlElement(name = "Antenna")
-    protected Set<Antenna> antenna;
+    protected List<Antenna> antenna;
 
     @XmlElement(name = "SSRequest")
-    protected Set<SSRequest> ssRequest;
+    protected List<SSRequest> ssRequest;
 
     @XmlElement(name = "SSReply")
-    protected Set<SSReply> ssReply;
+    protected List<SSReply> ssReply;
 
     @XmlElement(name = "AsgnAllot")
-    protected Set<AsgnAllot> asgnAllot;
+    protected List<AsgnAllot> asgnAllot;
 
     @XmlElement(name = "IntfReport")
-    protected Set<IntfReport> intfReport;
+    protected List<IntfReport> intfReport;
 
     @XmlElement(name = "IntfMitigation")
-    protected Set<IntfMitigation> intfMitigation;
+    protected List<IntfMitigation> intfMitigation;
 
     @XmlElement(name = "JRFL")
-    protected Set<JRFL> jrfl;
+    protected List<JRFL> jrfl;
 
     @XmlElement(name = "Route")
-    protected Set<Route> route;
+    protected List<Route> route;
 
     @XmlElement(name = "ForceElement")
-    protected Set<ForceElement> forceElement;
+    protected List<ForceElement> forceElement;
 
     @XmlElement(name = "FEDeployment")
-    protected Set<FEDeployment> feDeployment;
+    protected List<FEDeployment> feDeployment;
 
     @XmlElement(name = "BSMPlan")
-    protected Set<BSMPlan> bsmPlan;
+    protected List<BSMPlan> bsmPlan;
 
     @XmlElement(name = "Dictionary")
-    protected Set<Dictionary> dictionary;
+    protected List<Dictionary> dictionary;
 
     @XmlElement(name = "CEOI")
-    protected Set<CEOI> ceoi;
+    protected List<CEOI> ceoi;
 
     @XmlElement(name = "OpClearanceRequest")
-    protected Set<OpClearanceRequest> opClearanceRequest;
+    protected List<OpClearanceRequest> opClearanceRequest;
 
     @XmlElement(name = "OpClearance")
-    protected Set<OpClearance> opClearance;
+    protected List<OpClearance> opClearance;
 
     /**
      * Get
@@ -299,9 +314,9 @@ public class SSRF {
      * @return a {@link Compartment} instance
      * @since 3.1.0
      */
-    public Set<Compartment> getCompartment() {
+    public List<Compartment> getCompartment() {
       if (compartment == null) {
-        compartment = new HashSet<>();
+        compartment = new ArrayList<>();
       }
       return this.compartment;
     }
@@ -324,9 +339,9 @@ public class SSRF {
      * @return a {@link Remarks} instance
      * @since 3.1.0
      */
-    public Set<Remarks> getRemarks() {
+    public List<Remarks> getRemarks() {
       if (remarks == null) {
-        remarks = new HashSet<>();
+        remarks = new ArrayList<>();
       }
       return this.remarks;
     }
@@ -349,9 +364,9 @@ public class SSRF {
      * @return a {@link ExtReference} instance
      * @since 3.1.0
      */
-    public Set<ExtReference> getExtReference() {
+    public List<ExtReference> getExtReference() {
       if (extReference == null) {
-        extReference = new HashSet<>();
+        extReference = new ArrayList<>();
       }
       return this.extReference;
     }
@@ -373,9 +388,9 @@ public class SSRF {
      * @return a {@link Deletion} instance
      * @since 3.1.0
      */
-    public Set<Deletion> getDeletion() {
+    public List<Deletion> getDeletion() {
       if (deletion == null) {
-        deletion = new HashSet<>();
+        deletion = new ArrayList<>();
       }
       return this.deletion;
     }
@@ -397,9 +412,9 @@ public class SSRF {
      * @return a {@link Administrative} instance
      * @since 3.1.0
      */
-    public Set<Administrative> getAdministrative() {
+    public List<Administrative> getAdministrative() {
       if (administrative == null) {
-        administrative = new HashSet<>();
+        administrative = new ArrayList<>();
       }
       return this.administrative;
     }
@@ -421,9 +436,9 @@ public class SSRF {
      * @return a {@link Response} instance
      * @since 3.1.0
      */
-    public Set<Response> getResponse() {
+    public List<Response> getResponse() {
       if (response == null) {
-        response = new HashSet<>();
+        response = new ArrayList<>();
       }
       return this.response;
     }
@@ -445,9 +460,9 @@ public class SSRF {
      * @return a {@link Codes} instance
      * @since 3.1.0
      */
-    public Set<Codes> getCodes() {
+    public List<Codes> getCodes() {
       if (codes == null) {
-        codes = new HashSet<>();
+        codes = new ArrayList<>();
       }
       return this.codes;
     }
@@ -469,9 +484,9 @@ public class SSRF {
      * @return a {@link Note} instance
      * @since 3.1.0
      */
-    public Set<Note> getNote() {
+    public List<Note> getNote() {
       if (note == null) {
-        note = new HashSet<>();
+        note = new ArrayList<>();
       }
       return this.note;
     }
@@ -493,9 +508,9 @@ public class SSRF {
      * @return a {@link BandUser} instance
      * @since 3.1.0
      */
-    public Set<BandUser> getBandUser() {
+    public List<BandUser> getBandUser() {
       if (bandUser == null) {
-        bandUser = new HashSet<>();
+        bandUser = new ArrayList<>();
       }
       return this.bandUser;
     }
@@ -517,9 +532,9 @@ public class SSRF {
      * @return a {@link BandApplication} instance
      * @since 3.1.0
      */
-    public Set<BandApplication> getBandApplication() {
+    public List<BandApplication> getBandApplication() {
       if (bandApplication == null) {
-        bandApplication = new HashSet<>();
+        bandApplication = new ArrayList<>();
       }
       return this.bandApplication;
     }
@@ -541,9 +556,9 @@ public class SSRF {
      * @return a {@link AntStd} instance
      * @since 3.1.0
      */
-    public Set<AntStd> getAntStd() {
+    public List<AntStd> getAntStd() {
       if (antStd == null) {
-        antStd = new HashSet<>();
+        antStd = new ArrayList<>();
       }
       return this.antStd;
     }
@@ -565,9 +580,9 @@ public class SSRF {
      * @return a {@link ChnlPlan} instance
      * @since 3.1.0
      */
-    public Set<ChnlPlan> getChnlPlan() {
+    public List<ChnlPlan> getChnlPlan() {
       if (chnlPlan == null) {
-        chnlPlan = new HashSet<>();
+        chnlPlan = new ArrayList<>();
       }
       return this.chnlPlan;
     }
@@ -589,9 +604,9 @@ public class SSRF {
      * @return a {@link CoordStd} instance
      * @since 3.1.0
      */
-    public Set<CoordStd> getCoordStd() {
+    public List<CoordStd> getCoordStd() {
       if (coordStd == null) {
-        coordStd = new HashSet<>();
+        coordStd = new ArrayList<>();
       }
       return this.coordStd;
     }
@@ -613,9 +628,9 @@ public class SSRF {
      * @return a {@link CurveStd} instance
      * @since 3.1.0
      */
-    public Set<CurveStd> getCurveStd() {
+    public List<CurveStd> getCurveStd() {
       if (curveStd == null) {
-        curveStd = new HashSet<>();
+        curveStd = new ArrayList<>();
       }
       return this.curveStd;
     }
@@ -637,9 +652,9 @@ public class SSRF {
      * @return a {@link EmsMaskStd} instance
      * @since 3.1.0
      */
-    public Set<EmsMaskStd> getEmsMaskStd() {
+    public List<EmsMaskStd> getEmsMaskStd() {
       if (emsMaskStd == null) {
-        emsMaskStd = new HashSet<>();
+        emsMaskStd = new ArrayList<>();
       }
       return this.emsMaskStd;
     }
@@ -661,9 +676,9 @@ public class SSRF {
      * @return a {@link EmsStd} instance
      * @since 3.1.0
      */
-    public Set<EmsStd> getEmsStd() {
+    public List<EmsStd> getEmsStd() {
       if (emsStd == null) {
-        emsStd = new HashSet<>();
+        emsStd = new ArrayList<>();
       }
       return this.emsStd;
     }
@@ -685,9 +700,9 @@ public class SSRF {
      * @return a {@link RxStd} instance
      * @since 3.1.0
      */
-    public Set<RxStd> getRxStd() {
+    public List<RxStd> getRxStd() {
       if (rxStd == null) {
-        rxStd = new HashSet<>();
+        rxStd = new ArrayList<>();
       }
       return this.rxStd;
     }
@@ -709,9 +724,9 @@ public class SSRF {
      * @return a {@link Organisation} instance
      * @since 3.1.0
      */
-    public Set<Organisation> getOrganisation() {
+    public List<Organisation> getOrganisation() {
       if (organisation == null) {
-        organisation = new HashSet<>();
+        organisation = new ArrayList<>();
       }
       return this.organisation;
     }
@@ -733,9 +748,9 @@ public class SSRF {
      * @return a {@link Contact} instance
      * @since 3.1.0
      */
-    public Set<Contact> getContact() {
+    public List<Contact> getContact() {
       if (contact == null) {
-        contact = new HashSet<>();
+        contact = new ArrayList<>();
       }
       return this.contact;
     }
@@ -757,9 +772,9 @@ public class SSRF {
      * @return a {@link Role} instance
      * @since 3.1.0
      */
-    public Set<Role> getRole() {
+    public List<Role> getRole() {
       if (role == null) {
-        role = new HashSet<>();
+        role = new ArrayList<>();
       }
       return this.role;
     }
@@ -781,9 +796,9 @@ public class SSRF {
      * @return a {@link Location} instance
      * @since 3.1.0
      */
-    public Set<Location> getLocation() {
+    public List<Location> getLocation() {
       if (location == null) {
-        location = new HashSet<>();
+        location = new ArrayList<>();
       }
       return this.location;
     }
@@ -805,9 +820,9 @@ public class SSRF {
      * @return a {@link LocationSet} instance
      * @since 3.1.0
      */
-    public Set<LocationSet> getLocationSet() {
+    public List<LocationSet> getLocationSet() {
       if (locationSet == null) {
-        locationSet = new HashSet<>();
+        locationSet = new ArrayList<>();
       }
       return this.locationSet;
     }
@@ -829,9 +844,9 @@ public class SSRF {
      * @return a {@link TOA} instance
      * @since 3.1.0
      */
-    public Set<TOA> getTOA() {
+    public List<TOA> getTOA() {
       if (toa == null) {
-        toa = new HashSet<>();
+        toa = new ArrayList<>();
       }
       return this.toa;
     }
@@ -853,9 +868,9 @@ public class SSRF {
      * @return a {@link SignalDescr} instance
      * @since 3.1.0
      */
-    public Set<SignalDescr> getSignalDescr() {
+    public List<SignalDescr> getSignalDescr() {
       if (signalDescr == null) {
-        signalDescr = new HashSet<>();
+        signalDescr = new ArrayList<>();
       }
       return this.signalDescr;
     }
@@ -877,9 +892,9 @@ public class SSRF {
      * @return a {@link TxRx} instance
      * @since 3.1.0
      */
-    public Set<TxRx> getTxRx() {
+    public List<TxRx> getTxRx() {
       if (txRx == null) {
-        txRx = new HashSet<>();
+        txRx = new ArrayList<>();
       }
       return this.txRx;
     }
@@ -901,9 +916,9 @@ public class SSRF {
      * @return a {@link Antenna} instance
      * @since 3.1.0
      */
-    public Set<Antenna> getAntenna() {
+    public List<Antenna> getAntenna() {
       if (antenna == null) {
-        antenna = new HashSet<>();
+        antenna = new ArrayList<>();
       }
       return this.antenna;
     }
@@ -925,9 +940,9 @@ public class SSRF {
      * @return a {@link SSRequest} instance
      * @since 3.1.0
      */
-    public Set<SSRequest> getSSRequest() {
+    public List<SSRequest> getSSRequest() {
       if (ssRequest == null) {
-        ssRequest = new HashSet<>();
+        ssRequest = new ArrayList<>();
       }
       return this.ssRequest;
     }
@@ -949,9 +964,9 @@ public class SSRF {
      * @return a {@link SSReply} instance
      * @since 3.1.0
      */
-    public Set<SSReply> getSSReply() {
+    public List<SSReply> getSSReply() {
       if (ssReply == null) {
-        ssReply = new HashSet<>();
+        ssReply = new ArrayList<>();
       }
       return this.ssReply;
     }
@@ -973,9 +988,9 @@ public class SSRF {
      * @return a {@link AsgnAllot} instance
      * @since 3.1.0
      */
-    public Set<AsgnAllot> getAsgnAllot() {
+    public List<AsgnAllot> getAsgnAllot() {
       if (asgnAllot == null) {
-        asgnAllot = new HashSet<>();
+        asgnAllot = new ArrayList<>();
       }
       return this.asgnAllot;
     }
@@ -997,9 +1012,9 @@ public class SSRF {
      * @return a {@link IntfReport} instance
      * @since 3.1.0
      */
-    public Set<IntfReport> getIntfReport() {
+    public List<IntfReport> getIntfReport() {
       if (intfReport == null) {
-        intfReport = new HashSet<>();
+        intfReport = new ArrayList<>();
       }
       return this.intfReport;
     }
@@ -1021,9 +1036,9 @@ public class SSRF {
      * @return a {@link IntfMitigation} instance
      * @since 3.1.0
      */
-    public Set<IntfMitigation> getIntfMitigation() {
+    public List<IntfMitigation> getIntfMitigation() {
       if (intfMitigation == null) {
-        intfMitigation = new HashSet<>();
+        intfMitigation = new ArrayList<>();
       }
       return this.intfMitigation;
     }
@@ -1045,9 +1060,9 @@ public class SSRF {
      * @return a {@link JRFL} instance
      * @since 3.1.0
      */
-    public Set<JRFL> getJRFL() {
+    public List<JRFL> getJRFL() {
       if (jrfl == null) {
-        jrfl = new HashSet<>();
+        jrfl = new ArrayList<>();
       }
       return this.jrfl;
     }
@@ -1069,9 +1084,9 @@ public class SSRF {
      * @return a {@link Route} instance
      * @since 3.1.0
      */
-    public Set<Route> getRoute() {
+    public List<Route> getRoute() {
       if (route == null) {
-        route = new HashSet<>();
+        route = new ArrayList<>();
       }
       return this.route;
     }
@@ -1093,9 +1108,9 @@ public class SSRF {
      * @return a {@link ForceElement} instance
      * @since 3.1.0
      */
-    public Set<ForceElement> getForceElement() {
+    public List<ForceElement> getForceElement() {
       if (forceElement == null) {
-        forceElement = new HashSet<>();
+        forceElement = new ArrayList<>();
       }
       return this.forceElement;
     }
@@ -1117,9 +1132,9 @@ public class SSRF {
      * @return a {@link FEDeployment} instance
      * @since 3.1.0
      */
-    public Set<FEDeployment> getFEDeployment() {
+    public List<FEDeployment> getFEDeployment() {
       if (feDeployment == null) {
-        feDeployment = new HashSet<>();
+        feDeployment = new ArrayList<>();
       }
       return this.feDeployment;
     }
@@ -1141,9 +1156,9 @@ public class SSRF {
      * @return a {@link BSMPlan} instance
      * @since 3.1.0
      */
-    public Set<BSMPlan> getBSMPlan() {
+    public List<BSMPlan> getBSMPlan() {
       if (bsmPlan == null) {
-        bsmPlan = new HashSet<>();
+        bsmPlan = new ArrayList<>();
       }
       return this.bsmPlan;
     }
@@ -1165,9 +1180,9 @@ public class SSRF {
      * @return a {@link Dictionary} instance
      * @since 3.1.0
      */
-    public Set<Dictionary> getDictionary() {
+    public List<Dictionary> getDictionary() {
       if (dictionary == null) {
-        dictionary = new HashSet<>();
+        dictionary = new ArrayList<>();
       }
       return this.dictionary;
     }
@@ -1189,9 +1204,9 @@ public class SSRF {
      * @return a {@link CEOI} instance
      * @since 3.1.0
      */
-    public Set<CEOI> getCEOI() {
+    public List<CEOI> getCEOI() {
       if (ceoi == null) {
-        ceoi = new HashSet<>();
+        ceoi = new ArrayList<>();
       }
       return this.ceoi;
     }
@@ -1213,9 +1228,9 @@ public class SSRF {
      * @return a {@link OpClearanceRequest} instance
      * @since 3.1.0
      */
-    public Set<OpClearanceRequest> getOpClearanceRequest() {
+    public List<OpClearanceRequest> getOpClearanceRequest() {
       if (opClearanceRequest == null) {
-        opClearanceRequest = new HashSet<>();
+        opClearanceRequest = new ArrayList<>();
       }
       return this.opClearanceRequest;
     }
@@ -1237,9 +1252,9 @@ public class SSRF {
      * @return a {@link OpClearance} instance
      * @since 3.1.0
      */
-    public Set<OpClearance> getOpClearance() {
+    public List<OpClearance> getOpClearance() {
       if (opClearance == null) {
-        opClearance = new HashSet<>();
+        opClearance = new ArrayList<>();
       }
       return this.opClearance;
     }

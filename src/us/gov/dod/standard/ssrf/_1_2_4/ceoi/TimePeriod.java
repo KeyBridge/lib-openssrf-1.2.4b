@@ -1,10 +1,25 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.ceoi;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -14,8 +29,8 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * TimePeriod
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TTimePeriod", propOrder = {
@@ -29,22 +44,22 @@ import javax.xml.bind.annotation.XmlType;
 public class TimePeriod {
 
   @XmlElement(name = "DefPyro")
-  protected Set<DefPyro> defPyro;
+  protected List<DefPyro> defPyro;
 
   @XmlElement(name = "DefSmoke")
-  protected Set<DefSmoke> defSmoke;
+  protected List<DefSmoke> defSmoke;
 
   @XmlElement(name = "NetExpander")
-  protected Set<NetExpander> netExpander;
+  protected List<NetExpander> netExpander;
 
   @XmlElement(name = "NetSuffix")
-  protected Set<NetSuffix> netSuffix;
+  protected List<NetSuffix> netSuffix;
 
   @XmlElement(name = "Password")
-  protected Set<Password> password;
+  protected List<Password> password;
 
   @XmlElement(name = "Share")
-  protected Set<Share> share;
+  protected List<Share> share;
   /**
    * cls - Classification (Required)
    * <p>
@@ -67,9 +82,9 @@ public class TimePeriod {
    * @return a {@link DefPyro} instance
    * @since 3.1.0
    */
-  public Set<DefPyro> getDefPyro() {
+  public List<DefPyro> getDefPyro() {
     if (defPyro == null) {
-      defPyro = new HashSet<>();
+      defPyro = new ArrayList<>();
     }
     return this.defPyro;
   }
@@ -91,9 +106,9 @@ public class TimePeriod {
    * @return a {@link DefSmoke} instance
    * @since 3.1.0
    */
-  public Set<DefSmoke> getDefSmoke() {
+  public List<DefSmoke> getDefSmoke() {
     if (defSmoke == null) {
-      defSmoke = new HashSet<>();
+      defSmoke = new ArrayList<>();
     }
     return this.defSmoke;
   }
@@ -115,9 +130,9 @@ public class TimePeriod {
    * @return a {@link NetExpander} instance
    * @since 3.1.0
    */
-  public Set<NetExpander> getNetExpander() {
+  public List<NetExpander> getNetExpander() {
     if (netExpander == null) {
-      netExpander = new HashSet<>();
+      netExpander = new ArrayList<>();
     }
     return this.netExpander;
   }
@@ -139,9 +154,9 @@ public class TimePeriod {
    * @return a {@link NetSuffix} instance
    * @since 3.1.0
    */
-  public Set<NetSuffix> getNetSuffix() {
+  public List<NetSuffix> getNetSuffix() {
     if (netSuffix == null) {
-      netSuffix = new HashSet<>();
+      netSuffix = new ArrayList<>();
     }
     return this.netSuffix;
   }
@@ -163,9 +178,9 @@ public class TimePeriod {
    * @return a {@link Password} instance
    * @since 3.1.0
    */
-  public Set<Password> getPassword() {
+  public List<Password> getPassword() {
     if (password == null) {
-      password = new HashSet<>();
+      password = new ArrayList<>();
     }
     return this.password;
   }
@@ -187,9 +202,9 @@ public class TimePeriod {
    * @return a {@link Share} instance
    * @since 3.1.0
    */
-  public Set<Share> getShare() {
+  public List<Share> getShare() {
     if (share == null) {
-      share = new HashSet<>();
+      share = new ArrayList<>();
     }
     return this.share;
   }

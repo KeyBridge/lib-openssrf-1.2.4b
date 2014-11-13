@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.ceoi;
 
 import java.math.BigDecimal;
@@ -11,8 +26,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
 /**
  * BSMPlan
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TBSMPlan", propOrder = {
@@ -30,7 +45,7 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
 public class BSMPlan extends Common<BSMPlan> {
 
   @XmlElement(name = "Distribution", required = true)
-  protected Set<BSMPlan.Distribution> distribution;
+  protected List<BSMPlan.Distribution> distribution;
 
   @XmlElement(name = "Concept", required = true)
   protected Memo concept;
@@ -45,7 +60,7 @@ public class BSMPlan extends Common<BSMPlan> {
   protected Memo managementStrategy;
 
   @XmlElement(name = "Responsibilities", required = true)
-  protected Set<BSMPlan.Responsibilities> responsibilities;
+  protected List<BSMPlan.Responsibilities> responsibilities;
 
   @XmlElement(name = "TimeFrame", required = true)
   protected TimeFrame timeFrame;
@@ -57,14 +72,14 @@ public class BSMPlan extends Common<BSMPlan> {
   protected LocationRef locationRef;
 
   @XmlElement(name = "ExternalSys")
-  protected Set<BSMPlan.ExternalSys> externalSys;
+  protected List<BSMPlan.ExternalSys> externalSys;
 
   @XmlAttribute(name = "version", required = true)
   protected BigDecimal version;
 
-  public Set<BSMPlan.Distribution> getDistribution() {
+  public List<BSMPlan.Distribution> getDistribution() {
     if (distribution == null) {
-      distribution = new HashSet<>();
+      distribution = new ArrayList<>();
     }
     return this.distribution;
   }
@@ -176,9 +191,9 @@ public class BSMPlan extends Common<BSMPlan> {
     return (this.managementStrategy != null);
   }
 
-  public Set<BSMPlan.Responsibilities> getResponsibilities() {
+  public List<BSMPlan.Responsibilities> getResponsibilities() {
     if (responsibilities == null) {
-      responsibilities = new HashSet<>();
+      responsibilities = new ArrayList<>();
     }
     return this.responsibilities;
   }
@@ -266,9 +281,9 @@ public class BSMPlan extends Common<BSMPlan> {
     return (this.locationRef != null);
   }
 
-  public Set<BSMPlan.ExternalSys> getExternalSys() {
+  public List<BSMPlan.ExternalSys> getExternalSys() {
     if (externalSys == null) {
-      externalSys = new HashSet<>();
+      externalSys = new ArrayList<>();
     }
     return this.externalSys;
   }

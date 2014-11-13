@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.*;
@@ -32,8 +47,8 @@ import us.gov.dod.standard.ssrf._1_2_4.toa.FreqBand;
  * &lt;/TOA&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TTOA", propOrder = {
@@ -56,7 +71,7 @@ public class TOA extends Common<TOA> {
   protected Title title;
 
   @XmlElement(name = "LocationRef")
-  protected Set<LocationRef> locationRef;
+  protected List<LocationRef> locationRef;
   /**
    * FreqBand (Required)
    * <p>
@@ -67,7 +82,7 @@ public class TOA extends Common<TOA> {
    * @since 3.1.0
    */
   @XmlElement(name = "FreqBand", required = true)
-  protected Set<FreqBand> freqBand;
+  protected List<FreqBand> freqBand;
 
   /**
    * Get an identifying name for this Table of Allocations.
@@ -99,9 +114,9 @@ public class TOA extends Common<TOA> {
    * @return a {@link LocationRef} instance
    * @since 3.1.0
    */
-  public Set<LocationRef> getLocationRef() {
+  public List<LocationRef> getLocationRef() {
     if (locationRef == null) {
-      locationRef = new HashSet<>();
+      locationRef = new ArrayList<>();
     }
     return this.locationRef;
   }
@@ -128,9 +143,9 @@ public class TOA extends Common<TOA> {
    * @return a {@link FreqBand} instance
    * @since 3.1.0
    */
-  public Set<FreqBand> getFreqBand() {
+  public List<FreqBand> getFreqBand() {
     if (freqBand == null) {
-      freqBand = new HashSet<>();
+      freqBand = new ArrayList<>();
     }
     return this.freqBand;
   }

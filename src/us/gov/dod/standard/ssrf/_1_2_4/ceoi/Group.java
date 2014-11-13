@@ -1,10 +1,25 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.ceoi;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -14,8 +29,8 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Group
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TGroup", propOrder = {
@@ -24,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Group {
 
   @XmlElement(name = "Entry", required = true)
-  protected Set<Entry> entry;
+  protected List<Entry> entry;
   /**
    * cls - Classification (Required)
    * <p>
@@ -53,9 +68,9 @@ public class Group {
    * @return a {@link Entry} instance
    * @since 3.1.0
    */
-  public Set<Entry> getEntry() {
+  public List<Entry> getEntry() {
     if (entry == null) {
-      entry = new HashSet<>();
+      entry = new ArrayList<>();
     }
     return this.entry;
   }

@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.ceoi;
 
 import java.math.BigDecimal;
@@ -10,8 +25,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
 /**
  * CEOI
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TCEOI", propOrder = {
@@ -39,16 +54,16 @@ public class CEOI extends Common<CEOI> {
   protected Memo quickInstruction;
 
   @XmlElement(name = "DictionaryRef")
-  protected Set<ElmRef> dictionaryRef;
+  protected List<ElmRef> dictionaryRef;
 
   @XmlElement(name = "TimePeriod", required = true)
-  protected Set<TimePeriod> timePeriod;
+  protected List<TimePeriod> timePeriod;
 
   @XmlElement(name = "JRFLRef")
   protected ElmRef jrflRef;
 
   @XmlElement(name = "NetRef")
-  protected Set<NetRef> netRef;
+  protected List<NetRef> netRef;
 
   @XmlAttribute(name = "version", required = true)
   protected BigDecimal version;
@@ -155,9 +170,9 @@ public class CEOI extends Common<CEOI> {
    * @return a {@link ElmRef} instance
    * @since 3.1.0
    */
-  public Set<ElmRef> getDictionaryRef() {
+  public List<ElmRef> getDictionaryRef() {
     if (dictionaryRef == null) {
-      dictionaryRef = new HashSet<>();
+      dictionaryRef = new ArrayList<>();
     }
     return this.dictionaryRef;
   }
@@ -179,9 +194,9 @@ public class CEOI extends Common<CEOI> {
    * @return a {@link TimePeriod} instance
    * @since 3.1.0
    */
-  public Set<TimePeriod> getTimePeriod() {
+  public List<TimePeriod> getTimePeriod() {
     if (timePeriod == null) {
-      timePeriod = new HashSet<>();
+      timePeriod = new ArrayList<>();
     }
     return this.timePeriod;
   }
@@ -227,9 +242,9 @@ public class CEOI extends Common<CEOI> {
    * @return a {@link NetRef} instance
    * @since 3.1.0
    */
-  public Set<NetRef> getNetRef() {
+  public List<NetRef> getNetRef() {
     if (netRef == null) {
-      netRef = new HashSet<>();
+      netRef = new ArrayList<>();
     }
     return this.netRef;
   }

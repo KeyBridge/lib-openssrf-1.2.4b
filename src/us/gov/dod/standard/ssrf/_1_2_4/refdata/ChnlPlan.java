@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.refdata;
 
 import java.util.*;
@@ -6,8 +21,8 @@ import javax.xml.bind.annotation.*;
 /**
  * ChnlPlan
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TChnlPlan", propOrder = {
@@ -17,17 +32,17 @@ import javax.xml.bind.annotation.*;
 public class ChnlPlan extends Std<ChnlPlan> {
 
   @XmlElement(name = "Chnl")
-  protected Set<ChnlPlan.Chnl> chnl;
+  protected List<ChnlPlan.Chnl> chnl;
 
   @XmlElement(name = "ChnlFreq")
-  protected Set<ChnlFreq> chnlFreq;
+  protected List<ChnlFreq> chnlFreq;
 
   @XmlAttribute(name = "relatedPlan")
   protected String relatedPlan;
 
-  public Set<ChnlPlan.Chnl> getChnl() {
+  public List<ChnlPlan.Chnl> getChnl() {
     if (chnl == null) {
-      chnl = new HashSet<>();
+      chnl = new ArrayList<>();
     }
     return this.chnl;
   }
@@ -49,9 +64,9 @@ public class ChnlPlan extends Std<ChnlPlan> {
    * @return a {@link ChnlFreq} instance
    * @since 3.1.0
    */
-  public Set<ChnlFreq> getChnlFreq() {
+  public List<ChnlFreq> getChnlFreq() {
     if (chnlFreq == null) {
-      chnlFreq = new HashSet<>();
+      chnlFreq = new ArrayList<>();
     }
     return this.chnlFreq;
   }
@@ -166,7 +181,7 @@ public class ChnlPlan extends Std<ChnlPlan> {
   public static class Chnl {
 
     @XmlElement(name = "ChnlFreq", required = true)
-    protected Set<ChnlFreq> chnlFreq;
+    protected List<ChnlFreq> chnlFreq;
     /**
      * cls - Classification (Required)
      * <p>
@@ -189,9 +204,9 @@ public class ChnlPlan extends Std<ChnlPlan> {
      * @return a {@link ChnlFreq} instance
      * @since 3.1.0
      */
-    public Set<ChnlFreq> getChnlFreq() {
+    public List<ChnlFreq> getChnlFreq() {
       if (chnlFreq == null) {
-        chnlFreq = new HashSet<>();
+        chnlFreq = new ArrayList<>();
       }
       return this.chnlFreq;
     }

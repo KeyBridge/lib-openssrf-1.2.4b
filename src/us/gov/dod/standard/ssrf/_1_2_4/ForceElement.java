@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.math.BigInteger;
@@ -34,8 +49,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
  *   &lt;/ForceElement&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TForceElement", propOrder = {
@@ -62,7 +77,7 @@ public class ForceElement extends Common<ForceElement> {
    * @since 3.1.0
    */
   @XmlElement(name = "Nomenclature", required = true)
-  protected Set<Nomenclature> nomenclature;
+  protected List<Nomenclature> nomenclature;
   /**
    * US:StockNum (Optional)
    * <p>
@@ -72,7 +87,7 @@ public class ForceElement extends Common<ForceElement> {
    * @since 3.1.0
    */
   @XmlElement(name = "StockNum")
-  protected Set<StockNum> stockNum;
+  protected List<StockNum> stockNum;
 
   @XmlElement(name = "Descriptor")
   protected Descriptor descriptor;
@@ -81,13 +96,13 @@ public class ForceElement extends Common<ForceElement> {
   protected Symbol symbol;
 
   @XmlElement(name = "FETxRx")
-  protected Set<FETxRx> feTxRx;
+  protected List<FETxRx> feTxRx;
 
   @XmlElement(name = "FEAntenna")
-  protected Set<FEAntenna> feAntenna;
+  protected List<FEAntenna> feAntenna;
 
   @XmlElement(name = "RelatedOrg")
-  protected Set<RelatedOrg> relatedOrg;
+  protected List<RelatedOrg> relatedOrg;
   /**
    * Type - Type (Required)
    * <p>
@@ -186,9 +201,9 @@ public class ForceElement extends Common<ForceElement> {
    * @return a {@link Nomenclature} instance
    * @since 3.1.0
    */
-  public Set<Nomenclature> getNomenclature() {
+  public List<Nomenclature> getNomenclature() {
     if (nomenclature == null) {
-      nomenclature = new HashSet<>();
+      nomenclature = new ArrayList<>();
     }
     return this.nomenclature;
   }
@@ -213,9 +228,9 @@ public class ForceElement extends Common<ForceElement> {
    * @return a {@link StockNum} instance
    * @since 3.1.0
    */
-  public Set<StockNum> getStockNum() {
+  public List<StockNum> getStockNum() {
     if (stockNum == null) {
-      stockNum = new HashSet<>();
+      stockNum = new ArrayList<>();
     }
     return this.stockNum;
   }
@@ -285,9 +300,9 @@ public class ForceElement extends Common<ForceElement> {
    * @return a {@link FETxRx} instance
    * @since 3.1.0
    */
-  public Set<FETxRx> getFETxRx() {
+  public List<FETxRx> getFETxRx() {
     if (feTxRx == null) {
-      feTxRx = new HashSet<>();
+      feTxRx = new ArrayList<>();
     }
     return this.feTxRx;
   }
@@ -309,9 +324,9 @@ public class ForceElement extends Common<ForceElement> {
    * @return a {@link FEAntenna} instance
    * @since 3.1.0
    */
-  public Set<FEAntenna> getFEAntenna() {
+  public List<FEAntenna> getFEAntenna() {
     if (feAntenna == null) {
-      feAntenna = new HashSet<>();
+      feAntenna = new ArrayList<>();
     }
     return this.feAntenna;
   }
@@ -333,9 +348,9 @@ public class ForceElement extends Common<ForceElement> {
    * @return a {@link RelatedOrg} instance
    * @since 3.1.0
    */
-  public Set<RelatedOrg> getRelatedOrg() {
+  public List<RelatedOrg> getRelatedOrg() {
     if (relatedOrg == null) {
-      relatedOrg = new HashSet<>();
+      relatedOrg = new ArrayList<>();
     }
     return this.relatedOrg;
   }

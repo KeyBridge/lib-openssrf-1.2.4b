@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * XML data type adapter for the SSRF SERIAL data type.
  * <p>
  * @author Jesse Caulfield
- * @version SSRF 3.1.0, 09/29/2014
+ * @version SSRF 1.2.4b, 09/29/2014
  */
 public class XmlAdapterSERIAL extends XmlAdapter<String, String> {
 

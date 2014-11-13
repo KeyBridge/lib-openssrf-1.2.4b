@@ -19,7 +19,7 @@ package us.gov.dod.standard.ssrf._1_2_4.adapter;
  * XML data type adapter for the SSRF S20 data type.
  * <p>
  * @author Jesse Caulfield
- * @version SSRF 3.1.0, 09/29/2014
+ * @version SSRF 1.2.4b, 09/29/2014
  */
 public class XmlAdapterStringS20 extends AXmlAdapterString {
 

@@ -1,10 +1,25 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.txrx;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -60,8 +75,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;/SpreadSpectrum&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TSpreadSpectrum", propOrder = {
@@ -76,7 +91,7 @@ public class SpreadSpectrum {
   protected FreqHopset freqHopset;
 
   @XmlElement(name = "SpreadSpectrumPulse")
-  protected Set<SpreadSpectrumPulse> spreadSpectrumPulse;
+  protected List<SpreadSpectrumPulse> spreadSpectrumPulse;
 
   @XmlElement(name = "SpreadSpectrumSweep")
   protected SpreadSpectrumSweep spreadSpectrumSweep;
@@ -202,9 +217,9 @@ public class SpreadSpectrum {
    * @return a {@link SpreadSpectrumPulse} instance
    * @since 3.1.0
    */
-  public Set<SpreadSpectrumPulse> getSpreadSpectrumPulse() {
+  public List<SpreadSpectrumPulse> getSpreadSpectrumPulse() {
     if (spreadSpectrumPulse == null) {
-      spreadSpectrumPulse = new HashSet<>();
+      spreadSpectrumPulse = new ArrayList<>();
     }
     return this.spreadSpectrumPulse;
   }

@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.math.BigInteger;
@@ -33,8 +48,8 @@ import us.gov.dod.standard.ssrf._1_2_4.sspt.SystemCost;
  * &lt;/SSRequest&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TSSRequest", propOrder = {
@@ -83,7 +98,7 @@ public class SSRequest extends Common<SSRequest> {
    * @since 3.1.0
    */
   @XmlElement(name = "Stage")
-  protected Set<Stage> stage;
+  protected List<Stage> stage;
 
   @XmlElement(name = "Stage4Srv")
   protected Stage4Srv stage4Srv;
@@ -98,7 +113,7 @@ public class SSRequest extends Common<SSRequest> {
   protected Memo description;
 
   @XmlElement(name = "Contract")
-  protected Set<Contract> contract;
+  protected List<Contract> contract;
   /**
    * Requirement - Requirement Description (Optional)
    * <p>
@@ -118,10 +133,10 @@ public class SSRequest extends Common<SSRequest> {
   protected Memo requirement;
 
   @XmlElement(name = "WillReplace")
-  protected Set<WillReplace> willReplace;
+  protected List<WillReplace> willReplace;
 
   @XmlElement(name = "SSRequestRef")
-  protected Set<SSRequestRef> ssRequestRef;
+  protected List<SSRequestRef> ssRequestRef;
   /**
    * HostNation (Optional)
    * <p>
@@ -133,13 +148,13 @@ public class SSRequest extends Common<SSRequest> {
    * @since 3.1.0
    */
   @XmlElement(name = "HostNation")
-  protected Set<SSRequest.HostNation> hostNation;
+  protected List<SSRequest.HostNation> hostNation;
 
   @XmlElement(name = "Config", required = true)
-  protected Set<Config> config;
+  protected List<Config> config;
 
   @XmlElement(name = "LocationRef", required = true)
-  protected Set<LocationRef> locationRef;
+  protected List<LocationRef> locationRef;
   /**
    * CurrentStage - Current Stage (Optional)
    * <p>
@@ -232,9 +247,9 @@ public class SSRequest extends Common<SSRequest> {
    * @return a {@link Stage} instance
    * @since 3.1.0
    */
-  public Set<Stage> getStage() {
+  public List<Stage> getStage() {
     if (stage == null) {
-      stage = new HashSet<>();
+      stage = new ArrayList<>();
     }
     return this.stage;
   }
@@ -352,9 +367,9 @@ public class SSRequest extends Common<SSRequest> {
    * @return a {@link Contract} instance
    * @since 3.1.0
    */
-  public Set<Contract> getContract() {
+  public List<Contract> getContract() {
     if (contract == null) {
-      contract = new HashSet<>();
+      contract = new ArrayList<>();
     }
     return this.contract;
   }
@@ -412,9 +427,9 @@ public class SSRequest extends Common<SSRequest> {
    * @return a {@link WillReplace} instance
    * @since 3.1.0
    */
-  public Set<WillReplace> getWillReplace() {
+  public List<WillReplace> getWillReplace() {
     if (willReplace == null) {
-      willReplace = new HashSet<>();
+      willReplace = new ArrayList<>();
     }
     return this.willReplace;
   }
@@ -436,9 +451,9 @@ public class SSRequest extends Common<SSRequest> {
    * @return a {@link SSRequestRef} instance
    * @since 3.1.0
    */
-  public Set<SSRequestRef> getSSRequestRef() {
+  public List<SSRequestRef> getSSRequestRef() {
     if (ssRequestRef == null) {
-      ssRequestRef = new HashSet<>();
+      ssRequestRef = new ArrayList<>();
     }
     return this.ssRequestRef;
   }
@@ -454,9 +469,9 @@ public class SSRequest extends Common<SSRequest> {
     this.ssRequestRef = null;
   }
 
-  public Set<SSRequest.HostNation> getHostNation() {
+  public List<SSRequest.HostNation> getHostNation() {
     if (hostNation == null) {
-      hostNation = new HashSet<>();
+      hostNation = new ArrayList<>();
     }
     return this.hostNation;
   }
@@ -478,9 +493,9 @@ public class SSRequest extends Common<SSRequest> {
    * @return a {@link Config} instance
    * @since 3.1.0
    */
-  public Set<Config> getConfig() {
+  public List<Config> getConfig() {
     if (config == null) {
-      config = new HashSet<>();
+      config = new ArrayList<>();
     }
     return this.config;
   }
@@ -502,9 +517,9 @@ public class SSRequest extends Common<SSRequest> {
    * @return a {@link LocationRef} instance
    * @since 3.1.0
    */
-  public Set<LocationRef> getLocationRef() {
+  public List<LocationRef> getLocationRef() {
     if (locationRef == null) {
-      locationRef = new HashSet<>();
+      locationRef = new ArrayList<>();
     }
     return this.locationRef;
   }

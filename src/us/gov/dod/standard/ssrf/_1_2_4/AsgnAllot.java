@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.util.*;
@@ -15,8 +30,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
 /**
  * AsgnAllot
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TAsgnAllot", propOrder = {
@@ -57,7 +72,7 @@ public class AsgnAllot extends Common<AsgnAllot> {
   protected Time time;
 
   @XmlElement(name = "Contract")
-  protected Set<Contract> contract;
+  protected List<Contract> contract;
 
   @XmlElement(name = "Requirement")
   protected Memo requirement;
@@ -72,25 +87,25 @@ public class AsgnAllot extends Common<AsgnAllot> {
   protected SysOfStation sysOfStation;
 
   @XmlElement(name = "FnctID", required = true)
-  protected Set<FnctID> fnctID;
+  protected List<FnctID> fnctID;
 
   @XmlElement(name = "NoteRef")
-  protected Set<NoteRef> noteRef;
+  protected List<NoteRef> noteRef;
 
   @XmlElement(name = "AsgnAllotRef")
-  protected Set<AsgnAllotRef> asgnAllotRef;
+  protected List<AsgnAllotRef> asgnAllotRef;
 
   @XmlElement(name = "SSRequestRef")
-  protected Set<SSRequestRef> ssRequestRef;
+  protected List<SSRequestRef> ssRequestRef;
 
   @XmlElement(name = "Config", required = true)
-  protected Set<Config> config;
+  protected List<Config> config;
 
   @XmlElement(name = "Station", required = true)
-  protected Set<Station> station;
+  protected List<Station> station;
 
   @XmlElement(name = "Link", required = true)
-  protected Set<Link> link;
+  protected List<Link> link;
 
   @XmlElement(name = "Net")
   protected Net net;
@@ -221,9 +236,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link Contract} instance
    * @since 3.1.0
    */
-  public Set<Contract> getContract() {
+  public List<Contract> getContract() {
     if (contract == null) {
-      contract = new HashSet<>();
+      contract = new ArrayList<>();
     }
     return this.contract;
   }
@@ -341,9 +356,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link FnctID} instance
    * @since 3.1.0
    */
-  public Set<FnctID> getFnctID() {
+  public List<FnctID> getFnctID() {
     if (fnctID == null) {
-      fnctID = new HashSet<>();
+      fnctID = new ArrayList<>();
     }
     return this.fnctID;
   }
@@ -365,9 +380,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link NoteRef} instance
    * @since 3.1.0
    */
-  public Set<NoteRef> getNoteRef() {
+  public List<NoteRef> getNoteRef() {
     if (noteRef == null) {
-      noteRef = new HashSet<>();
+      noteRef = new ArrayList<>();
     }
     return this.noteRef;
   }
@@ -389,9 +404,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link AsgnAllotRef} instance
    * @since 3.1.0
    */
-  public Set<AsgnAllotRef> getAsgnAllotRef() {
+  public List<AsgnAllotRef> getAsgnAllotRef() {
     if (asgnAllotRef == null) {
-      asgnAllotRef = new HashSet<>();
+      asgnAllotRef = new ArrayList<>();
     }
     return this.asgnAllotRef;
   }
@@ -413,9 +428,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link SSRequestRef} instance
    * @since 3.1.0
    */
-  public Set<SSRequestRef> getSSRequestRef() {
+  public List<SSRequestRef> getSSRequestRef() {
     if (ssRequestRef == null) {
-      ssRequestRef = new HashSet<>();
+      ssRequestRef = new ArrayList<>();
     }
     return this.ssRequestRef;
   }
@@ -437,9 +452,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link Config} instance
    * @since 3.1.0
    */
-  public Set<Config> getConfig() {
+  public List<Config> getConfig() {
     if (config == null) {
-      config = new HashSet<>();
+      config = new ArrayList<>();
     }
     return this.config;
   }
@@ -461,9 +476,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link Station} instance
    * @since 3.1.0
    */
-  public Set<Station> getStation() {
+  public List<Station> getStation() {
     if (station == null) {
-      station = new HashSet<>();
+      station = new ArrayList<>();
     }
     return this.station;
   }
@@ -485,9 +500,9 @@ public class AsgnAllot extends Common<AsgnAllot> {
    * @return a {@link Link} instance
    * @since 3.1.0
    */
-  public Set<Link> getLink() {
+  public List<Link> getLink() {
     if (link == null) {
-      link = new HashSet<>();
+      link = new ArrayList<>();
     }
     return this.link;
   }

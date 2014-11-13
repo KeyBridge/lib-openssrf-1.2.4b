@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4;
 
 import java.awt.Polygon;
@@ -65,8 +80,8 @@ import us.gov.dod.standard.ssrf._1_2_4.shared.*;
  * &lt;/Location&gt;
  * </pre>
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TLocation", propOrder = {
@@ -93,13 +108,13 @@ public class Location extends Common<Location> {
    * @since 3.1.0
    */
   @XmlElement(name = "Point", required = true)
-  protected Set<Point> point;
+  protected List<Point> point;
 
   @XmlElement(name = "BoundingCircle")
   protected Location.BoundingCircle boundingCircle;
 
   @XmlElement(name = "AGAProtection")
-  protected Set<AGAProtection> agaProtection;
+  protected List<AGAProtection> agaProtection;
   /**
    * Name - Location Name (Required)
    * <p>
@@ -149,9 +164,9 @@ public class Location extends Common<Location> {
    * @return a {@link Point} instance
    * @since 3.1.0
    */
-  public Set<Point> getPoint() {
+  public List<Point> getPoint() {
     if (point == null) {
-      point = new HashSet<>();
+      point = new ArrayList<>();
     }
     return this.point;
   }
@@ -191,9 +206,9 @@ public class Location extends Common<Location> {
    * @return a {@link AGAProtection} instance
    * @since 3.1.0
    */
-  public Set<AGAProtection> getAGAProtection() {
+  public List<AGAProtection> getAGAProtection() {
     if (agaProtection == null) {
-      agaProtection = new HashSet<>();
+      agaProtection = new ArrayList<>();
     }
     return this.agaProtection;
   }

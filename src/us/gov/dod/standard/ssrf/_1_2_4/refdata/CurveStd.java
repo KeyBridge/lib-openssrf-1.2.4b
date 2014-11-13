@@ -1,3 +1,18 @@
+/* 
+ * Copyright 2014 Key Bridge Global LLC.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package us.gov.dod.standard.ssrf._1_2_4.refdata;
 
 import java.math.BigDecimal;
@@ -7,8 +22,8 @@ import javax.xml.bind.annotation.*;
 /**
  * CurveStd
  * <p>
- * @author Key Bridge Global LLC <developer@keybridgeglobal.com>
- * @version 3.1.0, 11/12/2014
+ * @author Jesse Caulfield
+ * @version SSRF 1.2.4b, 11/12/2014
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TCurveStd", propOrder = {
@@ -19,7 +34,7 @@ import javax.xml.bind.annotation.*;
 public class CurveStd extends Std<CurveStd> {
 
   @XmlElement(name = "CurveSpec", required = true)
-  protected Set<CurveStd.CurveSpec> curveSpec;
+  protected List<CurveStd.CurveSpec> curveSpec;
 
   @XmlElement(name = "XAxis")
   protected Axis xAxis;
@@ -36,9 +51,9 @@ public class CurveStd extends Std<CurveStd> {
   @XmlAttribute(name = "spec")
   protected String spec;
 
-  public Set<CurveStd.CurveSpec> getCurveSpec() {
+  public List<CurveStd.CurveSpec> getCurveSpec() {
     if (curveSpec == null) {
-      curveSpec = new HashSet<>();
+      curveSpec = new ArrayList<>();
     }
     return this.curveSpec;
   }
