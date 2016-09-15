@@ -10,7 +10,7 @@ This software library is NOT ACTIVELY DEVELOPED.
 This implementation of the legacy SSRF data format is provided to facilitate
 system and service migration to SSRF v3.0 and 3.1. 
 
-This library is currenlty developed for the purpose of reading legacy SSRF XML 
+This library is designed for the purpose of reading legacy SSRF XML 
 documents and converting those documents to a more recent version of the SSRF
 specification (3.0 or 3.1). Accordingly, this implementation does not include 
 document assembly, validation or write-to-XML utilities.
